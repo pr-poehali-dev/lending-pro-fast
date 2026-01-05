@@ -174,9 +174,10 @@ export default function Index() {
             Запустите лендинг за 7 дней и получайте поток клиентов на автопилоте
           </p>
 
-          <div className="glass inline-block px-6 py-4 rounded-2xl mb-8">
-            <p className="text-sm text-muted-foreground mb-2">Лендингов запущено на сегодня:</p>
-            <p className="text-5xl font-bold text-primary">{counter}</p>
+          <div className="glass inline-block px-8 py-4 rounded-2xl mb-8">
+            <p className="text-2xl font-bold text-secondary flex items-center gap-3">
+              Лендингов запущено на сегодня: <span className="text-secondary">{counter}</span>
+            </p>
           </div>
 
           <Button
