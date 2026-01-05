@@ -313,10 +313,9 @@ export default function Index() {
 
       <section className="py-20 px-4 bg-card/50" id="heroes">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
-            Выбери своего героя 🎮
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
+            Реальные истории успеха наших клиентов 🎯
           </h2>
-          <p className="text-center text-muted-foreground mb-12 text-lg">Реальные истории успеха</p>
 
           <div className="grid md:grid-cols-3 gap-6">
             {[
