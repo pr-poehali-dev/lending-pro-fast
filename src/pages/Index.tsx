@@ -174,18 +174,18 @@ export default function Index() {
             Запустите лендинг за 7 дней и получайте поток клиентов на автопилоте
           </p>
 
+          <div className="glass inline-block px-6 py-4 rounded-2xl mb-8">
+            <p className="text-sm text-muted-foreground mb-2">Лендингов запущено на сегодня:</p>
+            <p className="text-5xl font-bold text-primary">{counter}</p>
+          </div>
+
           <Button
             size="lg"
-            className="text-lg px-8 py-6 bg-gradient-to-r from-primary to-secondary hover:shadow-[0_0_30px_rgba(52,152,219,0.5)] transition-all mb-8"
+            className="text-lg px-8 py-6 bg-gradient-to-r from-primary to-secondary hover:shadow-[0_0_30px_rgba(52,152,219,0.5)] transition-all"
             onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
           >
             Запустить свою ракету 🚀
           </Button>
-
-          <div className="glass inline-block px-6 py-4 rounded-2xl">
-            <p className="text-sm text-muted-foreground mb-2">Лендингов запущено на сегодня:</p>
-            <p className="text-5xl font-bold text-primary">{counter}</p>
-          </div>
         </div>
       </section>
 
