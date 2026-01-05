@@ -16,6 +16,7 @@ export default function Index() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [rocketLaunched, setRocketLaunched] = useState(false);
   const [counter, setCounter] = useState(0);
+  const [counterStarted, setCounterStarted] = useState(false);
   const [adBudget, setAdBudget] = useState([100000]);
   const [leakage, setLeakage] = useState([50]);
   const [beforeAfterSlider, setBeforeAfterSlider] = useState(50);
@@ -38,10 +39,6 @@ export default function Index() {
     };
     window.addEventListener("mousemove", handleMouseMove);
 
-    const interval = setInterval(() => {
-      if (counter < 47) setCounter(counter + 1);
-    }, 50);
-
     const timerInterval = setInterval(() => {
       setTimeLeft((prev) => {
         if (prev.seconds > 0) return { ...prev, seconds: prev.seconds - 1 };
@@ -55,6 +52,14 @@ export default function Index() {
       const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
       setScrollProgress(scrolled);
 
+      const heroElement = document.getElementById("hero");
+      if (heroElement && !counterStarted) {
+        const rect = heroElement.getBoundingClientRect();
+        if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+          setCounterStarted(true);
+        }
+      }
+
       sections.forEach((section) => {
         const element = document.getElementById(section.id);
         if (element) {
@@ -66,14 +71,23 @@ export default function Index() {
       });
     };
     window.addEventListener("scroll", handleScroll);
+    handleScroll();
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("scroll", handleScroll);
-      clearInterval(interval);
       clearInterval(timerInterval);
     };
-  }, [counter]);
+  }, [counterStarted]);
+
+  useEffect(() => {
+    if (counterStarted && counter < 47) {
+      const interval = setInterval(() => {
+        setCounter((prev) => (prev < 47 ? prev + 1 : prev));
+      }, 50);
+      return () => clearInterval(interval);
+    }
+  }, [counterStarted, counter]);
 
   const launchRocket = () => {
     setRocketLaunched(true);
