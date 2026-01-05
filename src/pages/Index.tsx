@@ -26,13 +26,10 @@ export default function Index() {
   const [activeSection, setActiveSection] = useState("hero");
 
   const sections = [
-    { id: "pain", label: "Боль клиентов", icon: "AlertTriangle" },
-    { id: "loss", label: "Что будет, если ничего не менять?", icon: "DollarSign" },
-    { id: "transform", label: "Как меняется бизнес", icon: "ArrowUpRight" },
-    { id: "heroes", label: "Почему решения работают", icon: "Trophy" },
-    { id: "process", label: "Кейсы и отзывы", icon: "Star" },
-    { id: "faq", label: "FAQ и гарантии", icon: "HelpCircle" },
-    { id: "contact", label: "Контакты и заявка", icon: "Send" },
+    { id: "pain", label: "Боль", icon: "AlertTriangle" },
+    { id: "loss", label: "Осознание", icon: "DollarSign" },
+    { id: "transform", label: "Решение", icon: "ArrowUpRight" },
+    { id: "heroes", label: "Успех", icon: "Trophy" },
   ];
 
   useEffect(() => {
