@@ -397,7 +397,7 @@ export default function Index() {
                 <div key={idx} className="relative grid grid-cols-2 gap-8 items-center group">
                   {idx % 2 === 0 ? (
                     <>
-                      <Card className="glass hover:border-primary hover:shadow-[0_0_40px_rgba(52,152,219,0.4)] transition-all duration-300 ml-auto hover:scale-110 cursor-pointer">
+                      <Card className="glass hover:border-primary hover:shadow-[0_0_40px_rgba(52,152,219,0.4)] transition-all duration-300 ml-auto hover:scale-115 hover:-translate-x-8 cursor-pointer">
                         <CardHeader>
                           <Badge className="mb-2 w-fit">{step.day}</Badge>
                           <CardTitle className="text-2xl">{step.title}</CardTitle>
@@ -409,7 +409,7 @@ export default function Index() {
                   ) : (
                     <>
                       <div />
-                      <Card className="glass hover:border-primary hover:shadow-[0_0_40px_rgba(52,152,219,0.4)] transition-all duration-300 mr-auto hover:scale-110 cursor-pointer">
+                      <Card className="glass hover:border-primary hover:shadow-[0_0_40px_rgba(52,152,219,0.4)] transition-all duration-300 mr-auto hover:scale-115 hover:translate-x-8 cursor-pointer">
                         <CardHeader>
                           <Badge className="mb-2 w-fit">{step.day}</Badge>
                           <CardTitle className="text-2xl">{step.title}</CardTitle>
@@ -419,7 +419,7 @@ export default function Index() {
                     </>
                   )}
 
-                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg border-4 border-background transition-all duration-300 group-hover:scale-125 group-hover:rotate-12 group-hover:shadow-[0_0_30px_rgba(52,152,219,0.6)]">
+                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg border-4 border-background transition-all duration-300 group-hover:scale-125 group-hover:rotate-12 group-hover:shadow-[0_0_30px_rgba(52,152,219,0.6)] z-10">
                     <Icon name={step.icon as any} size={32} className="text-primary-foreground transition-transform duration-300 group-hover:scale-110" />
                   </div>
                 </div>
