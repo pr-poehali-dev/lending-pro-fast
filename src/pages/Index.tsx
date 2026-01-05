@@ -152,7 +152,7 @@ export default function Index() {
             🚀
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 neon-text">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6">
             Ваш бизнес готов к <span className="text-primary">взлёту?</span>
           </h1>
           
