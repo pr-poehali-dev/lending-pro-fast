@@ -25,6 +25,7 @@ export default function Index() {
   const [formData, setFormData] = useState({ name: "", phone: "", business: "" });
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState("hero");
+  const [painChecks, setPainChecks] = useState<Record<number, boolean>>({});
 
   const sections = [
     { id: "pain", label: "Боль", icon: "AlertTriangle" },
@@ -198,10 +199,42 @@ export default function Index() {
             Теряете клиентов до того, как начинаете продавать?
           </h2>
 
-          <p className="text-xl text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
+          <p className="text-xl text-center text-muted-foreground mb-4 max-w-3xl mx-auto">
             Малый бизнес ежедневно теряет десятки потенциальных клиентов из-за отсутствия понятной, цепляющей страницы. 
             Люди уходят к конкурентам, потому что не видят ваших преимуществ…
           </p>
+
+          <h3 className="text-2xl font-bold text-center mb-8">Узнайте себя? Отметьте свои боли</h3>
+
+          <div className="grid md:grid-cols-2 gap-4 mb-12">
+            {[
+              "Реклама работает, но заявок нет",
+              "Клиенты уходят к конкурентам",
+              "Сайта нет или он выглядит как в 2010",
+              "Деньги уходят в никуда",
+            ].map((pain, idx) => (
+              <div
+                key={idx}
+                onClick={() => setPainChecks({ ...painChecks, [idx]: !painChecks[idx] })}
+                className={`glass p-6 rounded-2xl flex items-center gap-4 cursor-pointer transition-all duration-300 ${
+                  painChecks[idx]
+                    ? "border-secondary bg-secondary/10 shadow-[0_0_20px_rgba(46,204,113,0.3)]"
+                    : "hover:border-primary/50"
+                }`}
+              >
+                <div
+                  className={`w-6 h-6 rounded border-2 flex items-center justify-center transition-all ${
+                    painChecks[idx] ? "bg-secondary border-secondary" : "border-muted-foreground"
+                  }`}
+                >
+                  {painChecks[idx] && (
+                    <Icon name="Check" size={16} className="text-white" />
+                  )}
+                </div>
+                <p className="text-lg flex-1">{pain}</p>
+              </div>
+            ))}
+          </div>
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <Card className="glass hover:border-destructive/50 transition-all">
