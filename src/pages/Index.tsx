@@ -193,34 +193,94 @@ export default function Index() {
       </section>
 
       <section className="py-20 px-4" id="pain">
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
-            А у вас так же? 🤦‍♂️
+        <div className="container mx-auto max-w-5xl">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-8">
+            Потеряете клиентов до того, как начнёте продавать?
           </h2>
 
-          <div className="grid gap-6 mb-8">
-            {[
-              "Реклама работает, но заявок нет",
-              "Клиенты уходят к конкурентам",
-              "Непонятно, куда уходят деньги",
-              "Сайта нет или он выглядит как в 2010",
-            ].map((item, idx) => (
-              <div key={idx} className="glass p-6 rounded-2xl flex items-center gap-4 hover:border-primary/50 transition-all animate-fade-in" style={{ animationDelay: `${idx * 0.1}s` }}>
-                <div className="text-3xl">⚠️</div>
-                <p className="text-lg">{item}</p>
-              </div>
-            ))}
+          <p className="text-xl text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
+            Малый бизнес ежедневно теряет десятки потенциальных клиентов из-за отсутствия понятной, цепляющей страницы. 
+            Люди уходят к конкурентам, потому что не видят ваших преимуществ…
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            <Card className="glass hover:border-destructive/50 transition-all">
+              <CardContent className="pt-8 text-center">
+                <div className="text-6xl mb-4">🚪</div>
+                <h3 className="text-2xl font-bold mb-4">Закрытая дверь</h3>
+                <p className="text-muted-foreground">
+                  Без эффективного лендинга ваш бизнес остаётся невидимым для клиентов
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="glass hover:border-destructive/50 transition-all">
+              <CardContent className="pt-8 text-center">
+                <div className="text-6xl mb-4">😞</div>
+                <h3 className="text-2xl font-bold mb-4">Разочарование</h3>
+                <p className="text-muted-foreground">
+                  Клиенты приходят, но не видят ценности вашего предложения
+                </p>
+              </CardContent>
+            </Card>
           </div>
 
-          <p className="text-center text-xl text-primary">Узнали себя? Вы не одиноки! ↓</p>
+          <div className="glass p-8 rounded-2xl border-destructive/30 border-2">
+            <p className="text-center text-lg italic text-destructive font-semibold">
+              "70% небольших компаний теряют свой первый контакт из-за непрезентабельного сайта"
+            </p>
+          </div>
         </div>
       </section>
 
       <section className="py-20 px-4 bg-card/50" id="loss">
-        <div className="container mx-auto max-w-3xl">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
-            Посчитаем убытки? 💸
+        <div className="container mx-auto max-w-5xl">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-8">
+            Время — деньги. Ваша реклама сливает оба
           </h2>
+
+          <p className="text-xl text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
+            Каждый день ожидания — новые расходы. Реклама работает вхолостую, сайт не конвертирует, бюджет улетает. 
+            Через месяц вы теряете в среднем 18 клиентов — и до 50 000 рублей на неэффективный маркетинг.
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <Card className="glass hover:border-destructive/50 transition-all">
+              <CardContent className="pt-8 text-center">
+                <div className="text-6xl mb-4">💸</div>
+                <h3 className="text-xl font-bold mb-2">Деньги улетают</h3>
+                <p className="text-muted-foreground text-sm">
+                  Рекламный бюджет тратится впустую
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="glass hover:border-destructive/50 transition-all">
+              <CardContent className="pt-8 text-center">
+                <div className="text-6xl mb-4">📉</div>
+                <h3 className="text-xl font-bold mb-2">Конверсия падает</h3>
+                <p className="text-muted-foreground text-sm">
+                  Статистика отказов растёт каждый день
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="glass hover:border-destructive/50 transition-all">
+              <CardContent className="pt-8 text-center">
+                <div className="text-6xl mb-4">⏰</div>
+                <h3 className="text-xl font-bold mb-2">Время тает</h3>
+                <p className="text-muted-foreground text-sm">
+                  Каждый день промедления — потеря клиентов
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="glass p-8 rounded-2xl border-destructive/30 border-2 mb-8">
+            <p className="text-center text-lg italic text-destructive font-semibold">
+              "18 запущенных лидов ежемесячно — типичная цифра для бизнеса без эффективного лендинга"
+            </p>
+          </div>
 
           <Card className="glass border-destructive/30">
             <CardContent className="pt-8 space-y-8">
@@ -271,9 +331,14 @@ export default function Index() {
 
       <section className="py-20 px-4" id="transform">
         <div className="container mx-auto max-w-5xl">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
-            А теперь представьте... ✨
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-8">
+            Сделайте шаг — и заявки сами придут к вам
           </h2>
+
+          <p className="text-xl text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
+            Всё меняется, когда появляется лендинг, созданный для вашей аудитории: заявки приходят системно и дёшево, 
+            клиенты выбирают вас. Посмотрите, как это работает на примере наших клиентов!
+          </p>
 
           <div className="relative h-[500px] glass rounded-3xl overflow-hidden">
             <div className="absolute inset-0 flex">
