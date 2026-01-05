@@ -23,6 +23,17 @@ export default function Index() {
   const [formProgress, setFormProgress] = useState(0);
   const [formData, setFormData] = useState({ name: "", phone: "", business: "" });
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [activeSection, setActiveSection] = useState("hero");
+
+  const sections = [
+    { id: "pain", label: "Боль клиентов", icon: "AlertCircle" },
+    { id: "loss", label: "Что будет, если ничего не менять?", icon: "TrendingDown" },
+    { id: "transform", label: "Как меняется бизнес", icon: "TrendingUp" },
+    { id: "heroes", label: "Почему решения работают", icon: "Award" },
+    { id: "process", label: "Кейсы и отзывы", icon: "Users" },
+    { id: "faq", label: "FAQ и гарантии", icon: "Shield" },
+    { id: "contact", label: "Контакты и заявка", icon: "Mail" },
+  ];
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -46,6 +57,16 @@ export default function Index() {
     const handleScroll = () => {
       const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
       setScrollProgress(scrolled);
+
+      sections.forEach((section) => {
+        const element = document.getElementById(section.id);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 200 && rect.bottom >= 200) {
+            setActiveSection(section.id);
+          }
+        }
+      });
     };
     window.addEventListener("scroll", handleScroll);
 
@@ -94,7 +115,31 @@ export default function Index() {
         }}
       />
 
-      <section className="min-h-screen flex items-center justify-center relative overflow-hidden px-4">
+      <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-40 glass px-4 py-3 rounded-full">
+        <div className="flex items-center gap-2">
+          {sections.map((section) => (
+            <button
+              key={section.id}
+              onClick={() => {
+                document.getElementById(section.id)?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className={`group relative px-3 py-2 rounded-full transition-all ${
+                activeSection === section.id
+                  ? "bg-primary text-primary-foreground"
+                  : "hover:bg-primary/10"
+              }`}
+              title={section.label}
+            >
+              <Icon name={section.icon as any} size={20} />
+              {activeSection === section.id && (
+                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary animate-pulse" />
+              )}
+            </button>
+          ))}
+        </div>
+      </nav>
+
+      <section className="min-h-screen flex items-center justify-center relative overflow-hidden px-4" id="hero">
         <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-secondary/10" />
         
         <div className="container mx-auto text-center relative z-10 max-w-5xl">
@@ -133,7 +178,7 @@ export default function Index() {
         </div>
       </section>
 
-      <section className="py-20 px-4">
+      <section className="py-20 px-4" id="pain">
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
             А у вас так же? 🤦‍♂️
@@ -157,7 +202,7 @@ export default function Index() {
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-card/50">
+      <section className="py-20 px-4 bg-card/50" id="loss">
         <div className="container mx-auto max-w-3xl">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
             Посчитаем убытки? 💸
@@ -210,7 +255,7 @@ export default function Index() {
         </div>
       </section>
 
-      <section className="py-20 px-4">
+      <section className="py-20 px-4" id="transform">
         <div className="container mx-auto max-w-5xl">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
             А теперь представьте... ✨
@@ -269,7 +314,7 @@ export default function Index() {
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-card/50">
+      <section className="py-20 px-4 bg-card/50" id="heroes">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
             Выбери своего героя 🎮
@@ -336,7 +381,7 @@ export default function Index() {
         </div>
       </section>
 
-      <section className="py-20 px-4">
+      <section className="py-20 px-4" id="process">
         <div className="container mx-auto max-w-5xl">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
             Ваш путь к успеху за 7 дней 🗺️
@@ -525,7 +570,7 @@ export default function Index() {
         </div>
       </section>
 
-      <section className="py-20 px-4">
+      <section className="py-20 px-4" id="faq">
         <div className="container mx-auto max-w-3xl">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
             Остались вопросы? 🤔
