@@ -29,7 +29,7 @@ export default function Index() {
     { id: "pain", label: "Боль", icon: "AlertTriangle" },
     { id: "loss", label: "Осознание", icon: "DollarSign" },
     { id: "transform", label: "Решение", icon: "ArrowUpRight" },
-    { id: "heroes", label: "Успех", icon: "Trophy" },
+    { id: "process", label: "Успех", icon: "Trophy" },
   ];
 
   useEffect(() => {
