@@ -206,7 +206,7 @@ export default function Index() {
 
           <h3 className="text-2xl font-bold text-center mb-8">Узнайте себя? Отметьте свои боли</h3>
 
-          <div className="grid md:grid-cols-2 gap-4 mb-12">
+          <div className="grid md:grid-cols-2 gap-4 mb-8">
             {[
               "Реклама работает, но заявок нет",
               "Клиенты уходят к конкурентам",
@@ -235,6 +235,33 @@ export default function Index() {
               </div>
             ))}
           </div>
+
+          {Object.keys(painChecks).filter((key) => painChecks[parseInt(key)]).length > 0 && (
+            <div className="glass p-8 rounded-2xl border-secondary/50 border-2 mb-12 animate-scale-in">
+              <div className="text-center">
+                <div className="inline-flex items-center gap-3 mb-4">
+                  <Icon name="CheckCircle" size={32} className="text-secondary" />
+                  <p className="text-2xl font-bold">
+                    Отмечено проблем: {Object.keys(painChecks).filter((key) => painChecks[parseInt(key)]).length} из 4
+                  </p>
+                </div>
+                <p className="text-lg text-muted-foreground mb-6">
+                  {Object.keys(painChecks).filter((key) => painChecks[parseInt(key)]).length >= 3
+                    ? "Критическая ситуация! Ваш бизнес теряет деньги прямо сейчас. Пора действовать!"
+                    : Object.keys(painChecks).filter((key) => painChecks[parseInt(key)]).length >= 2
+                    ? "У вас серьёзные проблемы с конверсией. Лендинг решит эти боли!"
+                    : "Даже одна проблема стоит вам клиентов. Давайте это исправим!"}
+                </p>
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-secondary to-primary hover:shadow-[0_0_30px_rgba(46,204,113,0.5)] transition-all"
+                  onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+                >
+                  Решить эти проблемы сейчас 🚀
+                </Button>
+              </div>
+            </div>
+          )}
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <Card className="glass hover:border-destructive/50 transition-all">
