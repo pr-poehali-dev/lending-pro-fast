@@ -156,22 +156,22 @@ export default function Index() {
             Ваш бизнес готов к <span className="text-primary">взлёту?</span>
           </h1>
           
-          <p className="text-xl md:text-2xl mb-8 text-muted-foreground">
+          <p className="text-xl md:text-2xl mb-12 text-muted-foreground">
             Запустите лендинг за 7 дней и получайте поток клиентов на автопилоте
           </p>
 
-          <div className="glass inline-block px-6 py-4 rounded-2xl mb-12">
-            <p className="text-sm text-muted-foreground mb-2">Лендингов запущено сегодня:</p>
-            <p className="text-5xl font-bold text-primary">{counter}</p>
-          </div>
-
           <Button
             size="lg"
-            className="text-lg px-8 py-6 bg-gradient-to-r from-primary to-secondary hover:shadow-[0_0_30px_rgba(52,152,219,0.5)] transition-all"
+            className="text-lg px-8 py-6 bg-gradient-to-r from-primary to-secondary hover:shadow-[0_0_30px_rgba(52,152,219,0.5)] transition-all mb-8"
             onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
           >
             Запустить свою ракету 🚀
           </Button>
+
+          <div className="glass inline-block px-6 py-4 rounded-2xl">
+            <p className="text-sm text-muted-foreground mb-2">Лендингов запущено на сегодня:</p>
+            <p className="text-5xl font-bold text-primary">{counter}</p>
+          </div>
         </div>
       </section>
 
