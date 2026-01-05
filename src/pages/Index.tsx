@@ -379,39 +379,52 @@ export default function Index() {
       </section>
 
       <section className="py-20 px-4" id="process">
-        <div className="container mx-auto max-w-5xl">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-20">
             Ваш путь к успеху за 7 дней 🗺️
           </h2>
 
-          <div className="space-y-6">
-            {[
-              { day: "День 1-2", title: "Стратегия", desc: "Анализ ЦА и конкурентов", icon: "Target" },
-              { day: "День 3-4", title: "Дизайн", desc: "Создание уникального макета", icon: "Palette" },
-              { day: "День 5-6", title: "Разработка", desc: "Вёрстка и интеграции", icon: "Code" },
-              { day: "День 7", title: "Запуск!", desc: "Публикация и первые заявки", icon: "Rocket" },
-            ].map((step, idx) => (
-              <div key={idx} className="relative">
-                {idx < 3 && (
-                  <div className="absolute left-8 top-20 w-0.5 h-12 bg-primary/30" />
-                )}
-                <Card className="glass hover:border-primary/50 transition-all">
-                  <CardHeader>
-                    <div className="flex items-center gap-4">
-                      <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-2xl font-bold">
-                        {idx + 1}
-                      </div>
-                      <div className="flex-1">
-                        <Badge className="mb-2">{step.day}</Badge>
-                        <CardTitle className="text-2xl">{step.title}</CardTitle>
-                        <CardDescription className="text-base">{step.desc}</CardDescription>
-                      </div>
-                      <Icon name={step.icon as any} size={48} className="text-primary" />
-                    </div>
-                  </CardHeader>
-                </Card>
-              </div>
-            ))}
+          <div className="relative">
+            <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-secondary to-accent -translate-x-1/2" />
+
+            <div className="space-y-24">
+              {[
+                { day: "День 1-2", title: "Стратегия", desc: "Анализ ЦА и конкурентов", icon: "Target" },
+                { day: "День 3-4", title: "Дизайн", desc: "Создание уникального макета", icon: "Palette" },
+                { day: "День 5-6", title: "Разработка", desc: "Вёрстка и интеграции", icon: "Code" },
+                { day: "День 7", title: "Запуск!", desc: "Публикация и первые заявки", icon: "Rocket" },
+              ].map((step, idx) => (
+                <div key={idx} className="relative grid grid-cols-2 gap-8 items-center">
+                  {idx % 2 === 0 ? (
+                    <>
+                      <Card className="glass hover:border-primary/50 transition-all ml-auto">
+                        <CardHeader>
+                          <Badge className="mb-2 w-fit">{step.day}</Badge>
+                          <CardTitle className="text-2xl">{step.title}</CardTitle>
+                          <CardDescription className="text-base">{step.desc}</CardDescription>
+                        </CardHeader>
+                      </Card>
+                      <div />
+                    </>
+                  ) : (
+                    <>
+                      <div />
+                      <Card className="glass hover:border-primary/50 transition-all mr-auto">
+                        <CardHeader>
+                          <Badge className="mb-2 w-fit">{step.day}</Badge>
+                          <CardTitle className="text-2xl">{step.title}</CardTitle>
+                          <CardDescription className="text-base">{step.desc}</CardDescription>
+                        </CardHeader>
+                      </Card>
+                    </>
+                  )}
+
+                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg border-4 border-background">
+                    <Icon name={step.icon as any} size={32} className="text-primary-foreground" />
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
