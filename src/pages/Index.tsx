@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -6,200 +6,329 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
+import { Slider } from "@/components/ui/slider";
+import { Progress } from "@/components/ui/progress";
 import Icon from "@/components/ui/icon";
 import { useToast } from "@/hooks/use-toast";
 
 export default function Index() {
   const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    plan: ""
-  });
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [rocketLaunched, setRocketLaunched] = useState(false);
+  const [counter, setCounter] = useState(0);
+  const [adBudget, setAdBudget] = useState([100000]);
+  const [leakage, setLeakage] = useState([50]);
+  const [beforeAfterSlider, setBeforeAfterSlider] = useState(50);
+  const [timeLeft, setTimeLeft] = useState({ hours: 23, minutes: 59, seconds: 59 });
+  const [formProgress, setFormProgress] = useState(0);
+  const [formData, setFormData] = useState({ name: "", phone: "", business: "" });
+  const [scrollProgress, setScrollProgress] = useState(0);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    toast({
-      title: "Заявка отправлена!",
-      description: "Мы свяжемся с вами в течение 15 минут",
-    });
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+
+    const interval = setInterval(() => {
+      if (counter < 47) setCounter(counter + 1);
+    }, 50);
+
+    const timerInterval = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev.seconds > 0) return { ...prev, seconds: prev.seconds - 1 };
+        if (prev.minutes > 0) return { hours: prev.hours, minutes: prev.minutes - 1, seconds: 59 };
+        if (prev.hours > 0) return { hours: prev.hours - 1, minutes: 59, seconds: 59 };
+        return prev;
+      });
+    }, 1000);
+
+    const handleScroll = () => {
+      const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      setScrollProgress(scrolled);
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("scroll", handleScroll);
+      clearInterval(interval);
+      clearInterval(timerInterval);
+    };
+  }, [counter]);
+
+  const launchRocket = () => {
+    setRocketLaunched(true);
+    setTimeout(() => setRocketLaunched(false), 2000);
   };
 
-  const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  const calculateLoss = () => {
+    return Math.round(adBudget[0] * (leakage[0] / 100));
   };
+
+  const calculateFormProgress = () => {
+    let progress = 0;
+    if (formData.name) progress += 33;
+    if (formData.phone) progress += 33;
+    if (formData.business) progress += 34;
+    return progress;
+  };
+
+  useEffect(() => {
+    setFormProgress(calculateFormProgress());
+  }, [formData]);
 
   return (
-    <div className="min-h-screen">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 border-b">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="text-2xl font-bold text-primary">LendingPro</div>
-            <div className="hidden md:flex gap-6">
-              {["Проблема", "Решение", "Процесс", "Отзывы", "Цены"].map((item, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => scrollToSection(["pain", "solution", "process", "reviews", "pricing"][idx])}
-                  className="text-sm font-semibold hover:text-primary transition-colors"
-                >
-                  {item}
-                </button>
-              ))}
-            </div>
-            <Button onClick={() => scrollToSection("contact")}>
-              Оставить заявку
-            </Button>
-          </div>
-        </div>
-      </nav>
+    <div className="min-h-screen relative">
+      <div
+        className="fixed top-0 left-0 h-1 bg-gradient-to-r from-primary via-secondary to-accent z-50 transition-all"
+        style={{ width: `${scrollProgress}%` }}
+      />
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 bg-gradient-to-b from-background to-white">
-        <div className="container mx-auto text-center max-w-4xl animate-fade-in">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-            Лендинг, который <span className="text-primary">приносит деньги</span>
+      <div
+        className="fixed w-4 h-4 rounded-full bg-primary pointer-events-none z-50 transition-all duration-100"
+        style={{
+          left: mousePos.x - 8,
+          top: mousePos.y - 8,
+          boxShadow: "0 0 20px rgba(52, 152, 219, 0.8)",
+        }}
+      />
+
+      <section className="min-h-screen flex items-center justify-center relative overflow-hidden px-4">
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-secondary/10" />
+        
+        <div className="container mx-auto text-center relative z-10 max-w-5xl">
+          <div
+            className={`inline-block text-8xl mb-8 cursor-pointer transition-all duration-1000 ${
+              rocketLaunched ? "translate-y-[-1000px] opacity-0" : ""
+            }`}
+            onClick={launchRocket}
+            style={{
+              transform: !rocketLaunched ? `translate(${(mousePos.x - window.innerWidth / 2) / 30}px, ${(mousePos.y - window.innerHeight / 2) / 30}px)` : "",
+            }}
+          >
+            🚀
+          </div>
+
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 neon-text">
+            Ваш бизнес готов к <span className="text-primary">взлёту?</span>
           </h1>
-          <p className="text-2xl md:text-3xl mb-8 text-muted-foreground font-semibold">
-            5 заявок в день за 5 дней работы
-          </p>
-          <div className="inline-block bg-accent text-accent-foreground px-6 py-3 rounded-lg font-bold text-lg mb-12">
-            Гарантия конверсии 2% или деньги назад
-          </div>
           
-          <div className="flex flex-wrap justify-center gap-8 mb-12">
-            <div className="flex items-center gap-2">
-              <Icon name="Star" className="text-yellow-500" size={24} />
-              <span className="font-semibold">4.9 / 5.0 (2300+ отзывов)</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Icon name="Users" className="text-primary" size={24} />
-              <span className="font-semibold">200+ довольных клиентов</span>
-            </div>
+          <p className="text-xl md:text-2xl mb-8 text-muted-foreground">
+            Запустите лендинг за 7 дней и получайте поток клиентов на автопилоте
+          </p>
+
+          <div className="glass inline-block px-6 py-4 rounded-2xl mb-12">
+            <p className="text-sm text-muted-foreground mb-2">Лендингов запущено сегодня:</p>
+            <p className="text-5xl font-bold text-primary">{counter}</p>
           </div>
 
-          <Button size="lg" className="text-lg px-8 py-6" onClick={() => scrollToSection("contact")}>
-            Получить лендинг за 5 дней
+          <Button
+            size="lg"
+            className="text-lg px-8 py-6 bg-gradient-to-r from-primary to-secondary hover:shadow-[0_0_30px_rgba(52,152,219,0.5)] transition-all"
+            onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+          >
+            Запустить свою ракету 🚀
           </Button>
         </div>
       </section>
 
-      {/* Pain Section */}
-      <section id="pain" className="py-20 px-4 bg-destructive/5">
+      <section className="py-20 px-4">
         <div className="container mx-auto max-w-4xl">
-          <h2 className="text-4xl font-bold text-center mb-12">Ваш бизнес теряет деньги каждый день</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <Card className="border-destructive/20 animate-scale-in">
-              <CardHeader>
-                <div className="text-4xl mb-4">⚠️</div>
-                <CardTitle className="text-xl">Нет заказов</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">Сайт есть, а заявок нет. Посетители уходят за 3 секунды</p>
-              </CardContent>
-            </Card>
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
+            А у вас так же? 🤦‍♂️
+          </h2>
 
-            <Card className="border-destructive/20 animate-scale-in" style={{ animationDelay: '0.1s' }}>
-              <CardHeader>
-                <div className="text-4xl mb-4">📉</div>
-                <CardTitle className="text-xl">Минус 3-5 продаж в день</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">Каждый день вы теряете клиентов, которые могли бы купить</p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-destructive/20 animate-scale-in" style={{ animationDelay: '0.2s' }}>
-              <CardHeader>
-                <div className="text-4xl mb-4">💸</div>
-                <CardTitle className="text-xl">-45-150k ₽ в месяц</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">Это прямые потери вашей прибыли из-за плохого лендинга</p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Solution Section */}
-      <section id="solution" className="py-20 px-4">
-        <div className="container mx-auto max-w-5xl">
-          <h2 className="text-4xl font-bold text-center mb-4">Ваш путь к стабильным заявкам</h2>
-          <p className="text-xl text-center text-muted-foreground mb-12">Быстро. Дёшево. С гарантией результата</p>
-          
-          <div className="grid md:grid-cols-4 gap-6">
-            <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="text-5xl mb-4">⚡</div>
-                <CardTitle>5 дней</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">От брифа до запуска. Без долгих согласований</p>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="text-5xl mb-4">💵</div>
-                <CardTitle>От 15 000 ₽</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">Прозрачная цена. Без скрытых доплат</p>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="text-5xl mb-4">✅</div>
-                <CardTitle>Гарантия 2%</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">Конверсия минимум 2% или деньги назад</p>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="text-5xl mb-4">📈</div>
-                <CardTitle>5-10 заявок/день</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">Стабильный поток клиентов уже через 2 недели</p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Process Section */}
-      <section id="process" className="py-20 px-4 bg-background">
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="text-4xl font-bold text-center mb-12">Как мы работаем: 4 простых шага</h2>
-          
-          <div className="space-y-6">
+          <div className="grid gap-6 mb-8">
             {[
-              { day: "День 1", title: "Заполняете бриф", desc: "10 минут — и мы знаем всё о вашем бизнесе", icon: "FileText" },
-              { day: "День 2-3", title: "Создаём макет", desc: "Дизайн и прототип лендинга под ваши цели", icon: "Layout" },
-              { day: "День 4", title: "Вносим правки", desc: "2 раунда правок входят в стоимость", icon: "Edit" },
-              { day: "День 5", title: "Запуск!", desc: "Ваш лендинг в сети и начинает приносить заявки", icon: "Rocket" }
-            ].map((step, idx) => (
-              <Card key={idx} className="hover:shadow-lg transition-shadow">
+              "Реклама работает, но заявок нет",
+              "Клиенты уходят к конкурентам",
+              "Непонятно, куда уходят деньги",
+              "Сайта нет или он выглядит как в 2010",
+            ].map((item, idx) => (
+              <div key={idx} className="glass p-6 rounded-2xl flex items-center gap-4 hover:border-primary/50 transition-all animate-fade-in" style={{ animationDelay: `${idx * 0.1}s` }}>
+                <div className="text-3xl">⚠️</div>
+                <p className="text-lg">{item}</p>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-center text-xl text-primary">Узнали себя? Вы не одиноки! ↓</p>
+        </div>
+      </section>
+
+      <section className="py-20 px-4 bg-card/50">
+        <div className="container mx-auto max-w-3xl">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
+            Посчитаем убытки? 💸
+          </h2>
+
+          <Card className="glass border-destructive/30">
+            <CardContent className="pt-8 space-y-8">
+              <div>
+                <Label className="text-lg mb-4 block">
+                  Сколько тратите на рекламу в месяц?
+                </Label>
+                <div className="flex items-center gap-4">
+                  <Slider
+                    value={adBudget}
+                    onValueChange={setAdBudget}
+                    min={10000}
+                    max={500000}
+                    step={10000}
+                    className="flex-1"
+                  />
+                  <span className="text-xl font-bold min-w-[120px]">{adBudget[0].toLocaleString()} ₽</span>
+                </div>
+              </div>
+
+              <div>
+                <Label className="text-lg mb-4 block">
+                  Какой процент клиентов уходит без покупки?
+                </Label>
+                <div className="flex items-center gap-4">
+                  <Slider
+                    value={leakage}
+                    onValueChange={setLeakage}
+                    min={20}
+                    max={90}
+                    step={5}
+                    className="flex-1"
+                  />
+                  <span className="text-xl font-bold min-w-[120px]">{leakage[0]}%</span>
+                </div>
+              </div>
+
+              <div className="text-center p-8 rounded-xl bg-destructive/20 border-2 border-destructive">
+                <p className="text-lg mb-2">Вы теряете каждый месяц:</p>
+                <p className="text-5xl font-bold text-destructive animate-pulse">
+                  {calculateLoss().toLocaleString()} ₽
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      <section className="py-20 px-4">
+        <div className="container mx-auto max-w-5xl">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
+            А теперь представьте... ✨
+          </h2>
+
+          <div className="relative h-[500px] glass rounded-3xl overflow-hidden">
+            <div className="absolute inset-0 flex">
+              <div
+                className="h-full bg-card p-8 flex flex-col justify-center border-r border-border"
+                style={{ width: `${beforeAfterSlider}%` }}
+              >
+                <Badge variant="secondary" className="mb-4 w-fit">БЕЗ лендинга</Badge>
+                <div className="text-6xl mb-4">📉</div>
+                <ul className="space-y-2">
+                  <li>• 2-5 заявок в месяц</li>
+                  <li>• Конверсия 0.5%</li>
+                  <li>• Стоимость лида: 3000₽</li>
+                </ul>
+              </div>
+
+              <div className="h-full bg-secondary/10 p-8 flex flex-col justify-center flex-1">
+                <Badge className="mb-4 w-fit bg-secondary">С лендингом</Badge>
+                <div className="text-6xl mb-4">📈</div>
+                <ul className="space-y-2">
+                  <li>• 18-25 заявок в месяц</li>
+                  <li>• Конверсия 8-12%</li>
+                  <li>• Стоимость лида: 350₽</li>
+                </ul>
+              </div>
+            </div>
+
+            <div
+              className="absolute top-0 bottom-0 w-1 bg-primary cursor-ew-resize z-10"
+              style={{ left: `${beforeAfterSlider}%` }}
+              onMouseDown={(e) => {
+                const handleMouseMove = (moveEvent: MouseEvent) => {
+                  const rect = e.currentTarget.parentElement?.getBoundingClientRect();
+                  if (rect) {
+                    const newPos = ((moveEvent.clientX - rect.left) / rect.width) * 100;
+                    setBeforeAfterSlider(Math.max(0, Math.min(100, newPos)));
+                  }
+                };
+                const handleMouseUp = () => {
+                  document.removeEventListener("mousemove", handleMouseMove);
+                  document.removeEventListener("mouseup", handleMouseUp);
+                };
+                document.addEventListener("mousemove", handleMouseMove);
+                document.addEventListener("mouseup", handleMouseUp);
+              }}
+            >
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-primary rounded-full flex items-center justify-center shadow-lg">
+                <Icon name="ArrowLeftRight" size={20} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 px-4 bg-card/50">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
+            Выбери своего героя 🎮
+          </h2>
+          <p className="text-center text-muted-foreground mb-12 text-lg">Реальные истории успеха</p>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                name: "Ирина",
+                role: "Мастер салона красоты",
+                level: 15,
+                achievement: "+350% заявок за 2 недели",
+                quote: "Теперь клиенты сами находят меня!",
+                emoji: "💇‍♀️",
+              },
+              {
+                name: "Алексей",
+                role: "Владелец автосервиса",
+                level: 12,
+                achievement: "ROI за 20 дней",
+                quote: "Окупился в первый месяц!",
+                emoji: "🔧",
+              },
+              {
+                name: "Мария",
+                role: "Организатор мероприятий",
+                level: 18,
+                achievement: "x4 прирост базы",
+                quote: "Работаю только по заявкам с лендинга",
+                emoji: "🎉",
+              },
+            ].map((hero, idx) => (
+              <Card
+                key={idx}
+                className="glass hover:scale-105 hover:border-primary/50 transition-all cursor-pointer group"
+              >
                 <CardHeader>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold">
-                      {idx + 1}
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center text-4xl">
+                      {hero.emoji}
                     </div>
-                    <div className="flex-1">
-                      <Badge className="mb-2">{step.day}</Badge>
-                      <CardTitle className="text-xl">{step.title}</CardTitle>
+                    <div>
+                      <CardTitle>{hero.name}</CardTitle>
+                      <CardDescription>{hero.role}</CardDescription>
                     </div>
-                    <Icon name={step.icon as any} className="text-primary" size={32} />
                   </div>
+                  <Badge variant="secondary">Уровень {hero.level}</Badge>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground ml-16">{step.desc}</p>
+                <CardContent className="space-y-3">
+                  <p className="text-accent font-bold">{hero.achievement}</p>
+                  <p className="italic">"{hero.quote}"</p>
+                  <div className="space-y-2">
+                    <div className="flex justify-between text-sm">
+                      <span>Сила</span>
+                      <span>95%</span>
+                    </div>
+                    <Progress value={95} className="h-2" />
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -207,353 +336,340 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Reviews Section */}
-      <section id="reviews" className="py-20 px-4">
+      <section className="py-20 px-4">
         <div className="container mx-auto max-w-5xl">
-          <h2 className="text-4xl font-bold text-center mb-4">200+ клиентов доверяют нам</h2>
-          <p className="text-xl text-center text-muted-foreground mb-12">Реальные кейсы и результаты</p>
-          
-          <div className="grid md:grid-cols-2 gap-6">
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                    <Icon name="User" className="text-primary" size={24} />
-                  </div>
-                  <div>
-                    <CardTitle className="text-lg">Алексей Морозов</CardTitle>
-                    <CardDescription>Салон красоты, Москва</CardDescription>
-                  </div>
-                </div>
-                <div className="flex gap-1 mb-2">
-                  {[...Array(5)].map((_, i) => (
-                    <Icon key={i} name="Star" className="text-yellow-500 fill-yellow-500" size={16} />
-                  ))}
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="mb-4">"Конверсия выросла с 0.5% до 4.2%. Теперь получаем по 8-12 записей в день. Окупилось за первую неделю!"</p>
-                <div className="flex gap-2">
-                  <Badge variant="secondary">0.5% → 4.2%</Badge>
-                  <Badge variant="secondary">+200 000 ₽/мес</Badge>
-                </div>
-              </CardContent>
-            </Card>
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
+            Ваш путь к успеху за 7 дней 🗺️
+          </h2>
 
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                    <Icon name="User" className="text-primary" size={24} />
-                  </div>
-                  <div>
-                    <CardTitle className="text-lg">Мария Светлова</CardTitle>
-                    <CardDescription>Онлайн-школа английского</CardDescription>
-                  </div>
-                </div>
-                <div className="flex gap-1 mb-2">
-                  {[...Array(5)].map((_, i) => (
-                    <Icon key={i} name="Star" className="text-yellow-500 fill-yellow-500" size={16} />
-                  ))}
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="mb-4">"Запустились за 5 дней как обещали. ROI 10x за первые 3 месяца. Лучшее вложение в маркетинг!"</p>
-                <div className="flex gap-2">
-                  <Badge variant="secondary">ROI 10x</Badge>
-                  <Badge variant="secondary">5 дней запуск</Badge>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section id="pricing" className="py-20 px-4 bg-background">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-center mb-12">Выберите тариф</h2>
-          
-          <div className="grid md:grid-cols-3 gap-6">
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <CardTitle className="text-2xl">Экспресс</CardTitle>
-                <CardDescription>Для старта бизнеса</CardDescription>
-                <div className="text-4xl font-bold mt-4">9 999 ₽</div>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex items-start gap-2">
-                  <Icon name="Check" className="text-primary mt-1" size={20} />
-                  <span>1 страница</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Icon name="Check" className="text-primary mt-1" size={20} />
-                  <span>Адаптив под мобильные</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Icon name="Check" className="text-primary mt-1" size={20} />
-                  <span>Форма заявки</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Icon name="Check" className="text-primary mt-1" size={20} />
-                  <span>Базовое SEO</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Icon name="Check" className="text-primary mt-1" size={20} />
-                  <span>3 дня</span>
-                </div>
-                <Button className="w-full mt-6" variant="outline" onClick={() => {
-                  setFormData({ ...formData, plan: "Экспресс" });
-                  scrollToSection("contact");
-                }}>
-                  Выбрать
-                </Button>
-              </CardContent>
-            </Card>
-
-            <Card className="hover:shadow-lg transition-shadow border-primary border-2 relative">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                <Badge className="bg-accent text-accent-foreground text-sm px-4 py-1">ХИТ ПРОДАЖ</Badge>
+          <div className="space-y-6">
+            {[
+              { day: "День 1-2", title: "Стратегия", desc: "Анализ ЦА и конкурентов", icon: "Target" },
+              { day: "День 3-4", title: "Дизайн", desc: "Создание уникального макета", icon: "Palette" },
+              { day: "День 5-6", title: "Разработка", desc: "Вёрстка и интеграции", icon: "Code" },
+              { day: "День 7", title: "Запуск!", desc: "Публикация и первые заявки", icon: "Rocket" },
+            ].map((step, idx) => (
+              <div key={idx} className="relative">
+                {idx < 3 && (
+                  <div className="absolute left-8 top-20 w-0.5 h-12 bg-primary/30" />
+                )}
+                <Card className="glass hover:border-primary/50 transition-all">
+                  <CardHeader>
+                    <div className="flex items-center gap-4">
+                      <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-2xl font-bold">
+                        {idx + 1}
+                      </div>
+                      <div className="flex-1">
+                        <Badge className="mb-2">{step.day}</Badge>
+                        <CardTitle className="text-2xl">{step.title}</CardTitle>
+                        <CardDescription className="text-base">{step.desc}</CardDescription>
+                      </div>
+                      <Icon name={step.icon as any} size={48} className="text-primary" />
+                    </div>
+                  </CardHeader>
+                </Card>
               </div>
-              <CardHeader>
-                <CardTitle className="text-2xl">Стандарт</CardTitle>
-                <CardDescription>Оптимальное решение</CardDescription>
-                <div className="text-4xl font-bold mt-4">25 000 ₽</div>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex items-start gap-2">
-                  <Icon name="Check" className="text-primary mt-1" size={20} />
-                  <span>До 3 страниц</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Icon name="Check" className="text-primary mt-1" size={20} />
-                  <span>Адаптив + анимации</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Icon name="Check" className="text-primary mt-1" size={20} />
-                  <span>CRM интеграция</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Icon name="Check" className="text-primary mt-1" size={20} />
-                  <span>Продвинутое SEO</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Icon name="Check" className="text-primary mt-1" size={20} />
-                  <span>2 раунда правок</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Icon name="Check" className="text-primary mt-1" size={20} />
-                  <span className="font-semibold">Гарантия 2%</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Icon name="Check" className="text-primary mt-1" size={20} />
-                  <span>5 дней</span>
-                </div>
-                <Button className="w-full mt-6" onClick={() => {
-                  setFormData({ ...formData, plan: "Стандарт" });
-                  scrollToSection("contact");
-                }}>
-                  Выбрать
-                </Button>
-              </CardContent>
-            </Card>
-
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <CardTitle className="text-2xl">Premium</CardTitle>
-                <CardDescription>Максимум возможностей</CardDescription>
-                <div className="text-4xl font-bold mt-4">50 000 ₽</div>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex items-start gap-2">
-                  <Icon name="Check" className="text-primary mt-1" size={20} />
-                  <span>До 5 страниц</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Icon name="Check" className="text-primary mt-1" size={20} />
-                  <span>Премиум дизайн</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Icon name="Check" className="text-primary mt-1" size={20} />
-                  <span>Все интеграции</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Icon name="Check" className="text-primary mt-1" size={20} />
-                  <span>A/B тестирование</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Icon name="Check" className="text-primary mt-1" size={20} />
-                  <span>Аналитика + отчёты</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Icon name="Check" className="text-primary mt-1" size={20} />
-                  <span>Безлимит правок</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Icon name="Check" className="text-primary mt-1" size={20} />
-                  <span className="font-semibold">Гарантия 3%</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Icon name="Check" className="text-primary mt-1" size={20} />
-                  <span>7 дней</span>
-                </div>
-                <Button className="w-full mt-6" variant="outline" onClick={() => {
-                  setFormData({ ...formData, plan: "Premium" });
-                  scrollToSection("contact");
-                }}>
-                  Выбрать
-                </Button>
-              </CardContent>
-            </Card>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section id="faq" className="py-20 px-4">
-        <div className="container mx-auto max-w-3xl">
-          <h2 className="text-4xl font-bold text-center mb-12">Частые вопросы</h2>
+      <section className="py-20 px-4 bg-card/50" id="pricing">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
+            Выбери свой стартовый пакет 📦
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Старт",
+                icon: "🌱",
+                price: 15000,
+                badge: "Для новичков",
+                features: ["Одностраничный лендинг", "Мобильная версия", "Базовая аналитика", "1 месяц поддержки"],
+              },
+              {
+                name: "Рост",
+                icon: "🚀",
+                price: 35000,
+                badge: "🔥 Хит продаж",
+                highlight: true,
+                features: [
+                  "Многостраничный лендинг",
+                  "A/B тестирование",
+                  "Интеграция с CRM",
+                  "3 месяца поддержки",
+                  "SEO-оптимизация",
+                ],
+              },
+              {
+                name: "Империя",
+                icon: "👑",
+                price: 65000,
+                badge: "Для амбициозных",
+                features: [
+                  "Корпоративный сайт",
+                  "Все из пакета 'Рост'",
+                  "Копирайтинг",
+                  "Уникальные анимации",
+                  "6 месяцев поддержки",
+                  "Приоритетная линия",
+                ],
+              },
+            ].map((pkg, idx) => (
+              <Card
+                key={idx}
+                className={`glass hover:scale-105 transition-all ${
+                  pkg.highlight ? "border-2 border-primary shadow-[0_0_50px_rgba(52,152,219,0.3)]" : ""
+                }`}
+              >
+                <CardHeader>
+                  {pkg.highlight && (
+                    <Badge className="mb-4 w-fit bg-accent">{pkg.badge}</Badge>
+                  )}
+                  <div className="text-5xl mb-4">{pkg.icon}</div>
+                  <CardTitle className="text-3xl">{pkg.name}</CardTitle>
+                  <div className="text-4xl font-bold mt-4 text-primary">
+                    {pkg.price.toLocaleString()} ₽
+                  </div>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  {pkg.features.map((feature, i) => (
+                    <div key={i} className="flex items-start gap-2">
+                      <Icon name="Check" className="text-secondary mt-1" size={20} />
+                      <span>{feature}</span>
+                    </div>
+                  ))}
+                  <Button
+                    className={`w-full mt-6 ${pkg.highlight ? "bg-gradient-to-r from-primary to-secondary" : ""}`}
+                    onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+                  >
+                    Выбрать пакет
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 px-4">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
+            Гарантии, которым можно верить 🛡️
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { icon: "💰", title: "Возврат денег", desc: "Если за 30 дней не получите рост заявок — вернём 100% средств" },
+              { icon: "☎️", title: "Бесплатный разбор", desc: "Консультация и аудит вашего бизнеса перед стартом — в подарок" },
+              { icon: "🔧", title: "Поддержка 24/7", desc: "Доработки, обновления и техподдержка всё время сопровождения" },
+            ].map((item, idx) => (
+              <Card
+                key={idx}
+                className="glass hover:rotate-y-180 transition-all duration-500 cursor-pointer group h-[200px] relative"
+                style={{ transformStyle: "preserve-3d" }}
+              >
+                <div className="absolute inset-0 flex items-center justify-center group-hover:opacity-0 transition-opacity">
+                  <div className="text-center">
+                    <div className="text-5xl mb-4">{item.icon}</div>
+                    <CardTitle>{item.title}</CardTitle>
+                  </div>
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity p-6">
+                  <p className="text-center">{item.desc}</p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 px-4 bg-accent/10">
+        <div className="container mx-auto max-w-3xl text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8">
+            Успей забрать бонус! ⏰
+          </h2>
           
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="item-1">
-              <AccordionTrigger className="text-lg font-semibold">
-                Когда я увижу первые результаты?
-              </AccordionTrigger>
-              <AccordionContent className="text-base">
-                Первые заявки обычно начинают поступать через 1-3 недели после запуска при условии наличия трафика. 
-                В среднем клиенты получают от 3 до 20 заявок в день в зависимости от объёма трафика и ниши.
-              </AccordionContent>
-            </AccordionItem>
+          <div className="glass p-8 rounded-3xl mb-8">
+            <p className="text-lg mb-4">До конца акции осталось:</p>
+            <div className="flex justify-center gap-4">
+              {[
+                { value: timeLeft.hours, label: "часов" },
+                { value: timeLeft.minutes, label: "минут" },
+                { value: timeLeft.seconds, label: "секунд" },
+              ].map((unit, idx) => (
+                <div key={idx} className="bg-card/50 p-4 rounded-xl min-w-[80px]">
+                  <div className="text-4xl font-bold text-primary">{String(unit.value).padStart(2, "0")}</div>
+                  <div className="text-sm text-muted-foreground">{unit.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
 
-            <AccordionItem value="item-2">
-              <AccordionTrigger className="text-lg font-semibold">
-                Что если лендинг не сработает?
-              </AccordionTrigger>
-              <AccordionContent className="text-base">
-                Мы гарантируем конверсию минимум 2% (для тарифа Стандарт) или вернём деньги. 
-                Если через месяц конверсия ниже 2% — мы бесплатно переделываем лендинг или возвращаем 100% стоимости.
-              </AccordionContent>
-            </AccordionItem>
+          <p className="text-lg mb-6">Следующие 5 клиентов получают <span className="text-accent font-bold">скидку 20%</span> + бесплатный копирайтинг</p>
 
-            <AccordionItem value="item-3">
-              <AccordionTrigger className="text-lg font-semibold">
-                Какой минимальный трафик нужен?
-              </AccordionTrigger>
-              <AccordionContent className="text-base">
-                Рекомендуем минимум 100 посетителей в день для статистически значимых результатов. 
-                Если трафика меньше — мы можем помочь с настройкой рекламы (дополнительная услуга).
-              </AccordionContent>
-            </AccordionItem>
+          <div className="flex justify-center gap-2">
+            {["✅", "✅", "🔥", "🔥", "🔥"].map((emoji, idx) => (
+              <div
+                key={idx}
+                className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl ${
+                  emoji === "🔥" ? "bg-accent/20 animate-pulse" : "bg-card/50"
+                }`}
+              >
+                {emoji}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            <AccordionItem value="item-4">
-              <AccordionTrigger className="text-lg font-semibold">
-                Включена ли настройка рекламы?
-              </AccordionTrigger>
-              <AccordionContent className="text-base">
-                Базовая настройка Яндекс.Директ и Google Ads не входит в стоимость, но мы можем это сделать за дополнительную плату. 
-                Лендинг полностью готов к запуску рекламы — осталось только настроить кампании.
-              </AccordionContent>
-            </AccordionItem>
+      <section className="py-20 px-4">
+        <div className="container mx-auto max-w-3xl">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
+            Остались вопросы? 🤔
+          </h2>
 
-            <AccordionItem value="item-5">
-              <AccordionTrigger className="text-lg font-semibold">
-                Можно ли вносить правки после запуска?
-              </AccordionTrigger>
-              <AccordionContent className="text-base">
-                Да! После запуска вы можете заказать правки и доработки. Стоимость зависит от объёма работ. 
-                Мелкие правки (опечатки, контакты) делаем бесплатно в течение 14 дней после запуска.
-              </AccordionContent>
-            </AccordionItem>
+          <Accordion type="single" collapsible className="space-y-4">
+            {[
+              {
+                q: "Сколько стоит создание лендинга?",
+                a: "От 15 000 до 65 000 рублей в зависимости от сложности и функционала. Подробнее в разделе 'Пакеты'.",
+              },
+              {
+                q: "Как быстро будет результат?",
+                a: "Первые заявки обычно приходят в первые 1-2 недели после запуска рекламы на готовый лендинг.",
+              },
+              {
+                q: "Можно ли вносить изменения?",
+                a: "Да! В период сопровождения предусмотрены доработки по вашим запросам.",
+              },
+              {
+                q: "Что если я ничего не понимаю в сайтах?",
+                a: "Это нормально! Мы всё сделаем за вас от А до Я. Вам нужно только рассказать о бизнесе.",
+              },
+            ].map((faq, idx) => (
+              <AccordionItem key={idx} value={`item-${idx}`} className="glass px-6 rounded-xl border-border">
+                <AccordionTrigger className="text-lg font-semibold hover:text-primary">
+                  {faq.q}
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  {faq.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
           </Accordion>
         </div>
       </section>
 
-      {/* Contact Form Section */}
-      <section id="contact" className="py-20 px-4 bg-primary text-primary-foreground">
+      <section id="contact" className="py-20 px-4 bg-gradient-to-br from-primary/20 via-card to-secondary/20">
         <div className="container mx-auto max-w-2xl">
-          <h2 className="text-4xl font-bold text-center mb-4">Получить лендинг за 5 дней</h2>
-          <p className="text-xl text-center mb-12 opacity-90">Оставьте заявку — перезвоним за 15 минут</p>
-          
-          <Card className="bg-white text-foreground">
-            <CardContent className="pt-6">
-              <form onSubmit={handleSubmit} className="space-y-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
+            Начнём? Заполни форму за 30 секунд! ⚡
+          </h2>
+          <p className="text-center text-muted-foreground mb-8">Прогресс: {formProgress}%</p>
+          <Progress value={formProgress} className="mb-8 h-3" />
+
+          <Card className="glass">
+            <CardContent className="pt-8">
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  if (formProgress === 100) {
+                    toast({
+                      title: "Готово! Скоро свяжемся ✅",
+                      description: "Мы получили вашу заявку и перезвоним в течение 15 минут!",
+                    });
+                  }
+                }}
+                className="space-y-6"
+              >
                 <div>
-                  <Label htmlFor="name">Ваше имя *</Label>
+                  <Label htmlFor="name" className="flex items-center gap-2">
+                    <span>👤</span> Ваше имя
+                  </Label>
                   <Input
                     id="name"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="Иван Иванов"
-                    required
+                    placeholder="Иван"
+                    className="mt-2"
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="phone">Телефон *</Label>
+                  <Label htmlFor="phone" className="flex items-center gap-2">
+                    <span>📱</span> Телефон
+                  </Label>
                   <Input
                     id="phone"
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="+7 (999) 123-45-67"
-                    required
+                    className="mt-2"
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="email">Email *</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="ivan@example.com"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="plan">Выберите тариф</Label>
-                  <Select value={formData.plan} onValueChange={(value) => setFormData({ ...formData, plan: value })}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Выберите тариф" />
+                  <Label htmlFor="business" className="flex items-center gap-2">
+                    <span>💼</span> Тип бизнеса
+                  </Label>
+                  <Select value={formData.business} onValueChange={(v) => setFormData({ ...formData, business: v })}>
+                    <SelectTrigger className="mt-2">
+                      <SelectValue placeholder="Выберите тип" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="Экспресс">Экспресс — 9 999 ₽</SelectItem>
-                      <SelectItem value="Стандарт">Стандарт — 25 000 ₽</SelectItem>
-                      <SelectItem value="Premium">Premium — 50 000 ₽</SelectItem>
-                      <SelectItem value="Не определился">Не определился</SelectItem>
+                      {["Салон красоты", "Автосервис", "Ремонт и строительство", "Медицина", "Образование", "Другое"].map(
+                        (type) => (
+                          <SelectItem key={type} value={type}>
+                            {type}
+                          </SelectItem>
+                        )
+                      )}
                     </SelectContent>
                   </Select>
                 </div>
 
-                <Button type="submit" size="lg" className="w-full bg-accent hover:bg-accent/90">
-                  Отправить заявку
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="w-full bg-gradient-to-r from-primary to-secondary hover:shadow-[0_0_30px_rgba(52,152,219,0.5)]"
+                  disabled={formProgress < 100}
+                >
+                  {formProgress === 100 ? "Получить консультацию 🚀" : "Заполните все поля"}
                 </Button>
-
-                <p className="text-xs text-center text-muted-foreground">
-                  Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
-                </p>
               </form>
             </CardContent>
           </Card>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-8 px-4 border-t bg-white">
+      <footer className="py-12 px-4 border-t border-border bg-card/50">
         <div className="container mx-auto text-center">
-          <div className="text-2xl font-bold text-primary mb-4">LendingPro</div>
-          <p className="text-muted-foreground mb-4">
-            © 2025 LendingPro. Гарантия конверсии 2% или деньги назад.
-          </p>
-          <div className="flex justify-center gap-6 text-sm text-muted-foreground">
-            <a href="#" className="hover:text-primary transition-colors">Политика конфиденциальности</a>
-            <a href="#" className="hover:text-primary transition-colors">Договор оферты</a>
-            <a href="#" className="hover:text-primary transition-colors">Контакты</a>
+          <div className="text-3xl font-bold mb-4 accent-font text-primary">LandingPro</div>
+          <p className="text-muted-foreground mb-6">Лендинги, которые продают 🚀</p>
+          <div className="flex justify-center gap-6 mb-6">
+            {["Telegram", "WhatsApp", "VK", "Instagram"].map((social) => (
+              <a key={social} href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                {social}
+              </a>
+            ))}
           </div>
+          <p className="text-sm text-muted-foreground">© 2025 LandingPro</p>
         </div>
       </footer>
+
+      {scrollProgress > 30 && (
+        <Button
+          size="lg"
+          className="fixed bottom-8 right-8 rounded-full w-16 h-16 p-0 bg-gradient-to-r from-primary to-secondary shadow-lg hover:shadow-[0_0_30px_rgba(52,152,219,0.5)] animate-bounce z-40"
+          onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+        >
+          🚀
+        </Button>
+      )}
     </div>
   );
 }
