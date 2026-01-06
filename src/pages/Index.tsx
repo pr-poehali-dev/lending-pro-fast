@@ -41,8 +41,8 @@ export default function Index() {
         id: idx,
         x: Math.random() * 100,
         y: Math.random() * 100,
-        size: Math.random() * 1.5 + 0.8,
-        opacity: Math.random() * 0.4 + 0.5,
+        size: Math.random() * 1.8 + 1,
+        opacity: Math.random() * 0.3 + 0.6,
       }));
       setStars(newStars);
       return newStars;
@@ -66,7 +66,7 @@ export default function Index() {
         return {
           star1,
           star2,
-          opacity: distance < 25 ? Math.random() * 0.3 + 0.2 : Math.random() * 0.15 + 0.05,
+          opacity: distance < 25 ? Math.random() * 0.4 + 0.3 : Math.random() * 0.25 + 0.15,
         };
       });
       setConstellations(newConstellations);
@@ -165,8 +165,8 @@ export default function Index() {
             >
               <animate
                 attributeName="opacity"
-                values={`${star.opacity};${star.opacity * 0.5};${star.opacity}`}
-                dur={`${2 + Math.random() * 2}s`}
+                values={`${star.opacity};${star.opacity * 0.3};${star.opacity}`}
+                dur={`${1.5 + Math.random() * 1.5}s`}
                 repeatCount="indefinite"
               />
             </circle>
@@ -180,8 +180,8 @@ export default function Index() {
                 y1={`${stars[constellation.star1].y}%`}
                 x2={`${stars[constellation.star2].x}%`}
                 y2={`${stars[constellation.star2].y}%`}
-                stroke="rgba(52, 152, 219, 0.4)"
-                strokeWidth="0.5"
+                stroke="rgba(52, 152, 219, 0.6)"
+                strokeWidth="0.8"
                 opacity={constellation.opacity}
                 className="transition-opacity duration-1000 ease-in-out"
               />
