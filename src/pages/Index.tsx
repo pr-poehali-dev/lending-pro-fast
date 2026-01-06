@@ -479,7 +479,7 @@ export default function Index() {
                 style={{ width: `${beforeAfterSlider}%` }}
               >
                 <Badge variant="secondary" className="mb-3 md:mb-5 w-fit text-base md:text-lg bg-destructive/80">БЕЗ лендинга</Badge>
-                <div className="text-6xl md:text-7xl mb-3 md:mb-5">📉</div>
+                <div className="text-6xl md:text-7xl mb-3 md:mb-5 chart-animate-down">📉</div>
                 <ul className="space-y-2 md:space-y-3 text-lg md:text-xl">
                   <li>• 2-5 заявок в месяц</li>
                   <li>• Конверсия 0.5%</li>
@@ -489,7 +489,7 @@ export default function Index() {
 
               <div className="h-full bg-secondary/30 p-4 md:p-10 flex flex-col justify-center flex-1">
                 <Badge className="mb-3 md:mb-5 w-fit bg-secondary/90 text-base md:text-lg">С лендингом</Badge>
-                <div className="text-6xl md:text-7xl mb-3 md:mb-5">📈</div>
+                <div className="text-6xl md:text-7xl mb-3 md:mb-5 chart-animate-up">📈</div>
                 <ul className="space-y-2 md:space-y-3 text-lg md:text-xl">
                   <li>• 18-25 заявок в месяц</li>
                   <li>• Конверсия 8-12%</li>
