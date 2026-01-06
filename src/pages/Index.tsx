@@ -24,6 +24,7 @@ export default function Index() {
   const [formData, setFormData] = useState({ name: "", phone: "", business: "" });
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState("hero");
+  const [isNavTransparent, setIsNavTransparent] = useState(false);
   const [painChecks, setPainChecks] = useState<Record<number, boolean>>({});
   const [stars, setStars] = useState<Array<{ x: number; y: number; size: number; opacity: number; id: number }>>([]);
   const [constellations, setConstellations] = useState<Array<{ star1: number; star2: number; opacity: number }>>([]);
@@ -93,11 +94,14 @@ export default function Index() {
       setScrollProgress(scrolled);
 
       const heroElement = document.getElementById("hero");
-      if (heroElement && !counterStarted) {
+      if (heroElement) {
         const rect = heroElement.getBoundingClientRect();
-        if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+        
+        if (!counterStarted && rect.top <= window.innerHeight && rect.bottom >= 0) {
           setCounterStarted(true);
         }
+        
+        setIsNavTransparent(rect.bottom < 0);
       }
 
       sections.forEach((section) => {
@@ -196,8 +200,8 @@ export default function Index() {
 
 
 
-      <nav className="fixed top-4 left-0 right-0 z-40 px-4">
-        <div className="glass rounded-full py-4 px-8">
+      <nav className="fixed top-4 left-0 right-0 z-40 px-4 transition-opacity duration-300" style={{ opacity: isNavTransparent ? 0.3 : 1 }}>
+        <div className="glass rounded-full py-2 px-8">
           <div className="flex items-center justify-between max-w-7xl mx-auto">
             {sections.map((section) => (
               <button
@@ -205,7 +209,7 @@ export default function Index() {
                 onClick={() => {
                   document.getElementById(section.id)?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className={`group relative flex flex-col items-center gap-2 px-6 py-2 rounded-full transition-all ${
+                className={`group relative flex flex-col items-center gap-1 px-6 py-1 rounded-full transition-all ${
                   activeSection === section.id
                     ? "bg-primary text-primary-foreground"
                     : "hover:bg-primary/10"
