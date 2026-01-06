@@ -475,12 +475,12 @@ export default function Index() {
           <div className="relative h-[500px] glass rounded-3xl overflow-hidden">
             <div className="absolute inset-0 flex">
               <div
-                className="h-full bg-card p-8 flex flex-col justify-center border-r border-border"
+                className="h-full bg-destructive/20 p-10 flex flex-col justify-center border-r border-border"
                 style={{ width: `${beforeAfterSlider}%` }}
               >
-                <Badge variant="secondary" className="mb-4 w-fit">БЕЗ лендинга</Badge>
-                <div className="text-6xl mb-4">📉</div>
-                <ul className="space-y-2">
+                <Badge variant="secondary" className="mb-5 w-fit text-base">БЕЗ лендинга</Badge>
+                <div className="text-7xl mb-5">📉</div>
+                <ul className="space-y-3 text-lg">
                   <li>• 2-5 заявок в месяц</li>
                   <li>• Конверсия 0.5%</li>
                   <li>• Стоимость лида: 3000₽</li>
