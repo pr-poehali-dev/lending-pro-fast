@@ -196,27 +196,29 @@ export default function Index() {
 
 
 
-      <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-40 glass px-4 py-3 rounded-full">
-        <div className="flex items-center gap-2">
-          {sections.map((section) => (
-            <button
-              key={section.id}
-              onClick={() => {
-                document.getElementById(section.id)?.scrollIntoView({ behavior: "smooth" });
-              }}
-              className={`group relative px-3 py-2 rounded-full transition-all ${
-                activeSection === section.id
-                  ? "bg-primary text-primary-foreground"
-                  : "hover:bg-primary/10"
-              }`}
-              title={section.label}
-            >
-              <Icon name={section.icon as any} size={20} />
-              {activeSection === section.id && (
-                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary animate-pulse" />
-              )}
-            </button>
-          ))}
+      <nav className="fixed top-4 left-0 right-0 z-40 px-4">
+        <div className="glass rounded-full py-4 px-8">
+          <div className="flex items-center justify-between max-w-7xl mx-auto">
+            {sections.map((section) => (
+              <button
+                key={section.id}
+                onClick={() => {
+                  document.getElementById(section.id)?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className={`group relative flex flex-col items-center gap-2 px-6 py-2 rounded-full transition-all ${
+                  activeSection === section.id
+                    ? "bg-primary text-primary-foreground"
+                    : "hover:bg-primary/10"
+                }`}
+              >
+                <Icon name={section.icon as any} size={24} />
+                <span className="text-sm font-semibold">{section.label}</span>
+                {activeSection === section.id && (
+                  <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary animate-pulse" />
+                )}
+              </button>
+            ))}
+          </div>
         </div>
       </nav>
 
