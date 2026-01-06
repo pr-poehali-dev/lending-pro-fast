@@ -13,7 +13,6 @@ import { useToast } from "@/hooks/use-toast";
 
 export default function Index() {
   const { toast } = useToast();
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [rocketLaunched, setRocketLaunched] = useState(false);
   const [counter, setCounter] = useState(0);
   const [counterStarted, setCounterStarted] = useState(false);
@@ -35,11 +34,6 @@ export default function Index() {
   ];
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-
     const timerInterval = setInterval(() => {
       setTimeLeft((prev) => {
         if (prev.seconds > 0) return { ...prev, seconds: prev.seconds - 1 };
@@ -75,7 +69,6 @@ export default function Index() {
     handleScroll();
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("scroll", handleScroll);
       clearInterval(timerInterval);
     };
@@ -118,14 +111,7 @@ export default function Index() {
         style={{ width: `${scrollProgress}%` }}
       />
 
-      <div
-        className="fixed w-4 h-4 rounded-full bg-primary pointer-events-none z-50 transition-all duration-100"
-        style={{
-          left: mousePos.x - 8,
-          top: mousePos.y - 8,
-          boxShadow: "0 0 20px rgba(52, 152, 219, 0.8)",
-        }}
-      />
+
 
       <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-40 glass px-4 py-3 rounded-full">
         <div className="flex items-center gap-2">
@@ -160,9 +146,6 @@ export default function Index() {
               rocketLaunched ? "translate-y-[-1000px] opacity-0" : ""
             }`}
             onClick={launchRocket}
-            style={{
-              transform: !rocketLaunched ? `translate(${(mousePos.x - window.innerWidth / 2) / 30}px, ${(mousePos.y - window.innerHeight / 2) / 30}px)` : "",
-            }}
           >
             🚀
           </div>
