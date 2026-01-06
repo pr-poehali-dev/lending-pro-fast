@@ -25,8 +25,8 @@ export default function Index() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState("hero");
   const [painChecks, setPainChecks] = useState<Record<number, boolean>>({});
-  const [stars, setStars] = useState<Array<{ x: number; y: number; size: number; opacity: number }>>([]);
-  const [constellations, setConstellations] = useState<Array<{ x1: number; y1: number; x2: number; y2: number; opacity: number }>>([]);
+  const [stars, setStars] = useState<Array<{ x: number; y: number; size: number; opacity: number; id: number }>>([]);
+  const [constellations, setConstellations] = useState<Array<{ star1: number; star2: number; opacity: number }>>([]);
 
   const sections = [
     { id: "pain", label: "Боль", icon: "AlertTriangle" },
@@ -37,36 +37,47 @@ export default function Index() {
 
   useEffect(() => {
     const generateStars = () => {
-      const newStars = Array.from({ length: 100 }, () => ({
+      const newStars = Array.from({ length: 80 }, (_, idx) => ({
+        id: idx,
         x: Math.random() * 100,
         y: Math.random() * 100,
-        size: Math.random() * 2 + 1,
-        opacity: Math.random() * 0.5 + 0.3,
+        size: Math.random() * 1.5 + 0.8,
+        opacity: Math.random() * 0.4 + 0.5,
       }));
       setStars(newStars);
+      return newStars;
     };
 
-    const generateConstellations = () => {
-      const newConstellations = Array.from({ length: 15 }, () => ({
-        x1: Math.random() * 100,
-        y1: Math.random() * 100,
-        x2: Math.random() * 100,
-        y2: Math.random() * 100,
-        opacity: Math.random() * 0.3 + 0.1,
-      }));
+    const generateConstellations = (starsList: typeof stars) => {
+      if (starsList.length < 2) return;
+      
+      const newConstellations = Array.from({ length: 25 }, () => {
+        const star1 = Math.floor(Math.random() * starsList.length);
+        let star2 = Math.floor(Math.random() * starsList.length);
+        
+        while (star2 === star1) {
+          star2 = Math.floor(Math.random() * starsList.length);
+        }
+        
+        const dx = starsList[star1].x - starsList[star2].x;
+        const dy = starsList[star1].y - starsList[star2].y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        return {
+          star1,
+          star2,
+          opacity: distance < 25 ? Math.random() * 0.3 + 0.2 : Math.random() * 0.15 + 0.05,
+        };
+      });
       setConstellations(newConstellations);
     };
 
-    generateStars();
-    generateConstellations();
-
-    const starsInterval = setInterval(() => {
-      generateStars();
-    }, 10000);
+    const initialStars = generateStars();
+    generateConstellations(initialStars);
 
     const constellationsInterval = setInterval(() => {
-      generateConstellations();
-    }, 15000);
+      generateConstellations(stars.length > 0 ? stars : initialStars);
+    }, 1000);
 
     const timerInterval = setInterval(() => {
       setTimeLeft((prev) => {
@@ -105,7 +116,6 @@ export default function Index() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
       clearInterval(timerInterval);
-      clearInterval(starsInterval);
       clearInterval(constellationsInterval);
     };
   }, [counterStarted]);
@@ -142,32 +152,41 @@ export default function Index() {
 
   return (
     <div className="min-h-screen relative">
-      <div className="fixed inset-0 z-0 overflow-hidden">
+      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
         <svg className="w-full h-full">
-          {constellations.map((line, idx) => (
-            <line
-              key={`line-${idx}`}
-              x1={`${line.x1}%`}
-              y1={`${line.y1}%`}
-              x2={`${line.x2}%`}
-              y2={`${line.y2}%`}
-              stroke="rgba(52, 152, 219, 0.3)"
-              strokeWidth="1"
-              opacity={line.opacity}
-              className="transition-all duration-[3000ms] ease-in-out"
-            />
-          ))}
-          {stars.map((star, idx) => (
+          {stars.map((star) => (
             <circle
-              key={`star-${idx}`}
+              key={`star-${star.id}`}
               cx={`${star.x}%`}
               cy={`${star.y}%`}
               r={star.size}
               fill="white"
               opacity={star.opacity}
-              className="transition-all duration-[2000ms] ease-in-out"
-            />
+            >
+              <animate
+                attributeName="opacity"
+                values={`${star.opacity};${star.opacity * 0.5};${star.opacity}`}
+                dur={`${2 + Math.random() * 2}s`}
+                repeatCount="indefinite"
+              />
+            </circle>
           ))}
+          {constellations.map((constellation, idx) => {
+            if (!stars[constellation.star1] || !stars[constellation.star2]) return null;
+            return (
+              <line
+                key={`constellation-${idx}`}
+                x1={`${stars[constellation.star1].x}%`}
+                y1={`${stars[constellation.star1].y}%`}
+                x2={`${stars[constellation.star2].x}%`}
+                y2={`${stars[constellation.star2].y}%`}
+                stroke="rgba(52, 152, 219, 0.4)"
+                strokeWidth="0.5"
+                opacity={constellation.opacity}
+                className="transition-opacity duration-1000 ease-in-out"
+              />
+            );
+          })}
         </svg>
       </div>
       <div
