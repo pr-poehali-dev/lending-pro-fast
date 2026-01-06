@@ -483,7 +483,7 @@ export default function Index() {
                 <ul className="space-y-2 md:space-y-3 text-lg md:text-xl">
                   <li>• 2-5 заявок в месяц</li>
                   <li>• Конверсия 0.5%</li>
-                  <li>• Стоимость лида: 3000₽</li>
+                  <li>• Стоимость лида: от 3000₽</li>
                 </ul>
               </div>
 
@@ -493,7 +493,7 @@ export default function Index() {
                 <ul className="space-y-2 md:space-y-3 text-lg md:text-xl">
                   <li>• 18-25 заявок в месяц</li>
                   <li>• Конверсия 8-12%</li>
-                  <li>• Стоимость лида: 350₽</li>
+                  <li>• Стоимость лида: от 350₽</li>
                 </ul>
               </div>
             </div>
