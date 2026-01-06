@@ -200,8 +200,8 @@ export default function Index() {
 
 
 
-      <nav className="fixed top-4 left-0 right-0 z-40 px-4 transition-opacity duration-300" style={{ opacity: isNavTransparent ? 0.3 : 1 }}>
-        <div className="glass rounded-full py-2 px-8">
+      <nav className="fixed top-4 left-0 right-0 z-40 px-2 md:px-4 transition-opacity duration-300" style={{ opacity: isNavTransparent ? 0.3 : 1 }}>
+        <div className="glass rounded-full py-2 px-2 md:px-8">
           <div className="flex items-center justify-between max-w-7xl mx-auto">
             {sections.map((section) => (
               <button
@@ -209,14 +209,14 @@ export default function Index() {
                 onClick={() => {
                   document.getElementById(section.id)?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className={`group relative flex flex-col items-center gap-1 px-6 py-1 rounded-full transition-all ${
+                className={`group relative flex flex-col items-center gap-1 px-2 md:px-6 py-1 rounded-full transition-all ${
                   activeSection === section.id
                     ? "bg-primary text-primary-foreground"
                     : "hover:bg-primary/10"
                 }`}
               >
-                <Icon name={section.icon as any} size={24} />
-                <span className="text-sm font-semibold">{section.label}</span>
+                <Icon name={section.icon as any} size={20} className="md:w-6 md:h-6" />
+                <span className="text-xs md:text-sm font-semibold">{section.label}</span>
                 {activeSection === section.id && (
                   <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary animate-pulse" />
                 )}
@@ -247,9 +247,9 @@ export default function Index() {
             Запустите лендинг за 7 дней и получайте поток клиентов на автопилоте
           </p>
 
-          <div className="glass inline-block px-8 py-4 rounded-2xl mb-6">
-            <p className="text-2xl font-bold text-secondary flex items-center gap-3">
-              Лендингов запущено на сегодня: <span className="text-secondary">{counter}</span>
+          <div className="glass inline-block px-4 md:px-8 py-3 md:py-4 rounded-2xl mb-6">
+            <p className="text-lg md:text-2xl font-bold text-secondary flex flex-col md:flex-row items-center gap-2 md:gap-3">
+              <span className="text-center">Лендингов запущено на сегодня:</span> <span className="text-secondary">{counter}</span>
             </p>
           </div>
 
@@ -276,7 +276,7 @@ export default function Index() {
             Люди уходят к конкурентам, потому что не видят ваших преимуществ…
           </p>
 
-          <h3 className="text-2xl font-bold text-center mb-8">Узнайте себя? Отметьте свои боли</h3>
+          <h3 className="text-xl md:text-2xl font-bold text-center mb-8">Узнайте себя? Отметьте свои боли</h3>
 
           <div className="grid md:grid-cols-2 gap-4 mb-8">
             {[
@@ -309,11 +309,11 @@ export default function Index() {
           </div>
 
           {Object.keys(painChecks).filter((key) => painChecks[parseInt(key)]).length > 0 && (
-            <div className="glass p-8 rounded-2xl border-secondary/50 border-2 mb-12 animate-scale-in">
+            <div className="glass p-4 md:p-8 rounded-2xl border-secondary/50 border-2 mb-12 animate-scale-in">
               <div className="text-center">
-                <div className="inline-flex items-center gap-3 mb-4">
+                <div className="flex flex-col md:inline-flex md:flex-row items-center gap-2 md:gap-3 mb-4">
                   <Icon name="CheckCircle" size={32} className="text-secondary" />
-                  <p className="text-2xl font-bold">
+                  <p className="text-xl md:text-2xl font-bold">
                     Отмечено проблем: {Object.keys(painChecks).filter((key) => painChecks[parseInt(key)]).length} из 4
                   </p>
                 </div>
@@ -472,25 +472,25 @@ export default function Index() {
             клиенты выбирают вас. Посмотрите, как это работает на примере наших клиентов!
           </p>
 
-          <div className="relative h-[500px] glass rounded-3xl overflow-hidden">
+          <div className="relative h-[400px] md:h-[500px] glass rounded-3xl overflow-hidden">
             <div className="absolute inset-0 flex">
               <div
-                className="h-full bg-destructive/20 p-10 flex flex-col justify-center border-r border-border"
+                className="h-full bg-destructive/20 p-4 md:p-10 flex flex-col justify-center border-r border-border"
                 style={{ width: `${beforeAfterSlider}%` }}
               >
-                <Badge variant="secondary" className="mb-5 w-fit text-base">БЕЗ лендинга</Badge>
-                <div className="text-7xl mb-5">📉</div>
-                <ul className="space-y-3 text-lg">
+                <Badge variant="secondary" className="mb-3 md:mb-5 w-fit text-sm md:text-base">БЕЗ лендинга</Badge>
+                <div className="text-5xl md:text-7xl mb-3 md:mb-5">📉</div>
+                <ul className="space-y-2 md:space-y-3 text-base md:text-lg">
                   <li>• 2-5 заявок в месяц</li>
                   <li>• Конверсия 0.5%</li>
                   <li>• Стоимость лида: 3000₽</li>
                 </ul>
               </div>
 
-              <div className="h-full bg-secondary/10 p-8 flex flex-col justify-center flex-1">
-                <Badge className="mb-4 w-fit bg-secondary">С лендингом</Badge>
-                <div className="text-6xl mb-4">📈</div>
-                <ul className="space-y-2">
+              <div className="h-full bg-secondary/10 p-4 md:p-8 flex flex-col justify-center flex-1">
+                <Badge className="mb-3 md:mb-4 w-fit bg-secondary text-sm md:text-base">С лендингом</Badge>
+                <div className="text-5xl md:text-6xl mb-3 md:mb-4">📈</div>
+                <ul className="space-y-2 text-base md:text-lg">
                   <li>• 18-25 заявок в месяц</li>
                   <li>• Конверсия 8-12%</li>
                   <li>• Стоимость лида: 350₽</li>
@@ -632,8 +632,8 @@ export default function Index() {
                     </>
                   )}
 
-                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg border-4 border-background transition-all duration-300 group-hover:scale-125 group-hover:rotate-12 group-hover:shadow-[0_0_30px_rgba(52,152,219,0.6)] z-10">
-                    <Icon name={step.icon as any} size={32} className="text-primary-foreground transition-transform duration-300 group-hover:scale-110" />
+                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg border-2 md:border-4 border-background transition-all duration-300 group-hover:scale-125 group-hover:rotate-12 group-hover:shadow-[0_0_30px_rgba(52,152,219,0.6)] z-10">
+                    <Icon name={step.icon as any} size={24} className="md:w-8 md:h-8 text-primary-foreground transition-transform duration-300 group-hover:scale-110" />
                   </div>
                 </div>
               ))}
