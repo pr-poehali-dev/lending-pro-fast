@@ -25,6 +25,8 @@ export default function Index() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState("hero");
   const [painChecks, setPainChecks] = useState<Record<number, boolean>>({});
+  const [stars, setStars] = useState<Array<{ x: number; y: number; size: number; opacity: number }>>([]);
+  const [constellations, setConstellations] = useState<Array<{ x1: number; y1: number; x2: number; y2: number; opacity: number }>>([]);
 
   const sections = [
     { id: "pain", label: "Боль", icon: "AlertTriangle" },
@@ -34,6 +36,38 @@ export default function Index() {
   ];
 
   useEffect(() => {
+    const generateStars = () => {
+      const newStars = Array.from({ length: 100 }, () => ({
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() * 2 + 1,
+        opacity: Math.random() * 0.5 + 0.3,
+      }));
+      setStars(newStars);
+    };
+
+    const generateConstellations = () => {
+      const newConstellations = Array.from({ length: 15 }, () => ({
+        x1: Math.random() * 100,
+        y1: Math.random() * 100,
+        x2: Math.random() * 100,
+        y2: Math.random() * 100,
+        opacity: Math.random() * 0.3 + 0.1,
+      }));
+      setConstellations(newConstellations);
+    };
+
+    generateStars();
+    generateConstellations();
+
+    const starsInterval = setInterval(() => {
+      generateStars();
+    }, 10000);
+
+    const constellationsInterval = setInterval(() => {
+      generateConstellations();
+    }, 15000);
+
     const timerInterval = setInterval(() => {
       setTimeLeft((prev) => {
         if (prev.seconds > 0) return { ...prev, seconds: prev.seconds - 1 };
@@ -71,6 +105,8 @@ export default function Index() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
       clearInterval(timerInterval);
+      clearInterval(starsInterval);
+      clearInterval(constellationsInterval);
     };
   }, [counterStarted]);
 
@@ -106,6 +142,34 @@ export default function Index() {
 
   return (
     <div className="min-h-screen relative">
+      <div className="fixed inset-0 z-0 overflow-hidden">
+        <svg className="w-full h-full">
+          {constellations.map((line, idx) => (
+            <line
+              key={`line-${idx}`}
+              x1={`${line.x1}%`}
+              y1={`${line.y1}%`}
+              x2={`${line.x2}%`}
+              y2={`${line.y2}%`}
+              stroke="rgba(52, 152, 219, 0.3)"
+              strokeWidth="1"
+              opacity={line.opacity}
+              className="transition-all duration-[3000ms] ease-in-out"
+            />
+          ))}
+          {stars.map((star, idx) => (
+            <circle
+              key={`star-${idx}`}
+              cx={`${star.x}%`}
+              cy={`${star.y}%`}
+              r={star.size}
+              fill="white"
+              opacity={star.opacity}
+              className="transition-all duration-[2000ms] ease-in-out"
+            />
+          ))}
+        </svg>
+      </div>
       <div
         className="fixed top-0 left-0 h-1 bg-gradient-to-r from-primary via-secondary to-accent z-50 transition-all"
         style={{ width: `${scrollProgress}%` }}
