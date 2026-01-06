@@ -321,7 +321,7 @@ export default function Index() {
 
           <div className="glass p-8 rounded-2xl border-destructive/30 border-2 mb-8">
             <p className="text-center text-lg italic text-destructive font-semibold">
-              "18 запущенных лидов ежемесячно — типичная цифра для бизнеса без эффективного лендинга"
+              "18 упущенных лидов ежемесячно — типичная цифра для бизнеса без эффективного лендинга"
             </p>
           </div>
 
