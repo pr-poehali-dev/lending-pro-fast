@@ -29,10 +29,10 @@ export default function Index() {
   const [constellations, setConstellations] = useState<Array<{ star1: number; star2: number; opacity: number }>>([]);
 
   const sections = [
-    { id: "pain", label: "Боль", emoji: "😫" },
-    { id: "loss", label: "Осознание", emoji: "💸" },
-    { id: "transform", label: "Решение", emoji: "✨" },
-    { id: "process", label: "Успех", emoji: "🏆" },
+    { id: "pain", label: "Боль", icon: "AlertTriangle" },
+    { id: "loss", label: "Осознание", icon: "DollarSign" },
+    { id: "transform", label: "Решение", icon: "ArrowUpRight" },
+    { id: "process", label: "Успех", icon: "Trophy" },
   ];
 
   useEffect(() => {
@@ -211,7 +211,7 @@ export default function Index() {
                     : "hover:bg-primary/10"
                 }`}
               >
-                <span className="text-3xl">{section.emoji}</span>
+                <Icon name={section.icon as any} size={24} />
                 <span className="text-sm font-semibold">{section.label}</span>
                 {activeSection === section.id && (
                   <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary animate-pulse" />
