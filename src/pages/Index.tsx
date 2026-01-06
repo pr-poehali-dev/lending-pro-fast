@@ -279,7 +279,7 @@ export default function Index() {
       <section className="py-20 px-4 bg-card/50" id="loss">
         <div className="container mx-auto max-w-5xl">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-8">
-            Время — деньги. Ваша реклама сливает оба
+            Время — деньги
           </h2>
 
           <p className="text-xl text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
