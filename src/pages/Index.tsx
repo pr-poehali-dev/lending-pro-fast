@@ -487,10 +487,10 @@ export default function Index() {
                 </ul>
               </div>
 
-              <div className="h-full bg-secondary/10 p-4 md:p-8 flex flex-col justify-center flex-1">
-                <Badge className="mb-3 md:mb-4 w-fit bg-secondary text-sm md:text-base">С лендингом</Badge>
-                <div className="text-5xl md:text-6xl mb-3 md:mb-4">📈</div>
-                <ul className="space-y-2 text-base md:text-lg">
+              <div className="h-full bg-secondary/20 p-4 md:p-10 flex flex-col justify-center flex-1">
+                <Badge className="mb-3 md:mb-5 w-fit bg-secondary text-base md:text-lg">С лендингом</Badge>
+                <div className="text-6xl md:text-7xl mb-3 md:mb-5">📈</div>
+                <ul className="space-y-2 md:space-y-3 text-lg md:text-xl">
                   <li>• 18-25 заявок в месяц</li>
                   <li>• Конверсия 8-12%</li>
                   <li>• Стоимость лида: 350₽</li>
