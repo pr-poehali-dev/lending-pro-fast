@@ -935,7 +935,9 @@ export default function Index() {
               </a>
             ))}
           </div>
-          <p className="text-sm text-muted-foreground">© 2025 LandingPro</p>
+          <p className="text-sm text-muted-foreground">
+            © 2025 LandingPro • <a href="/privacy" className="hover:text-primary transition-colors underline">Политика конфиденциальности</a>
+          </p>
         </div>
       </footer>
 
