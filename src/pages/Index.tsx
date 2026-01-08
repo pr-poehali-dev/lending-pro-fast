@@ -21,7 +21,7 @@ export default function Index() {
   const [beforeAfterSlider, setBeforeAfterSlider] = useState(50);
   const [timeLeft, setTimeLeft] = useState({ hours: 23, minutes: 59, seconds: 59 });
   const [formProgress, setFormProgress] = useState(0);
-  const [formData, setFormData] = useState({ name: "", phone: "", consent: false });
+  const [formData, setFormData] = useState({ name: "", phone: "", email: "", consent: false });
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState("hero");
   const [isNavTransparent, setIsNavTransparent] = useState(false);
@@ -144,9 +144,10 @@ export default function Index() {
 
   const calculateFormProgress = () => {
     let progress = 0;
-    if (formData.name) progress += 33;
-    if (formData.phone) progress += 34;
-    if (formData.consent) progress += 33;
+    if (formData.name) progress += 25;
+    if (formData.phone) progress += 25;
+    if (formData.email) progress += 25;
+    if (formData.consent) progress += 25;
     return progress;
   };
 
@@ -893,6 +894,20 @@ export default function Index() {
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="+7 (999) 123-45-67"
+                    className="mt-2"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="email" className="flex items-center gap-2">
+                    <span>✉️</span> Электронная почта
+                  </Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    placeholder="ivan@example.com"
                     className="mt-2"
                   />
                 </div>
