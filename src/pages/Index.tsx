@@ -906,7 +906,7 @@ export default function Index() {
                   />
                   <Label htmlFor="consent" className="text-sm leading-relaxed cursor-pointer">
                     Я согласен на обработку персональных данных и принимаю условия{" "}
-                    <a href="#" className="text-primary underline hover:text-primary/80">политики конфиденциальности</a>
+                    <a href="/privacy" target="_blank" className="text-primary underline hover:text-primary/80">политики конфиденциальности</a>
                   </Label>
                 </div>
 
