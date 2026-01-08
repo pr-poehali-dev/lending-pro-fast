@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Slider } from "@/components/ui/slider";
@@ -21,7 +21,7 @@ export default function Index() {
   const [beforeAfterSlider, setBeforeAfterSlider] = useState(50);
   const [timeLeft, setTimeLeft] = useState({ hours: 23, minutes: 59, seconds: 59 });
   const [formProgress, setFormProgress] = useState(0);
-  const [formData, setFormData] = useState({ name: "", phone: "", business: "" });
+  const [formData, setFormData] = useState({ name: "", phone: "", consent: false });
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState("hero");
   const [isNavTransparent, setIsNavTransparent] = useState(false);
@@ -145,8 +145,8 @@ export default function Index() {
   const calculateFormProgress = () => {
     let progress = 0;
     if (formData.name) progress += 33;
-    if (formData.phone) progress += 33;
-    if (formData.business) progress += 34;
+    if (formData.phone) progress += 34;
+    if (formData.consent) progress += 33;
     return progress;
   };
 
@@ -897,24 +897,17 @@ export default function Index() {
                   />
                 </div>
 
-                <div>
-                  <Label htmlFor="business" className="flex items-center gap-2">
-                    <span>💼</span> Тип бизнеса
+                <div className="flex items-start gap-3 p-4 rounded-lg bg-card/30 border border-border">
+                  <Checkbox
+                    id="consent"
+                    checked={formData.consent}
+                    onCheckedChange={(checked) => setFormData({ ...formData, consent: checked === true })}
+                    className="mt-1"
+                  />
+                  <Label htmlFor="consent" className="text-sm leading-relaxed cursor-pointer">
+                    Я согласен на обработку персональных данных и принимаю условия{" "}
+                    <a href="#" className="text-primary underline hover:text-primary/80">политики конфиденциальности</a>
                   </Label>
-                  <Select value={formData.business} onValueChange={(v) => setFormData({ ...formData, business: v })}>
-                    <SelectTrigger className="mt-2">
-                      <SelectValue placeholder="Выберите тип" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {["Салон красоты", "Автосервис", "Ремонт и строительство", "Медицина", "Образование", "Другое"].map(
-                        (type) => (
-                          <SelectItem key={type} value={type}>
-                            {type}
-                          </SelectItem>
-                        )
-                      )}
-                    </SelectContent>
-                  </Select>
                 </div>
 
                 <Button
