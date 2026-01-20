@@ -926,7 +926,13 @@ export default function Index() {
 
       <footer className="py-12 px-4 border-t border-border bg-card/50">
         <div className="container mx-auto text-center">
-          <div className="text-3xl font-bold mb-4 accent-font text-primary">LandingPro</div>
+          <div className="flex justify-center mb-6">
+            <img 
+              src="https://cdn.poehali.dev/projects/2ac742c2-bd22-4e20-b02b-47a6b0efc994/bucket/ac190755-1fe1-4ccc-8ec2-e358190bd142.jpeg" 
+              alt="KERANOS AI" 
+              className="h-16 md:h-20 object-contain"
+            />
+          </div>
           <p className="text-muted-foreground mb-6">Лендинги, которые продают 🚀</p>
           <div className="flex justify-center gap-6 mb-6">
             {["Telegram", "WhatsApp", "VK", "Instagram"].map((social) => (
@@ -936,7 +942,7 @@ export default function Index() {
             ))}
           </div>
           <p className="text-sm text-muted-foreground">
-            © 2025 LandingPro • <a href="/privacy" className="hover:text-primary transition-colors underline">Политика конфиденциальности</a>
+            © 2025 KERANOS AI • <a href="/privacy" className="hover:text-primary transition-colors underline">Политика конфиденциальности</a>
           </p>
         </div>
       </footer>
