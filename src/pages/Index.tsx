@@ -243,11 +243,11 @@ export default function Index() {
             Ваш бизнес готов к <span className="text-primary">взлёту?</span>
           </h1>
           
-          <p className="text-xl md:text-2xl mb-6 text-muted-foreground">
+          <p className="text-xl md:text-2xl mb-6 text-primary font-bold">
             Продающий лендинг под ключ — готов за 5 дней и приносит заявки с первого дня
           </p>
 
-          <p className="text-base md:text-lg mb-8 text-muted-foreground/80 max-w-3xl mx-auto">
+          <p className="text-base md:text-lg mb-8 text-secondary font-semibold max-w-3xl mx-auto">
             Мы создаём сайты, которые действительно работают: от структуры и текстов до публикации и аналитики.
           </p>
 
