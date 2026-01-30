@@ -275,7 +275,7 @@ export default function Index() {
             Теряете клиентов до того, как начинаете продавать?
           </h2>
 
-          <p className="text-xl text-center text-muted-foreground mb-4 max-w-3xl mx-auto">
+          <p className="text-xl text-center text-primary/90 mb-4 max-w-3xl mx-auto font-semibold">
             Малый бизнес ежедневно теряет десятки потенциальных клиентов из-за отсутствия понятной, цепляющей страницы. 
             Люди уходят к конкурентам, потому что не видят ваших преимуществ…
           </p>
@@ -375,7 +375,7 @@ export default function Index() {
             Время — деньги
           </h2>
 
-          <p className="text-xl text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
+          <p className="text-xl text-center text-primary/90 mb-12 max-w-3xl mx-auto font-semibold">
             Каждый день ожидания — новые расходы. Реклама работает вхолостую, сайт не конвертирует, бюджет улетает. 
             Через месяц вы теряете в среднем 18 клиентов — и до 50 000 рублей на неэффективный маркетинг.
           </p>
@@ -471,7 +471,7 @@ export default function Index() {
             Сделайте шаг — и заявки сами придут к вам
           </h2>
 
-          <p className="text-xl text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
+          <p className="text-xl text-center text-secondary/90 mb-12 max-w-3xl mx-auto font-semibold">
             Всё меняется, когда появляется лендинг, созданный для вашей аудитории: заявки приходят системно и дёшево, 
             клиенты выбирают вас. Посмотрите, как это работает на примере наших клиентов!
           </p>
