@@ -243,8 +243,12 @@ export default function Index() {
             Ваш бизнес готов к <span className="text-primary">взлёту?</span>
           </h1>
           
-          <p className="text-xl md:text-2xl mb-8 text-muted-foreground">
+          <p className="text-xl md:text-2xl mb-6 text-muted-foreground">
             Продающий лендинг под ключ — готов за 5 дней и приносит заявки с первого дня
+          </p>
+
+          <p className="text-base md:text-lg mb-8 text-muted-foreground/80 max-w-3xl mx-auto">
+            Мы создаём сайты, которые действительно работают: от структуры и текстов до публикации и аналитики.
           </p>
 
           <div className="glass inline-block px-4 md:px-8 py-3 md:py-4 rounded-2xl mb-6">
