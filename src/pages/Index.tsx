@@ -244,7 +244,7 @@ export default function Index() {
           </h1>
           
           <p className="text-xl md:text-2xl mb-8 text-muted-foreground">
-            Запустите лендинг за 7 дней и получайте поток клиентов на автопилоте
+            Продающий лендинг под ключ — готов за 5 дней и приносит заявки с первого дня
           </p>
 
           <div className="glass inline-block px-4 md:px-8 py-3 md:py-4 rounded-2xl mb-6">
