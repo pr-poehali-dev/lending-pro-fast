@@ -598,7 +598,7 @@ export default function Index() {
       <section className="py-20 px-4" id="process">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-20">
-            Ваш путь к успеху за 7 дней 🗺️
+            Ваш путь к успеху за 7 дней
           </h2>
 
           <div className="relative">
@@ -630,7 +630,7 @@ export default function Index() {
                   <div className="hidden md:grid grid-cols-2 gap-8 items-center">
                     {idx % 2 === 0 ? (
                       <>
-                        <Card className="glass hover:border-primary hover:shadow-[0_0_40px_rgba(52,152,219,0.4)] transition-all duration-300 ml-auto hover:scale-115 hover:-translate-x-8 cursor-pointer">
+                        <Card className="glass hover:border-primary hover:shadow-[0_0_40px_rgba(52,152,219,0.4)] transition-all duration-300 ml-auto group-hover:scale-115 group-hover:-translate-x-8 cursor-pointer">
                           <CardHeader>
                             <Badge className="mb-2 w-fit">{step.day}</Badge>
                             <CardTitle className="text-2xl">{step.title}</CardTitle>
@@ -642,7 +642,7 @@ export default function Index() {
                     ) : (
                       <>
                         <div />
-                        <Card className="glass hover:border-primary hover:shadow-[0_0_40px_rgba(52,152,219,0.4)] transition-all duration-300 mr-auto hover:scale-115 hover:translate-x-8 cursor-pointer">
+                        <Card className="glass hover:border-primary hover:shadow-[0_0_40px_rgba(52,152,219,0.4)] transition-all duration-300 mr-auto group-hover:scale-115 group-hover:translate-x-8 cursor-pointer">
                           <CardHeader>
                             <Badge className="mb-2 w-fit">{step.day}</Badge>
                             <CardTitle className="text-2xl">{step.title}</CardTitle>
@@ -652,7 +652,7 @@ export default function Index() {
                       </>
                     )}
 
-                    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg border-4 border-background transition-all duration-300 group-hover:scale-125 group-hover:rotate-12 group-hover:shadow-[0_0_30px_rgba(52,152,219,0.6)] z-10">
+                    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg border-4 border-background transition-all duration-300 group-hover:scale-125 group-hover:rotate-12 group-hover:shadow-[0_0_30px_rgba(52,152,219,0.6)] z-10 cursor-pointer">
                       <Icon name={step.icon as any} size={24} className="w-8 h-8 text-primary-foreground transition-transform duration-300 group-hover:scale-110" />
                     </div>
                   </div>
