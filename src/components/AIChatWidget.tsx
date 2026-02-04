@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -7,6 +7,25 @@ import Icon from "@/components/ui/icon";
 export default function AIChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [shake, setShake] = useState(false);
+
+  useEffect(() => {
+    const shakeInterval = setInterval(() => {
+      setShake(true);
+      setTimeout(() => setShake(false), 500);
+    }, 3000);
+
+    const autoOpenTimer = setTimeout(() => {
+      if (!isOpen) {
+        setIsOpen(true);
+      }
+    }, 15000);
+
+    return () => {
+      clearInterval(shakeInterval);
+      clearTimeout(autoOpenTimer);
+    };
+  }, [isOpen]);
 
   const options = [
     { id: "price", label: "Рассчитать стоимость для моей ниши", icon: "Calculator" },
@@ -25,13 +44,18 @@ export default function AIChatWidget() {
   return (
     <div className="fixed bottom-6 right-6 z-50">
       {!isOpen ? (
-        <Button
-          size="lg"
-          className="h-16 w-16 rounded-full bg-gradient-to-r from-secondary to-primary hover:shadow-[0_0_30px_rgba(46,204,113,0.7)] transition-all animate-pulse"
-          onClick={() => setIsOpen(true)}
-        >
-          <Icon name="MessageCircle" size={28} />
-        </Button>
+        <div className="relative">
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-secondary to-primary blur-xl opacity-60 animate-pulse"></div>
+          <Button
+            size="lg"
+            className={`h-16 w-16 rounded-full bg-gradient-to-r from-secondary to-primary hover:shadow-[0_0_40px_rgba(46,204,113,0.9)] transition-all shadow-[0_0_20px_rgba(46,204,113,0.6)] relative ${
+              shake ? "animate-[shake_0.5s_ease-in-out]" : ""
+            }`}
+            onClick={() => setIsOpen(true)}
+          >
+            <Icon name="MessageCircle" size={28} />
+          </Button>
+        </div>
       ) : (
         <Card className="w-80 md:w-96 shadow-2xl border-2 border-primary/20 bg-background/95 backdrop-blur">
           <CardHeader className="pb-4 bg-gradient-to-r from-secondary/10 to-primary/10">
