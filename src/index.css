@@ -189,6 +189,18 @@
     }
   }
 
+  @keyframes pulse-slow {
+    0%,
+    100% {
+      box-shadow: 0 0 60px rgba(255, 215, 0, 0.5);
+    }
+    50% {
+      box-shadow:
+        0 0 80px rgba(255, 215, 0, 0.8),
+        0 0 100px rgba(255, 215, 0, 0.4);
+    }
+  }
+
   .neon-text {
     text-shadow:
       0 0 10px currentColor,

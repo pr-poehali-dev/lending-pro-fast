@@ -712,6 +712,8 @@ export default function Index() {
                 icon: "👑",
                 price: 65000,
                 badge: "Максимум возможностей",
+                highlight: true,
+                highlightLevel: "premium",
                 duration: "20–25 рабочих дней",
                 suitableFor: [
                   "компаниям, запускающим флагманский продукт/услугу",
@@ -733,7 +735,11 @@ export default function Index() {
               <Card
                 key={idx}
                 className={`glass hover:scale-105 transition-all ${
-                  pkg.highlight ? "border-2 border-primary shadow-[0_0_50px_rgba(52,152,219,0.3)]" : ""
+                  pkg.highlightLevel === "premium" 
+                    ? "border-2 border-accent shadow-[0_0_60px_rgba(255,215,0,0.5)] animate-pulse-slow" 
+                    : pkg.highlight 
+                    ? "border-2 border-primary shadow-[0_0_50px_rgba(52,152,219,0.3)]" 
+                    : ""
                 }`}
               >
                 <CardHeader>
