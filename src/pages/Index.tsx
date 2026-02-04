@@ -1272,16 +1272,6 @@ export default function Index() {
         </div>
       </footer>
 
-      {scrollProgress > 30 && (
-        <Button
-          size="lg"
-          className="fixed bottom-4 right-4 md:bottom-8 md:right-8 rounded-full w-14 h-14 md:w-16 md:h-16 p-0 bg-gradient-to-r from-primary to-secondary shadow-lg hover:shadow-[0_0_30px_rgba(52,152,219,0.5)] animate-bounce z-40 text-2xl md:text-3xl"
-          onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-        >
-          🚀
-        </Button>
-      )}
-
       {scrollProgress > 66 && (
         <Button
           size="lg"
