@@ -675,8 +675,15 @@ export default function Index() {
                 name: "Старт",
                 icon: "🌱",
                 price: 15000,
-                badge: "Для новичков",
+                badge: "Для теста ниши",
+                duration: "5–7 рабочих дней",
+                suitableFor: [
+                  "начинающим предпринимателям",
+                  "тех, кто тестирует новый продукт/услугу",
+                  "локальному бизнесу (кафе, студии, мастера услуг)"
+                ],
                 features: ["Одностраничный лендинг", "Мобильная версия", "Базовая аналитика", "1 месяц поддержки"],
+                description: "Быстрый запуск в онлайне: аккуратный, понятный лендинг, который уже можно заливать траффиком и собирать первые заявки"
               },
               {
                 name: "Рост",
@@ -714,22 +721,47 @@ export default function Index() {
                 }`}
               >
                 <CardHeader>
-                  {pkg.highlight && (
-                    <Badge className="mb-4 w-fit bg-accent">{pkg.badge}</Badge>
-                  )}
+                  <Badge className="mb-4 w-fit" variant={pkg.highlight ? "default" : "secondary"}>
+                    {pkg.badge}
+                  </Badge>
                   <div className="text-5xl mb-4">{pkg.icon}</div>
-                  <CardTitle className="text-3xl">{pkg.name}</CardTitle>
+                  <CardTitle className="text-3xl">Пакет «{pkg.name}»</CardTitle>
                   <div className="text-4xl font-bold mt-4 text-primary">
                     {pkg.price.toLocaleString()} ₽
                   </div>
+                  {pkg.duration && (
+                    <p className="text-sm text-muted-foreground mt-2">
+                      Сроки: {pkg.duration}
+                    </p>
+                  )}
                 </CardHeader>
-                <CardContent className="space-y-3">
-                  {pkg.features.map((feature, i) => (
-                    <div key={i} className="flex items-start gap-2">
-                      <Icon name="Check" className="text-secondary mt-1" size={20} />
-                      <span>{feature}</span>
+                <CardContent className="space-y-4">
+                  {pkg.suitableFor && (
+                    <div>
+                      <p className="font-semibold mb-2 text-sm">Кому подходит:</p>
+                      <ul className="space-y-1 text-sm text-muted-foreground">
+                        {pkg.suitableFor.map((item, i) => (
+                          <li key={i}>• {item}</li>
+                        ))}
+                      </ul>
                     </div>
-                  ))}
+                  )}
+                  {pkg.description && (
+                    <p className="text-sm italic text-muted-foreground border-l-2 border-primary pl-3">
+                      {pkg.description}
+                    </p>
+                  )}
+                  <div className="pt-2">
+                    <p className="font-semibold mb-2 text-sm">Что входит:</p>
+                    <div className="space-y-2">
+                      {pkg.features.map((feature, i) => (
+                        <div key={i} className="flex items-start gap-2">
+                          <Icon name="Check" className="text-secondary mt-1" size={16} />
+                          <span className="text-sm">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                   <Button
                     className={`w-full mt-6 ${pkg.highlight ? "bg-gradient-to-r from-primary to-secondary" : ""}`}
                     onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
