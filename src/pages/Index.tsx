@@ -1148,11 +1148,9 @@ export default function Index() {
           </div>
           <p className="text-muted-foreground mb-6">Лендинги, которые продают 🚀</p>
           <div className="flex justify-center gap-6 mb-6">
-            {["Telegram", "WhatsApp", "VK", "Instagram"].map((social) => (
-              <a key={social} href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                {social}
-              </a>
-            ))}
+            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              Telegram
+            </a>
           </div>
           <p className="text-sm text-muted-foreground">
             © 2025 KERANOS AI • <a href="/privacy" className="hover:text-primary transition-colors underline">Политика конфиденциальности</a>
