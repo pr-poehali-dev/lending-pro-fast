@@ -618,8 +618,8 @@ export default function Index() {
                 },
               ].map((review, idx) => (
                 <CarouselItem key={idx} className="md:basis-1/2 lg:basis-1/3">
-                  <div className="p-1">
-                    <Card className="glass hover:border-primary/50 transition-all h-full">
+                  <div className="p-1 h-full">
+                    <Card className="glass hover:border-primary/50 transition-all flex flex-col h-full">
                       <CardHeader>
                         <div className="flex gap-1 mb-2">
                           {Array.from({ length: review.stars }).map((_, i) => (
@@ -629,7 +629,7 @@ export default function Index() {
                         <CardTitle className="text-lg">{review.title}</CardTitle>
                         <CardDescription className="text-sm">{review.name}, {review.role}</CardDescription>
                       </CardHeader>
-                      <CardContent>
+                      <CardContent className="flex-1">
                         <p className="text-sm text-foreground/90 italic leading-relaxed">"{review.quote}"</p>
                       </CardContent>
                     </Card>
@@ -637,8 +637,8 @@ export default function Index() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="-left-4 md:-left-12" />
-            <CarouselNext className="-right-4 md:-right-12" />
+            <CarouselPrevious className="-left-4 md:-left-12 w-12 h-12 bg-primary/90 hover:bg-primary border-2 border-primary shadow-lg hover:shadow-xl" />
+            <CarouselNext className="-right-4 md:-right-12 w-12 h-12 bg-primary/90 hover:bg-primary border-2 border-primary shadow-lg hover:shadow-xl" />
           </Carousel>
         </div>
       </section>
