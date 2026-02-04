@@ -403,7 +403,7 @@ export default function Index() {
 
             <Card className="glass transition-all glow-destructive-pulse group">
               <CardContent className="pt-8 text-center">
-                <div className="text-6xl mb-4 clock-hand">⏰</div>
+                <div className="text-6xl mb-4 ring-animation">⏰</div>
                 <h3 className="text-xl font-bold mb-2">Время тает</h3>
                 <p className="text-muted-foreground text-sm">
                   Каждый день промедления — потеря клиентов

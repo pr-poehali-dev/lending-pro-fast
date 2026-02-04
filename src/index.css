@@ -145,12 +145,23 @@
     }
   }
 
-  @keyframes clock-hand {
-    from {
+  @keyframes ring {
+    0%,
+    100% {
       transform: rotate(0deg);
     }
-    to {
-      transform: rotate(360deg);
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+      transform: rotate(-10deg);
+    }
+    20%,
+    40%,
+    60%,
+    80% {
+      transform: rotate(10deg);
     }
   }
 
@@ -203,36 +214,8 @@
     animation: glow-destructive 1.5s ease-in-out infinite;
   }
 
-  .clock-hand {
-    position: relative;
+  .ring-animation {
     display: inline-block;
-  }
-
-  .clock-hand::before {
-    content: "";
-    position: absolute;
-    width: 3px;
-    height: 20px;
-    background: rgba(239, 68, 68, 0.8);
-    top: 35%;
-    left: 50%;
-    transform-origin: 50% 100%;
-    margin-left: -1.5px;
-    animation: clock-hand 4s linear infinite;
-    border-radius: 2px;
-  }
-
-  .clock-hand::after {
-    content: "";
-    position: absolute;
-    width: 2px;
-    height: 28px;
-    background: rgba(239, 68, 68, 0.6);
-    top: 25%;
-    left: 50%;
-    transform-origin: 50% 100%;
-    margin-left: -1px;
-    animation: clock-hand 48s linear infinite;
-    border-radius: 2px;
+    animation: ring 1s ease-in-out infinite;
   }
 }
