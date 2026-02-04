@@ -370,7 +370,7 @@ export default function Index() {
                 </p>
                 <Button
                   size="lg"
-                  className="bg-gradient-to-r from-secondary to-primary hover:shadow-[0_0_30px_rgba(46,204,113,0.5)] transition-all"
+                  className="bg-gradient-to-r from-secondary to-primary hover:shadow-[0_0_30px_rgba(46,204,113,0.5)] transition-all text-sm md:text-base px-4 md:px-8 w-full md:w-auto"
                   onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
                 >
                   Решить эти проблемы сейчас 🚀
