@@ -733,7 +733,7 @@ export default function Index() {
               <Card
                 key={idx}
                 className={`glass hover:scale-105 transition-all ${
-                  pkg.highlight ? "border-2 border-primary shadow-[0_0_50px_rgba(52,152,219,0.3)]" : ""
+                  pkg.highlight ? "border-2 border-primary shadow-[0_0_70px_rgba(52,152,219,0.6)] animate-pulse" : ""
                 }`}
               >
                 <CardHeader>
