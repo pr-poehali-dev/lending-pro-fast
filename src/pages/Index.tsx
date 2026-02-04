@@ -11,6 +11,7 @@ import { Progress } from "@/components/ui/progress";
 import Icon from "@/components/ui/icon";
 import { useToast } from "@/hooks/use-toast";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export default function Index() {
   const { toast } = useToast();
@@ -29,6 +30,7 @@ export default function Index() {
   const [painChecks, setPainChecks] = useState<Record<number, boolean>>({});
   const [stars, setStars] = useState<Array<{ x: number; y: number; size: number; opacity: number; id: number }>>([]);
   const [constellations, setConstellations] = useState<Array<{ star1: number; star2: number; opacity: number }>>([]);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const sections = [
     { id: "pain", label: "Боль", icon: "AlertTriangle" },
@@ -202,28 +204,64 @@ export default function Index() {
 
 
 
-      <nav className="fixed top-4 left-0 right-0 z-40 px-2 md:px-4 transition-opacity duration-300" style={{ opacity: isNavTransparent ? 0.3 : 1 }}>
-        <div className="glass rounded-full py-2 px-2 md:px-8">
+      <nav className="fixed top-4 left-0 right-0 z-40 px-4 transition-opacity duration-300" style={{ opacity: isNavTransparent ? 0.3 : 1 }}>
+        <div className="glass rounded-full py-3 px-4 md:px-8">
           <div className="flex items-center justify-between max-w-7xl mx-auto">
-            {sections.map((section) => (
-              <button
-                key={section.id}
-                onClick={() => {
-                  document.getElementById(section.id)?.scrollIntoView({ behavior: "smooth" });
-                }}
-                className={`group relative flex flex-col items-center gap-1 px-2 md:px-6 py-1 rounded-full transition-all ${
-                  activeSection === section.id
-                    ? "bg-primary text-primary-foreground"
-                    : "hover:bg-primary/10"
-                }`}
-              >
-                <Icon name={section.icon as any} size={20} className="md:w-6 md:h-6" />
-                <span className="text-xs md:text-sm font-semibold">{section.label}</span>
-                {activeSection === section.id && (
-                  <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary animate-pulse" />
-                )}
-              </button>
-            ))}
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center justify-between w-full">
+              {sections.map((section) => (
+                <button
+                  key={section.id}
+                  onClick={() => {
+                    document.getElementById(section.id)?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className={`group relative flex flex-col items-center gap-1 px-6 py-1 rounded-full transition-all ${
+                    activeSection === section.id
+                      ? "bg-primary text-primary-foreground"
+                      : "hover:bg-primary/10"
+                  }`}
+                >
+                  <Icon name={section.icon as any} size={24} />
+                  <span className="text-sm font-semibold">{section.label}</span>
+                  {activeSection === section.id && (
+                    <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary animate-pulse" />
+                  )}
+                </button>
+              ))}
+            </div>
+
+            {/* Mobile Navigation */}
+            <div className="md:hidden flex items-center justify-between w-full">
+              <span className="font-bold text-primary">KERANOS AI</span>
+              <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="icon" className="h-10 w-10">
+                    <Icon name="Menu" size={24} />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-[250px] sm:w-[300px]">
+                  <div className="flex flex-col gap-4 mt-8">
+                    {sections.map((section) => (
+                      <button
+                        key={section.id}
+                        onClick={() => {
+                          document.getElementById(section.id)?.scrollIntoView({ behavior: "smooth" });
+                          setMobileMenuOpen(false);
+                        }}
+                        className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
+                          activeSection === section.id
+                            ? "bg-primary text-primary-foreground"
+                            : "hover:bg-primary/10"
+                        }`}
+                      >
+                        <Icon name={section.icon as any} size={24} />
+                        <span className="text-base font-semibold">{section.label}</span>
+                      </button>
+                    ))}
+                  </div>
+                </SheetContent>
+              </Sheet>
+            </div>
           </div>
         </div>
       </nav>
@@ -1215,7 +1253,7 @@ export default function Index() {
       {scrollProgress > 30 && (
         <Button
           size="lg"
-          className="fixed bottom-8 right-8 rounded-full w-16 h-16 p-0 bg-gradient-to-r from-primary to-secondary shadow-lg hover:shadow-[0_0_30px_rgba(52,152,219,0.5)] animate-bounce z-40 text-3xl"
+          className="fixed bottom-4 right-4 md:bottom-8 md:right-8 rounded-full w-14 h-14 md:w-16 md:h-16 p-0 bg-gradient-to-r from-primary to-secondary shadow-lg hover:shadow-[0_0_30px_rgba(52,152,219,0.5)] animate-bounce z-40 text-2xl md:text-3xl"
           onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
         >
           🚀
@@ -1225,7 +1263,7 @@ export default function Index() {
       {scrollProgress > 66 && (
         <Button
           size="lg"
-          className="fixed bottom-8 left-8 rounded-full w-16 h-16 p-0 bg-gradient-to-r from-primary to-secondary shadow-lg hover:shadow-[0_0_30px_rgba(52,152,219,0.5)] z-40 text-3xl"
+          className="fixed bottom-4 left-4 md:bottom-8 md:left-8 rounded-full w-14 h-14 md:w-16 md:h-16 p-0 bg-gradient-to-r from-primary to-secondary shadow-lg hover:shadow-[0_0_30px_rgba(52,152,219,0.5)] z-40 text-2xl md:text-3xl"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
           ⬆️
