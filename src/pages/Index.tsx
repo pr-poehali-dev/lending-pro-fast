@@ -863,40 +863,177 @@ export default function Index() {
       </section>
 
       <section className="py-20 px-4" id="faq">
-        <div className="container mx-auto max-w-3xl">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
-            Остались вопросы? 🤔
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
+            💬 Часто задаваемые вопросы
           </h2>
+          <p className="text-center text-muted-foreground mb-12 text-lg">
+            Остались вопросы? Напишите нам — мы всегда на связи! 💬
+          </p>
 
-          <Accordion type="single" collapsible className="space-y-4">
-            {[
-              {
-                q: "Сколько стоит создание лендинга?",
-                a: "От 15 000 до 65 000 рублей в зависимости от сложности и функционала. Подробнее в разделе 'Пакеты'.",
-              },
-              {
-                q: "Как быстро будет результат?",
-                a: "Первые заявки обычно приходят в первые 1-2 недели после запуска рекламы на готовый лендинг.",
-              },
-              {
-                q: "Можно ли вносить изменения?",
-                a: "Да! В период сопровождения предусмотрены доработки по вашим запросам.",
-              },
-              {
-                q: "Что если я ничего не понимаю в сайтах?",
-                a: "Это нормально! Мы всё сделаем за вас от А до Я. Вам нужно только рассказать о бизнесе.",
-              },
-            ].map((faq, idx) => (
-              <AccordionItem key={idx} value={`item-${idx}`} className="glass px-6 rounded-xl border-border">
-                <AccordionTrigger className="text-lg font-semibold hover:text-primary">
-                  {faq.q}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
-                  {faq.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          <div className="space-y-8">
+            <div>
+              <h3 className="text-2xl font-bold mb-4 text-primary">О разработке и сроках</h3>
+              <Accordion type="single" collapsible className="space-y-4">
+                {[
+                  {
+                    q: "❓ Сколько времени занимает создание лендинга?",
+                    a: "Зависит от выбранного пакета:\n\n• Пакет СТАРТ — 5–7 рабочих дней\n• Пакет РОСТ — 10–14 рабочих дней\n• Пакет ПРЕМИУМ — 20–28 рабочих дней\n\nСроки начинаются после полного согласования брифа и получения всех материалов от вас.",
+                  },
+                  {
+                    q: "❓ Можно ли изменить пакет после заказа?",
+                    a: "Да! Если вы выбрали пакет СТАРТ, но в процессе поняли, что хотите добавить функционал из пакета РОСТ — мы пересчитаем стоимость и добавим только недостающие опции.",
+                  },
+                  {
+                    q: "❓ Что мне нужно подготовить перед началом работы?",
+                    a: "Мы отправим вам бриф (20–30 вопросов) о вашем бизнесе и задачах. Также попросим:\n\n• Логотип (если есть)\n• Фото товаров/услуг (если есть)\n• Примеры лендингов, которые вам нравятся\n\nЕсли чего-то нет — не страшно! Мы поможем с подбором фото и созданием AI-визуала.",
+                  },
+                ].map((faq, idx) => (
+                  <AccordionItem key={idx} value={`dev-${idx}`} className="glass px-6 rounded-xl border-border">
+                    <AccordionTrigger className="text-lg font-semibold hover:text-primary text-left">
+                      {faq.q}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground whitespace-pre-line">
+                      {faq.a}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+
+            <div>
+              <h3 className="text-2xl font-bold mb-4 text-primary">О контенте</h3>
+              <Accordion type="single" collapsible className="space-y-4">
+                {[
+                  {
+                    q: "❓ Что такое AI-визуалы и как они помогут моему лендингу?",
+                    a: "AI-визуалы — это изображения, созданные нейросетями (Nano Banano Pro, VEO 3.1, Kimi 2.5). Мы генерируем уникальные иллюстрации, фотореалистичные картинки товаров, персонажей под ваш бренд.\n\nПреимущества:\n✅ Полная уникальность\n✅ Идеальное соответствие вашему стилю\n✅ Дешевле профессиональной фотосессии\n✅ Можно создать любой сюжет",
+                  },
+                  {
+                    q: "❓ Вы пишете тексты сами или мне нужен копирайтер?",
+                    a: "Мы пишем все тексты сами в рамках всех пакетов: заголовки, описания, преимущества, тексты кнопок. Вы получаете готовые продающие тексты с применением психологических триггеров.",
+                  },
+                ].map((faq, idx) => (
+                  <AccordionItem key={idx} value={`content-${idx}`} className="glass px-6 rounded-xl border-border">
+                    <AccordionTrigger className="text-lg font-semibold hover:text-primary text-left">
+                      {faq.q}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground whitespace-pre-line">
+                      {faq.a}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+
+            <div>
+              <h3 className="text-2xl font-bold mb-4 text-primary">О функционале</h3>
+              <Accordion type="single" collapsible className="space-y-4">
+                {[
+                  {
+                    q: "❓ Можно ли принимать оплату прямо на лендинге?",
+                    a: "Да! В пакете ПРЕМИУМ мы интегрируем платежные системы (Яндекс.Касса, Stripe, PayPal). Для пакетов СТАРТ и РОСТ эта опция доступна за дополнительную плату (от 5 000 ₽).",
+                  },
+                  {
+                    q: "❓ Как я буду получать заявки с лендинга?",
+                    a: "Мы настроим удобные каналы:\n\n• Telegram — заявки приходят в ваш чат-бот\n• Email — письмо с данными на вашу почту\n• CRM (в пакетах РОСТ и ПРЕМИУМ) — заявка автоматически попадает в Bitrix24, AmoCRM",
+                  },
+                  {
+                    q: "❓ Что такое A/B тестирование и зачем оно нужно?",
+                    a: "A/B тестирование — это проверка разных вариантов элементов лендинга (заголовки, кнопки, цвета), чтобы понять, какой работает лучше. Так мы повышаем конверсию на 15–40%.\n\nВходит в пакеты РОСТ (2–3 варианта) и ПРЕМИУМ (5–7 вариантов).",
+                  },
+                ].map((faq, idx) => (
+                  <AccordionItem key={idx} value={`func-${idx}`} className="glass px-6 rounded-xl border-border">
+                    <AccordionTrigger className="text-lg font-semibold hover:text-primary text-left">
+                      {faq.q}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground whitespace-pre-line">
+                      {faq.a}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+
+            <div>
+              <h3 className="text-2xl font-bold mb-4 text-primary">О стоимости и окупаемости</h3>
+              <Accordion type="single" collapsible className="space-y-4">
+                {[
+                  {
+                    q: "❓ Почему у вас дороже, чем на фрилансе?",
+                    a: "Мы не просто «делаем красивую страничку». Мы создаем инструмент продаж:\n\n✅ Проводим анализ конкурентов и ЦА\n✅ Разрабатываем стратегию и УТП\n✅ Пишем продающие тексты с триггерами\n✅ Настраиваем аналитику и цели\n✅ Даём поддержку 3–12 месяцев после запуска\n\nФрилансер часто делает только «картинку». Мы даём систему, которая приносит заявки и продажи.",
+                  },
+                  {
+                    q: "❓ Сколько времени нужно, чтобы окупить лендинг?",
+                    a: "Зависит от вашего среднего чека:\n\n• СТАРТ (15 000 ₽) — окупается за 5–7 продаж\n• РОСТ (40 000 ₽) — окупается за 3–5 продаж\n• ПРЕМИУМ (85 000 ₽) — окупается за 2–3 продажи\n\nПример: Вы продаёте курсы за 15 000 ₽. Лендинг из пакета РОСТ окупится после 3 продаж. Дальше — чистая прибыль.",
+                  },
+                  {
+                    q: "❓ Гарантируете ли вы продажи и конверсию?",
+                    a: "Мы гарантируем:\n✅ Качество дизайна и верстки\n✅ Работоспособность всех функций\n✅ Быструю загрузку страницы\n\nКонверсия зависит от:\n• Вашего предложения (цена, уникальность)\n• Качества трафика\n• Рекламного бюджета\n\nСредняя конверсия наших лендингов — 8–15% (против 2–5% у конкурентов).",
+                  },
+                ].map((faq, idx) => (
+                  <AccordionItem key={idx} value={`price-${idx}`} className="glass px-6 rounded-xl border-border">
+                    <AccordionTrigger className="text-lg font-semibold hover:text-primary text-left">
+                      {faq.q}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground whitespace-pre-line">
+                      {faq.a}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+
+            <div>
+              <h3 className="text-2xl font-bold mb-4 text-primary">О результатах</h3>
+              <Accordion type="single" collapsible className="space-y-4">
+                {[
+                  {
+                    q: "❓ Какую конверсию я могу ожидать?",
+                    a: "Средние показатели наших лендингов:\n\n• Простые лиды (имя + телефон): 8–15%\n• Продажа недорогих товаров (до 5 000 ₽): 3–7%\n• Продажа дорогих услуг (от 50 000 ₽): 1–3%\n• Регистрация на вебинар: 15–30%\n\nЭто в 2–3 раза выше среднего по рынку.",
+                  },
+                  {
+                    q: "❓ Как быстро я увижу первые заявки?",
+                    a: "Зависит от источника трафика:\n\n• Контекстная реклама (Яндекс.Директ, Google Ads) — через 1–3 дня\n• Соцсети (таргет VK, Instagram) — через 2–5 дней\n• SEO (органическая выдача) — через 1–3 месяца\n\nДля быстрого старта рекомендуем контекст + таргет.",
+                  },
+                  {
+                    q: "❓ Будет ли мой лендинг в поисковой выдаче Google и Яндекс?",
+                    a: "Да, но нужно понимать:\n\n• Базовое SEO (СТАРТ) — технически правильная страница\n• Среднее SEO (РОСТ) — оптимизация под 5–7 ключевых слов\n• Полное SEO (ПРЕМИУМ) — стратегия под 15–25 ключей\n\nДля быстрых результатов рекомендуем запускать контекстную рекламу — первые заявки через 1–3 дня.",
+                  },
+                ].map((faq, idx) => (
+                  <AccordionItem key={idx} value={`results-${idx}`} className="glass px-6 rounded-xl border-border">
+                    <AccordionTrigger className="text-lg font-semibold hover:text-primary text-left">
+                      {faq.q}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground whitespace-pre-line">
+                      {faq.a}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+
+            <div>
+              <h3 className="text-2xl font-bold mb-4 text-primary">Про нас</h3>
+              <Accordion type="single" collapsible className="space-y-4">
+                {[
+                  {
+                    q: "❓ Почему стоит выбрать именно вас?",
+                    a: "✅ Опыт в AI-визуале — используем нейросети для создания уникальных изображений\n✅ Знание психологии продаж — пишем тексты с триггерами\n✅ Работа с данными — настраиваем аналитику, тестируем гипотезы\n✅ Поддержка до результата — помогаем оптимизировать и масштабировать\n✅ Прозрачность — вы всегда знаете, на каком этапе проект",
+                  },
+                ].map((faq, idx) => (
+                  <AccordionItem key={idx} value={`about-${idx}`} className="glass px-6 rounded-xl border-border">
+                    <AccordionTrigger className="text-lg font-semibold hover:text-primary text-left">
+                      {faq.q}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground whitespace-pre-line">
+                      {faq.a}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+          </div>
         </div>
       </section>
 
