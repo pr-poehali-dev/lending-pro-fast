@@ -416,10 +416,31 @@ export default function Index() {
             Время — деньги
           </h2>
 
-          <p className="text-lg md:text-xl text-center text-primary/90 mb-8 md:mb-12 max-w-3xl mx-auto font-semibold px-4">
-            Каждый день ожидания — новые расходы. Реклама работает вхолостую, сайт не конвертирует, бюджет улетает. 
-            Через месяц вы теряете в среднем 18 клиентов — и до 50 000 рублей на неэффективный маркетинг.
-          </p>
+          <div className="max-w-3xl mx-auto mb-8 md:mb-12 px-4">
+            <p className="text-2xl md:text-3xl font-bold text-center text-destructive mb-6">
+              ⏰ Сегодня вторник, 4 февраля
+            </p>
+            <p className="text-lg md:text-xl text-center mb-6 font-semibold">
+              За последние 3 дня вы уже потеряли:
+            </p>
+            <div className="space-y-3 text-base md:text-lg">
+              <div className="flex items-start gap-3 p-4 rounded-lg bg-destructive/10 border border-destructive/30">
+                <span className="text-2xl">•</span>
+                <span><strong>2-3 клиента</strong> (упущенную прибыль можете прикинуть)</span>
+              </div>
+              <div className="flex items-start gap-3 p-4 rounded-lg bg-destructive/10 border border-destructive/30">
+                <span className="text-2xl">•</span>
+                <span><strong>8,500₽</strong> бюджета на рекламу впустую</span>
+              </div>
+              <div className="flex items-start gap-3 p-4 rounded-lg bg-destructive/10 border border-destructive/30">
+                <span className="text-2xl">•</span>
+                <span><strong>47 человек</strong> покинули ваш сайт без заявки</span>
+              </div>
+            </div>
+            <p className="text-xl md:text-2xl font-bold text-center text-destructive mt-6 animate-pulse">
+              Завтра будет ещё хуже.
+            </p>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12">
             <Card className="glass transition-all glow-destructive-pulse group">
