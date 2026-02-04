@@ -34,6 +34,7 @@ export default function Index() {
     { id: "loss", label: "Осознание", icon: "DollarSign" },
     { id: "transform", label: "Решение", icon: "ArrowUpRight" },
     { id: "process", label: "Успех", icon: "Trophy" },
+    { id: "faq", label: "FAQ", icon: "MessageCircle" },
   ];
 
   useEffect(() => {
