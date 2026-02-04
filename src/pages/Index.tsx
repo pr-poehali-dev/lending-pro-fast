@@ -693,7 +693,7 @@ export default function Index() {
                 ],
               },
               {
-                name: "Империя",
+                name: "Премиум",
                 icon: "👑",
                 price: 65000,
                 badge: "Для амбициозных",
