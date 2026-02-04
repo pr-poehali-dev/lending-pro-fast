@@ -381,9 +381,9 @@ export default function Index() {
           </p>
 
           <div className="grid md:grid-cols-3 gap-6 mb-12">
-            <Card className="glass hover:border-destructive/50 transition-all">
+            <Card className="glass hover:border-destructive/50 transition-all hover:animate-pulse group">
               <CardContent className="pt-8 text-center">
-                <div className="text-6xl mb-4">💸</div>
+                <div className="text-6xl mb-4 animate-bounce group-hover:animate-spin">💸</div>
                 <h3 className="text-xl font-bold mb-2">Деньги улетают</h3>
                 <p className="text-muted-foreground text-sm">
                   Рекламный бюджет тратится впустую
@@ -391,9 +391,9 @@ export default function Index() {
               </CardContent>
             </Card>
 
-            <Card className="glass hover:border-destructive/50 transition-all">
+            <Card className="glass hover:border-destructive/50 transition-all hover:animate-pulse group">
               <CardContent className="pt-8 text-center">
-                <div className="text-6xl mb-4">📉</div>
+                <div className="text-6xl mb-4 animate-pulse group-hover:animate-bounce">📉</div>
                 <h3 className="text-xl font-bold mb-2">Конверсия падает</h3>
                 <p className="text-muted-foreground text-sm">
                   Статистика отказов растёт каждый день
@@ -401,9 +401,9 @@ export default function Index() {
               </CardContent>
             </Card>
 
-            <Card className="glass hover:border-destructive/50 transition-all">
+            <Card className="glass hover:border-destructive/50 transition-all hover:animate-pulse group">
               <CardContent className="pt-8 text-center">
-                <div className="text-6xl mb-4">⏰</div>
+                <div className="text-6xl mb-4 animate-bounce group-hover:animate-spin">⏰</div>
                 <h3 className="text-xl font-bold mb-2">Время тает</h3>
                 <p className="text-muted-foreground text-sm">
                   Каждый день промедления — потеря клиентов
