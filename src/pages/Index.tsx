@@ -1147,7 +1147,13 @@ export default function Index() {
             />
           </div>
           <p className="text-muted-foreground mb-6">Лендинги, которые продают 🚀</p>
-          <div className="flex justify-center gap-6 mb-6">
+          <div className="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 mb-6">
+            <a href="tel:+79953968920" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
+              📞 +7 995 396 89 20
+            </a>
+            <a href="mailto:keranosai@mail.ru" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
+              ✉️ keranosai@mail.ru
+            </a>
             <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
               Telegram
             </a>
