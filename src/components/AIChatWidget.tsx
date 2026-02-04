@@ -15,17 +15,10 @@ export default function AIChatWidget() {
       setTimeout(() => setShake(false), 500);
     }, 3000);
 
-    const autoOpenTimer = setTimeout(() => {
-      if (!isOpen) {
-        setIsOpen(true);
-      }
-    }, 15000);
-
     return () => {
       clearInterval(shakeInterval);
-      clearTimeout(autoOpenTimer);
     };
-  }, [isOpen]);
+  }, []);
 
   const options = [
     { id: "price", label: "Рассчитать стоимость для моей ниши", icon: "Calculator" },
