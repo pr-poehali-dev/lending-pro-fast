@@ -674,7 +674,7 @@ export default function Index() {
               {
                 name: "Старт",
                 icon: "🌱",
-                price: 15000,
+                price: 20000,
                 badge: "Для теста ниши",
                 duration: "5–7 рабочих дней",
                 suitableFor: [
@@ -688,7 +688,7 @@ export default function Index() {
               {
                 name: "Рост",
                 icon: "🚀",
-                price: 40000,
+                price: 35000,
                 badge: "⭐ Хит продаж",
                 highlight: true,
                 duration: "10–14 рабочих дней",
@@ -753,7 +753,7 @@ export default function Index() {
                   {pkg.suitableFor && (
                     <div>
                       <p className="font-semibold mb-2 text-sm">Кому подходит:</p>
-                      <ul className="space-y-1 text-sm text-muted-foreground">
+                      <ul className="space-y-1 text-sm">
                         {pkg.suitableFor.map((item, i) => (
                           <li key={i}>• {item}</li>
                         ))}
