@@ -1173,6 +1173,16 @@ export default function Index() {
           🚀
         </Button>
       )}
+
+      {scrollProgress > 66 && (
+        <Button
+          size="lg"
+          className="fixed bottom-8 left-1/2 -translate-x-1/2 rounded-full w-16 h-16 p-0 bg-gradient-to-r from-primary to-secondary shadow-lg hover:shadow-[0_0_30px_rgba(52,152,219,0.5)] z-40"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        >
+          ⬆️
+        </Button>
+      )}
     </div>
   );
 }
