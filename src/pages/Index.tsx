@@ -12,6 +12,7 @@ import Icon from "@/components/ui/icon";
 import { useToast } from "@/hooks/use-toast";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import AIChatWidget from "@/components/AIChatWidget";
 
 export default function Index() {
   const { toast } = useToast();
@@ -1269,6 +1270,8 @@ export default function Index() {
           ⬆️
         </Button>
       )}
+
+      <AIChatWidget />
     </div>
   );
 }
