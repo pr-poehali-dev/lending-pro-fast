@@ -865,7 +865,7 @@ export default function Index() {
       <section className="py-20 px-4" id="faq">
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
-            💬 Часто задаваемые вопросы
+            ⚓ Часто задаваемые вопросы
           </h2>
           <p className="text-center text-muted-foreground mb-12 text-lg">
             Остались вопросы? Напишите нам — мы всегда на связи! 💬
