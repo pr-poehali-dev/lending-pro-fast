@@ -1167,7 +1167,7 @@ export default function Index() {
       {scrollProgress > 30 && (
         <Button
           size="lg"
-          className="fixed bottom-8 right-8 rounded-full w-16 h-16 p-0 bg-gradient-to-r from-primary to-secondary shadow-lg hover:shadow-[0_0_30px_rgba(52,152,219,0.5)] animate-bounce z-40"
+          className="fixed bottom-8 right-8 rounded-full w-16 h-16 p-0 bg-gradient-to-r from-primary to-secondary shadow-lg hover:shadow-[0_0_30px_rgba(52,152,219,0.5)] animate-bounce z-40 text-3xl"
           onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
         >
           🚀
@@ -1177,7 +1177,7 @@ export default function Index() {
       {scrollProgress > 66 && (
         <Button
           size="lg"
-          className="fixed bottom-8 left-1/2 -translate-x-1/2 rounded-full w-16 h-16 p-0 bg-gradient-to-r from-primary to-secondary shadow-lg hover:shadow-[0_0_30px_rgba(52,152,219,0.5)] z-40"
+          className="fixed bottom-8 left-1/2 -translate-x-1/2 rounded-full w-16 h-16 p-0 bg-gradient-to-r from-primary to-secondary shadow-lg hover:shadow-[0_0_30px_rgba(52,152,219,0.5)] z-40 text-3xl"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
           ⬆️
