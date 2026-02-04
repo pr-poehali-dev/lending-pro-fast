@@ -896,7 +896,7 @@ export default function Index() {
                       <AccordionTrigger className="text-base font-semibold hover:text-primary text-left py-3">
                         {faq.q}
                       </AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground whitespace-pre-line pb-3">
+                      <AccordionContent className="text-foreground/90 whitespace-pre-line pb-3">
                         {faq.a}
                       </AccordionContent>
                     </AccordionItem>
@@ -925,7 +925,7 @@ export default function Index() {
                       <AccordionTrigger className="text-base font-semibold hover:text-primary text-left py-3">
                         {faq.q}
                       </AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground whitespace-pre-line pb-3">
+                      <AccordionContent className="text-foreground/90 whitespace-pre-line pb-3">
                         {faq.a}
                       </AccordionContent>
                     </AccordionItem>
@@ -958,7 +958,7 @@ export default function Index() {
                       <AccordionTrigger className="text-base font-semibold hover:text-primary text-left py-3">
                         {faq.q}
                       </AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground whitespace-pre-line pb-3">
+                      <AccordionContent className="text-foreground/90 whitespace-pre-line pb-3">
                         {faq.a}
                       </AccordionContent>
                     </AccordionItem>
@@ -991,7 +991,7 @@ export default function Index() {
                       <AccordionTrigger className="text-base font-semibold hover:text-primary text-left py-3">
                         {faq.q}
                       </AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground whitespace-pre-line pb-3">
+                      <AccordionContent className="text-foreground/90 whitespace-pre-line pb-3">
                         {faq.a}
                       </AccordionContent>
                     </AccordionItem>
@@ -1024,7 +1024,7 @@ export default function Index() {
                       <AccordionTrigger className="text-base font-semibold hover:text-primary text-left py-3">
                         {faq.q}
                       </AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground whitespace-pre-line pb-3">
+                      <AccordionContent className="text-foreground/90 whitespace-pre-line pb-3">
                         {faq.a}
                       </AccordionContent>
                     </AccordionItem>
@@ -1049,7 +1049,7 @@ export default function Index() {
                       <AccordionTrigger className="text-base font-semibold hover:text-primary text-left py-3">
                         {faq.q}
                       </AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground whitespace-pre-line pb-3">
+                      <AccordionContent className="text-foreground/90 whitespace-pre-line pb-3">
                         {faq.a}
                       </AccordionContent>
                     </AccordionItem>
