@@ -33,6 +33,18 @@ export default function Index() {
   const [constellations, setConstellations] = useState<Array<{ star1: number; star2: number; opacity: number }>>([]);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const getCurrentDate = () => {
+    const now = new Date();
+    const days = ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'];
+    const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+    
+    const dayName = days[now.getDay()];
+    const day = now.getDate();
+    const month = months[now.getMonth()];
+    
+    return `${dayName}, ${day} ${month}`;
+  };
+
   const sections = [
     { id: "pain", label: "Боль", icon: "AlertTriangle" },
     { id: "loss", label: "Осознание", icon: "DollarSign" },
@@ -418,7 +430,7 @@ export default function Index() {
 
           <div className="max-w-3xl mx-auto mb-8 md:mb-12 px-4">
             <p className="text-2xl md:text-3xl font-bold text-center text-destructive mb-6">
-              ⏰ Сегодня вторник, 4 февраля
+              ⏰ Сегодня {getCurrentDate()}
             </p>
             <p className="text-lg md:text-xl text-center mb-6 font-semibold">
               За последние 3 дня вы уже потеряли:
