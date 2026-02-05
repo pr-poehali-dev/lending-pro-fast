@@ -465,49 +465,19 @@ export default function Index() {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-4 mb-8">
-            {[
-              "Реклама работает, но заявок нет",
-              "Клиенты уходят к конкурентам",
-              "Сайта нет или он выглядит как в 2010",
-              "Деньги уходят в никуда",
-            ].map((pain, idx) => (
-              <div
-                key={idx}
-                onClick={() => setPainChecks({ ...painChecks, [idx]: !painChecks[idx] })}
-                className={`glass p-4 md:p-6 rounded-2xl flex items-center gap-3 md:gap-4 cursor-pointer transition-all duration-300 ${
-                  painChecks[idx]
-                    ? "border-secondary bg-secondary/10 shadow-[0_0_20px_rgba(46,204,113,0.3)]"
-                    : "hover:border-primary/50"
-                }`}
-              >
-                <div
-                  className={`w-6 h-6 rounded border-2 flex items-center justify-center transition-all ${
-                    painChecks[idx] ? "bg-secondary border-secondary" : "border-muted-foreground"
-                  }`}
-                >
-                  {painChecks[idx] && (
-                    <Icon name="Check" size={16} className="text-white" />
-                  )}
-                </div>
-                <p className="text-base md:text-lg flex-1">{pain}</p>
-              </div>
-            ))}
-          </div>
-
-          {Object.keys(painChecks).filter((key) => painChecks[parseInt(key)]).length > 0 && (
+          {Object.keys(problemsChecked).filter((key) => problemsChecked[parseInt(key)]).length > 0 && (
             <div className="glass p-4 md:p-8 rounded-2xl border-secondary/50 border-2 mb-8 md:mb-12 animate-scale-in">
               <div className="text-center">
                 <div className="flex flex-col md:inline-flex md:flex-row items-center gap-2 md:gap-3 mb-4">
                   <Icon name="CheckCircle" size={28} className="text-secondary md:w-8 md:h-8" />
                   <p className="text-lg md:text-xl lg:text-2xl font-bold">
-                    Отмечено проблем: {Object.keys(painChecks).filter((key) => painChecks[parseInt(key)]).length} из 4
+                    Отмечено проблем: {Object.keys(problemsChecked).filter((key) => problemsChecked[parseInt(key)]).length} из {problems.length}
                   </p>
                 </div>
                 <p className="text-base md:text-lg text-muted-foreground mb-6">
-                  {Object.keys(painChecks).filter((key) => painChecks[parseInt(key)]).length >= 3
+                  {Object.keys(problemsChecked).filter((key) => problemsChecked[parseInt(key)]).length >= 4
                     ? "Критическая ситуация! Ваш бизнес теряет деньги прямо сейчас. Пора действовать!"
-                    : Object.keys(painChecks).filter((key) => painChecks[parseInt(key)]).length >= 2
+                    : Object.keys(problemsChecked).filter((key) => problemsChecked[parseInt(key)]).length >= 3
                     ? "У вас серьёзные проблемы с конверсией. Лендинг решит эти боли!"
                     : "Даже одна проблема стоит вам клиентов. Давайте это исправим!"}
                 </p>
@@ -521,6 +491,14 @@ export default function Index() {
               </div>
             </div>
           )}
+
+          <div className="grid md:grid-cols-2 gap-4 mb-8">
+            {[
+              "Реклама работает, но заявок нет",
+              "Клиенты уходят к конкурентам",
+              "Сайта нет или он выглядит как в 2010",
+              "Деньги уходят в никуда",
+
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <Card className="glass hover:border-destructive/50 transition-all">
