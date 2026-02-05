@@ -32,6 +32,9 @@ export default function Index() {
   const [stars, setStars] = useState<Array<{ x: number; y: number; size: number; opacity: number; id: number }>>([]);
   const [constellations, setConstellations] = useState<Array<{ star1: number; star2: number; opacity: number }>>([]);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [lossCounter, setLossCounter] = useState({ rubles: 0, clients: 0, competitors: 0 });
+  const [problemsChecked, setProblemsChecked] = useState<Record<number, boolean>>({});
+  const [selectedNiche, setSelectedNiche] = useState<string>("E-commerce");
 
   const getCurrentDate = () => {
     const now = new Date();
@@ -43,6 +46,30 @@ export default function Index() {
     const month = months[now.getMonth()];
     
     return `${dayName}, ${day} ${month}`;
+  };
+
+  const niches = [
+    { value: "E-commerce", label: "E-commerce", loss: 75000 },
+    { value: "Услуги B2C", label: "Услуги B2C", loss: 50000 },
+    { value: "B2B", label: "B2B", loss: 120000 },
+    { value: "Недвижимость", label: "Недвижимость", loss: 90000 },
+    { value: "Образование", label: "Образование", loss: 45000 },
+  ];
+
+  const problems = [
+    "Сайта нет или выглядит как в 2010",
+    "Клиенты уходят к конкурентам",
+    "Реклама не окупается",
+    "Конверсия ниже 5%",
+    "Нет аналитики",
+    "Мобильная версия кривая",
+  ];
+
+  const calculateMonthlyLoss = () => {
+    const checkedCount = Object.keys(problemsChecked).filter(
+      (key) => problemsChecked[parseInt(key)]
+    ).length;
+    return Math.round((checkedCount / problems.length) * niches.find(n => n.value === selectedNiche)!.loss);
   };
 
   const sections = [
@@ -149,6 +176,17 @@ export default function Index() {
       return () => clearInterval(interval);
     }
   }, [counterStarted, counter]);
+
+  useEffect(() => {
+    const lossInterval = setInterval(() => {
+      setLossCounter((prev) => ({
+        rubles: prev.rubles + Math.floor(Math.random() * 15) + 10,
+        clients: +(prev.clients + 0.001).toFixed(3),
+        competitors: prev.competitors + Math.floor(Math.random() * 30) + 20,
+      }));
+    }, 1000);
+    return () => clearInterval(lossInterval);
+  }, []);
 
   const launchRocket = () => {
     setRocketLaunched(true);
@@ -334,6 +372,98 @@ export default function Index() {
           </p>
 
           <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-center mb-6 md:mb-8 px-4">Узнайте себя? Отметьте свои боли</h3>
+
+          <div className="glass p-6 md:p-8 rounded-2xl mb-8 md:mb-12 border-2 border-destructive/30">
+            <h3 className="text-xl md:text-2xl font-bold text-center mb-4 text-destructive">⏰ Пока вы читаете эту страницу:</h3>
+            <div className="max-w-2xl mx-auto space-y-4">
+              <div className="glass p-6 rounded-xl border border-destructive/50 bg-destructive/5">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                  <div>
+                    <p className="text-sm text-muted-foreground mb-1">Вы уже потеряли:</p>
+                    <p className="text-2xl md:text-3xl font-bold text-destructive">{lossCounter.rubles}₽</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground mb-1">Упущено клиентов:</p>
+                    <p className="text-2xl md:text-3xl font-bold text-destructive">{lossCounter.clients}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground mb-1">Конкуренты заработали:</p>
+                    <p className="text-2xl md:text-3xl font-bold text-destructive">{lossCounter.competitors}₽</p>
+                  </div>
+                </div>
+              </div>
+              <div className="text-center">
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-secondary to-primary hover:shadow-[0_0_30px_rgba(46,204,113,0.5)] transition-all"
+                  onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+                >
+                  Остановить потери →
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          <div className="mb-8 md:mb-12">
+            <h3 className="text-xl md:text-2xl font-bold text-center mb-6">Отметьте ваши проблемы:</h3>
+            <div className="grid md:grid-cols-2 gap-4 mb-6">
+              {problems.map((problem, idx) => (
+                <div
+                  key={idx}
+                  onClick={() => setProblemsChecked({ ...problemsChecked, [idx]: !problemsChecked[idx] })}
+                  className={`glass p-4 md:p-6 rounded-2xl flex items-center gap-3 md:gap-4 cursor-pointer transition-all duration-300 ${
+                    problemsChecked[idx]
+                      ? "border-secondary bg-secondary/10 shadow-[0_0_20px_rgba(46,204,113,0.3)]"
+                      : "hover:border-primary/50"
+                  }`}
+                >
+                  <div
+                    className={`w-6 h-6 rounded border-2 flex items-center justify-center transition-all ${
+                      problemsChecked[idx] ? "bg-secondary border-secondary" : "border-muted-foreground"
+                    }`}
+                  >
+                    {problemsChecked[idx] && <Icon name="Check" size={16} className="text-white" />}
+                  </div>
+                  <p className="text-base md:text-lg flex-1">{problem}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="glass p-6 md:p-8 rounded-2xl border-2 border-primary/30 text-center">
+              <p className="text-lg md:text-xl font-bold mb-2">
+                Отмечено: {Object.keys(problemsChecked).filter((key) => problemsChecked[parseInt(key)]).length}/{problems.length}
+              </p>
+              <p className="text-2xl md:text-3xl font-bold text-destructive">
+                → Вы теряете ≈{calculateMonthlyLoss().toLocaleString('ru-RU')}₽/месяц
+              </p>
+            </div>
+          </div>
+
+          <div className="glass p-6 md:p-8 rounded-2xl mb-8 md:mb-12 border-2 border-primary/30">
+            <h3 className="text-xl md:text-2xl font-bold text-center mb-6">Персонализация под ниши</h3>
+            <div className="max-w-md mx-auto mb-6">
+              <label className="block text-sm font-medium mb-2">Ваша ниша:</label>
+              <select
+                value={selectedNiche}
+                onChange={(e) => setSelectedNiche(e.target.value)}
+                className="w-full p-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+              >
+                {niches.map((niche) => (
+                  <option key={niche.value} value={niche.value}>
+                    {niche.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="text-center p-6 rounded-xl bg-primary/5 border border-primary/30">
+              <p className="text-lg md:text-xl font-semibold">
+                Для <span className="text-primary font-bold">{selectedNiche}</span> средняя потеря без лендинга:
+              </p>
+              <p className="text-3xl md:text-4xl font-bold text-destructive mt-2">
+                {niches.find(n => n.value === selectedNiche)!.loss.toLocaleString('ru-RU')}₽/мес
+              </p>
+            </div>
+          </div>
 
           <div className="grid md:grid-cols-2 gap-4 mb-8">
             {[
