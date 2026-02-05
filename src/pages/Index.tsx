@@ -492,14 +492,6 @@ export default function Index() {
             </div>
           )}
 
-          <div className="grid md:grid-cols-2 gap-4 mb-8">
-            {[
-              "Реклама работает, но заявок нет",
-              "Клиенты уходят к конкурентам",
-              "Сайта нет или он выглядит как в 2010",
-              "Деньги уходят в никуда",
-
-
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <Card className="glass hover:border-destructive/50 transition-all">
               <CardContent className="pt-8 text-center">
