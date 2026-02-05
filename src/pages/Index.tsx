@@ -429,7 +429,7 @@ export default function Index() {
               ))}
             </div>
 
-            <div className="glass p-6 md:p-8 rounded-2xl border-2 border-primary/30 text-center mb-8 md:mb-12">
+            <div className="glass p-6 md:p-8 rounded-2xl border-2 border-primary/30 text-center">
               <p className="text-lg md:text-xl font-bold mb-2">
                 Отмечено: {Object.keys(problemsChecked).filter((key) => problemsChecked[parseInt(key)]).length}/{problems.length}
               </p>
@@ -464,6 +464,33 @@ export default function Index() {
               </p>
             </div>
           </div>
+
+          {Object.keys(problemsChecked).filter((key) => problemsChecked[parseInt(key)]).length > 0 && (
+            <div className="glass p-4 md:p-8 rounded-2xl border-secondary/50 border-2 mb-8 md:mb-12 animate-scale-in">
+              <div className="text-center">
+                <div className="flex flex-col md:inline-flex md:flex-row items-center gap-2 md:gap-3 mb-4">
+                  <Icon name="CheckCircle" size={28} className="text-secondary md:w-8 md:h-8" />
+                  <p className="text-lg md:text-xl lg:text-2xl font-bold">
+                    Отмечено проблем: {Object.keys(problemsChecked).filter((key) => problemsChecked[parseInt(key)]).length} из {problems.length}
+                  </p>
+                </div>
+                <p className="text-base md:text-lg text-muted-foreground mb-6">
+                  {Object.keys(problemsChecked).filter((key) => problemsChecked[parseInt(key)]).length >= 4
+                    ? "Критическая ситуация! Ваш бизнес теряет деньги прямо сейчас. Пора действовать!"
+                    : Object.keys(problemsChecked).filter((key) => problemsChecked[parseInt(key)]).length >= 3
+                    ? "У вас серьёзные проблемы с конверсией. Лендинг решит эти боли!"
+                    : "Даже одна проблема стоит вам клиентов. Давайте это исправим!"}
+                </p>
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-secondary to-primary hover:shadow-[0_0_30px_rgba(46,204,113,0.5)] transition-all text-sm md:text-base px-4 md:px-8 w-full md:w-auto"
+                  onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+                >
+                  Решить эти проблемы сейчас 🚀
+                </Button>
+              </div>
+            </div>
+          )}
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <Card className="glass hover:border-destructive/50 transition-all">
