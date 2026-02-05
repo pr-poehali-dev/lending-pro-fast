@@ -5,7 +5,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import Icon from "@/components/ui/icon";
 
 export default function AIChatWidget() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [shake, setShake] = useState(false);
 
