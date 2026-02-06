@@ -57,12 +57,12 @@ export default function Index() {
   ];
 
   const problems = [
-    "Сайта нет или выглядит как в 2010",
-    "Клиенты уходят к конкурентам",
-    "Реклама не окупается",
-    "Конверсия ниже 5%",
-    "Нет аналитики",
-    "Мобильная версия кривая",
+    { text: "Сайта нет или выглядит как в 2010", hint: "Каждый день без современного сайта — это упущенная выручка. Клиенты судят за 3 секунды!" },
+    { text: "Клиенты уходят к конкурентам", hint: "Пока вы читаете это, конкуренты забирают ваших клиентов. Время действовать!" },
+    { text: "Реклама не окупается", hint: "Деньги на рекламу уходят в пустоту? Проблема не в трафике, а в отсутствии продающего лендинга!" },
+    { text: "Конверсия ниже 5%", hint: "Из 100 посетителей покупает меньше 5? Вы теряете 95% потенциальной прибыли!" },
+    { text: "Нет аналитики", hint: "Летите вслепую? Без данных невозможно понять, куда уходят деньги и клиенты!" },
+    { text: "Мобильная версия кривая", hint: "70% трафика с телефонов! Кривая мобильная версия = потеря большинства клиентов!" },
   ];
 
   const calculateMonthlyLoss = () => {
@@ -424,7 +424,7 @@ export default function Index() {
                   >
                     {problemsChecked[idx] && <Icon name="Check" size={16} className="text-white" />}
                   </div>
-                  <p className="text-base md:text-lg flex-1">{problem}</p>
+                  <p className="text-base md:text-lg flex-1">{problem.text}</p>
                 </div>
               ))}
             </div>
@@ -448,13 +448,18 @@ export default function Index() {
                     Отмечено проблем: {Object.keys(problemsChecked).filter((key) => problemsChecked[parseInt(key)]).length} из {problems.length}
                   </p>
                 </div>
-                <p className="text-base md:text-lg text-muted-foreground mb-6">
-                  {Object.keys(problemsChecked).filter((key) => problemsChecked[parseInt(key)]).length >= 4
-                    ? "Критическая ситуация! Ваш бизнес теряет деньги прямо сейчас. Пора действовать!"
-                    : Object.keys(problemsChecked).filter((key) => problemsChecked[parseInt(key)]).length >= 3
-                    ? "У вас серьёзные проблемы с конверсией. Лендинг решит эти боли!"
-                    : "Даже одна проблема стоит вам клиентов. Давайте это исправим!"}
-                </p>
+                <div className="space-y-3 mb-6">
+                  {Object.keys(problemsChecked)
+                    .filter((key) => problemsChecked[parseInt(key)])
+                    .map((key) => {
+                      const idx = parseInt(key);
+                      return (
+                        <p key={idx} className="text-sm md:text-base text-muted-foreground italic">
+                          • {problems[idx].hint}
+                        </p>
+                      );
+                    })}
+                </div>
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-secondary to-primary hover:shadow-[0_0_30px_rgba(46,204,113,0.5)] transition-all text-sm md:text-base px-4 md:px-8 w-full md:w-auto"
