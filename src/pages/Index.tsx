@@ -439,32 +439,6 @@ export default function Index() {
             </div>
           </div>
 
-          <div className="glass p-6 md:p-8 rounded-2xl mb-8 md:mb-12 border-2 border-primary/30">
-            <h3 className="text-xl md:text-2xl font-bold text-center mb-6">Персонализация под ниши</h3>
-            <div className="max-w-md mx-auto mb-6">
-              <label className="block text-sm font-medium mb-2">Ваша ниша:</label>
-              <select
-                value={selectedNiche}
-                onChange={(e) => setSelectedNiche(e.target.value)}
-                className="w-full p-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-              >
-                {niches.map((niche) => (
-                  <option key={niche.value} value={niche.value}>
-                    {niche.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="text-center p-6 rounded-xl bg-primary/5 border border-primary/30">
-              <p className="text-lg md:text-xl font-semibold">
-                Для <span className="text-primary font-bold">{selectedNiche}</span> средняя потеря без лендинга:
-              </p>
-              <p className="text-3xl md:text-4xl font-bold text-destructive mt-2">
-                {niches.find(n => n.value === selectedNiche)!.loss.toLocaleString('ru-RU')}₽/мес
-              </p>
-            </div>
-          </div>
-
           {Object.keys(problemsChecked).filter((key) => problemsChecked[parseInt(key)]).length > 0 && (
             <div className="glass p-4 md:p-8 rounded-2xl border-secondary/50 border-2 mb-8 md:mb-12 animate-scale-in">
               <div className="text-center">
@@ -491,6 +465,32 @@ export default function Index() {
               </div>
             </div>
           )}
+
+          <div className="glass p-6 md:p-8 rounded-2xl mb-8 md:mb-12 border-2 border-primary/30">
+            <h3 className="text-xl md:text-2xl font-bold text-center mb-6">Персонализация под ниши</h3>
+            <div className="max-w-md mx-auto mb-6">
+              <label className="block text-sm font-medium mb-2">Ваша ниша:</label>
+              <select
+                value={selectedNiche}
+                onChange={(e) => setSelectedNiche(e.target.value)}
+                className="w-full p-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+              >
+                {niches.map((niche) => (
+                  <option key={niche.value} value={niche.value}>
+                    {niche.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="text-center p-6 rounded-xl bg-primary/5 border border-primary/30">
+              <p className="text-lg md:text-xl font-semibold">
+                Для <span className="text-primary font-bold">{selectedNiche}</span> средняя потеря без лендинга:
+              </p>
+              <p className="text-3xl md:text-4xl font-bold text-destructive mt-2">
+                {niches.find(n => n.value === selectedNiche)!.loss.toLocaleString('ru-RU')}₽/мес
+              </p>
+            </div>
+          </div>
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <Card className="glass hover:border-destructive/50 transition-all">
