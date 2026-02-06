@@ -32,7 +32,7 @@ export default function Index() {
   const [stars, setStars] = useState<Array<{ x: number; y: number; size: number; opacity: number; id: number }>>([]);
   const [constellations, setConstellations] = useState<Array<{ star1: number; star2: number; opacity: number }>>([]);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [lossCounter, setLossCounter] = useState({ rubles: 0, clients: 0, competitors: 0 });
+  const [lossCounter, setLossCounter] = useState({ rubles: 0, clients: 1, competitors: 0 });
   const [problemsChecked, setProblemsChecked] = useState<Record<number, boolean>>({});
   const [selectedNiche, setSelectedNiche] = useState<string>("E-commerce");
 
