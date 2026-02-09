@@ -771,6 +771,103 @@ export default function Index() {
         </div>
       </section>
 
+      <section className="py-20 px-4 bg-gradient-to-b from-card to-card/50">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 px-4">
+            🔍 КАК МЫ ПОДНИМАЕМ КОНВЕРСИЮ В 3 РАЗА
+          </h2>
+          <p className="text-center text-muted-foreground mb-12 md:mb-16 text-base md:text-lg px-4">
+            Проверенная методология работы над каждым лендингом
+          </p>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-12">
+            {[
+              {
+                number: "1️⃣",
+                title: "АНАЛИЗ",
+                period: "день 1-2",
+                steps: [
+                  "Изучаем 10-15 конкурентов",
+                  "Находим их слабые места",
+                  "Выявляем работающие триггеры"
+                ],
+                icon: "Search"
+              },
+              {
+                number: "2️⃣",
+                title: "СТРАТЕГИЯ",
+                period: "день 3",
+                steps: [
+                  "Карта болей клиента",
+                  "Структура продающих блоков",
+                  "Сценарии CTA"
+                ],
+                icon: "Target"
+              },
+              {
+                number: "3️⃣",
+                title: "ДИЗАЙН + ТЕКСТЫ",
+                period: "день 4-5",
+                steps: [
+                  "AI-визуалы (уникальные)",
+                  "Копирайтинг с триггерами",
+                  "UX-паттерны высокой конверсии"
+                ],
+                icon: "Palette"
+              },
+              {
+                number: "4️⃣",
+                title: "ТЕСТИРОВАНИЕ",
+                period: "день 6-7",
+                steps: [
+                  "5 вариантов заголовков",
+                  "3 варианта CTA",
+                  "Тепловые карты"
+                ],
+                icon: "FlaskConical"
+              }
+            ].map((stage, idx) => (
+              <Card 
+                key={idx} 
+                className="glass hover:border-primary hover:scale-105 transition-all duration-300 cursor-pointer group relative overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <CardHeader className="relative z-10">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-4xl">{stage.number}</span>
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                      <Icon name={stage.icon as any} size={20} className="text-white" />
+                    </div>
+                  </div>
+                  <CardTitle className="text-xl mb-2">{stage.title}</CardTitle>
+                  <Badge variant="secondary" className="w-fit mb-4">{stage.period}</Badge>
+                  <div className="space-y-2">
+                    {stage.steps.map((step, stepIdx) => (
+                      <div key={stepIdx} className="flex items-start gap-2 text-sm">
+                        <Icon name="ArrowRight" size={16} className="text-primary mt-0.5 flex-shrink-0" />
+                        <span className="text-muted-foreground">{step}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+
+          <Card className="glass border-2 border-primary/50 bg-gradient-to-br from-primary/10 to-secondary/10">
+            <CardContent className="pt-6 md:pt-8 text-center">
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <Icon name="TrendingUp" size={32} className="text-primary" />
+                <h3 className="text-2xl md:text-3xl font-bold">📊 Результат</h3>
+              </div>
+              <p className="text-lg md:text-xl">
+                конверсия <span className="text-primary font-bold text-2xl md:text-3xl">8-12%</span> vs <span className="text-destructive font-bold">2-3%</span> у конкурентов
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       <section className="py-20 px-4" id="process">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-12 md:mb-20 px-4">
