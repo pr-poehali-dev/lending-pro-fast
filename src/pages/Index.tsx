@@ -1319,7 +1319,7 @@ export default function Index() {
                       if (response.ok) {
                         toast({
                           title: "Готово! Скоро свяжемся ✅",
-                          description: "Мы получили вашу заявку и перезвоним в течение 15 минут!",
+                          description: "Мы получили вашу заявку и свяжемся с вами в течение 15 минут!",
                         });
                         setFormData({ name: '', email: '' });
                       } else {
