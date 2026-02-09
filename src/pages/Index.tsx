@@ -334,28 +334,31 @@ export default function Index() {
             Ваш бизнес готов к <span className="text-primary">взлёту?</span>
           </h1>
           
-          <p className="text-lg md:text-xl lg:text-2xl mb-6 text-primary font-bold px-2">
-            Продающий лендинг под ключ — готов за 5 дней и приносит заявки с первого дня
+          <h2 className="text-2xl md:text-3xl lg:text-4xl mb-4 text-primary font-bold px-2">
+            Лендинги, которые окупают рекламу и приносят заявки
+          </h2>
+
+          <p className="text-base md:text-lg lg:text-xl mb-6 max-w-4xl mx-auto px-4 text-muted-foreground">
+            Проектируем и запускаем лендинги под ключ для малого и среднего бизнеса: стратегия, тексты, AI‑визуалы, аналитика и A/B‑тесты. Запуск за 7 дней — от первого брифа до первых заявок.
           </p>
 
-          <p className="text-sm md:text-base lg:text-lg mb-8 text-secondary font-semibold max-w-3xl mx-auto px-4">
-            Мы создаём сайты, которые действительно работают: от структуры и текстов до публикации и аналитики.
-          </p>
-
-          <div className="glass inline-block px-4 md:px-8 py-3 md:py-4 rounded-2xl mb-6 mx-4">
-            <p className="text-base md:text-lg lg:text-2xl font-bold text-secondary flex flex-col md:flex-row items-center gap-2 md:gap-3">
-              <span className="text-center">Лендингов запущено на сегодня:</span> <span className="text-secondary">{counter}</span>
+          <div className="glass inline-block px-4 md:px-6 py-3 rounded-xl mb-8 mx-4">
+            <p className="text-sm md:text-base font-semibold text-secondary">
+              За 2024–2025 мы помогли клиентам увеличить конверсию лендингов в 2–3 раза и снизить стоимость лида до 350 ₽ на платном трафике.
             </p>
           </div>
 
-          <div className="px-4">
+          <div className="px-4 space-y-4">
             <Button
               size="lg"
               className="text-base md:text-lg px-6 md:px-8 py-5 md:py-6 bg-gradient-to-r from-primary to-secondary hover:shadow-[0_0_30px_rgba(52,152,219,0.5)] transition-all w-full md:w-auto"
               onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
             >
-              Запустить свою ракету 🚀
+              Получить разбор и концепцию лендинга 🚀
             </Button>
+            <p className="text-xs md:text-sm text-muted-foreground italic max-w-md mx-auto">
+              Без шаблонов. Работаем по данным: аналитика, сплит‑тесты, кастомные AI‑визуалы.
+            </p>
           </div>
         </div>
       </section>
