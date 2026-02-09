@@ -335,7 +335,7 @@ export default function Index() {
 
           <div className="glass inline-block px-4 md:px-6 py-3 rounded-xl mb-8 mx-4">
             <p className="text-sm md:text-base font-semibold text-secondary">
-              За 2024–2025 мы помогли клиентам увеличить конверсию лендингов в 2–3 раза и снизить стоимость лида до 350 ₽ на платном трафике.
+              За 2025 мы помогли клиентам увеличить конверсию лендингов в 2–3 раза и снизить стоимость лида до 350 ₽ на платном трафике.
             </p>
           </div>
 
