@@ -321,15 +321,6 @@ export default function Index() {
         <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-secondary/10" />
         
         <div className="container mx-auto text-center relative z-10 max-w-5xl">
-          <div
-            className={`inline-block text-8xl mb-8 cursor-pointer transition-all duration-1000 ${
-              rocketLaunched ? "translate-y-[-1000px] opacity-0" : ""
-            }`}
-            onClick={launchRocket}
-          >
-            🚀
-          </div>
-
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 px-2">
             Ваш бизнес готов к <span className="text-primary">взлёту?</span>
           </h1>
