@@ -1297,13 +1297,45 @@ export default function Index() {
           <Card className="glass">
             <CardContent className="pt-6 md:pt-8">
               <form
-                onSubmit={(e) => {
+                onSubmit={async (e) => {
                   e.preventDefault();
                   if (formProgress === 100) {
-                    toast({
-                      title: "Готово! Скоро свяжемся ✅",
-                      description: "Мы получили вашу заявку и перезвоним в течение 15 минут!",
-                    });
+                    try {
+                      const checkedProblems = problems
+                        .filter((_, idx) => problemsChecked[idx])
+                        .map((p) => p.text);
+
+                      const response = await fetch('https://functions.poehali.dev/61fb81dc-5697-4188-b501-02b17f4672cc', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                          name: formData.name,
+                          phone: formData.email,
+                          niche: selectedNiche,
+                          problems: checkedProblems,
+                        }),
+                      });
+
+                      if (response.ok) {
+                        toast({
+                          title: "Готово! Скоро свяжемся ✅",
+                          description: "Мы получили вашу заявку и перезвоним в течение 15 минут!",
+                        });
+                        setFormData({ name: '', email: '' });
+                      } else {
+                        toast({
+                          title: "Ошибка",
+                          description: "Попробуйте еще раз или свяжитесь по телефону",
+                          variant: "destructive",
+                        });
+                      }
+                    } catch (error) {
+                      toast({
+                        title: "Ошибка",
+                        description: "Проверьте интернет и попробуйте снова",
+                        variant: "destructive",
+                      });
+                    }
                   }
                 }}
                 className="space-y-4 md:space-y-6"

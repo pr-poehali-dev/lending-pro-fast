@@ -1,0 +1,35 @@
+{
+  "tests": [
+    {
+      "name": "OPTIONS request for CORS",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "POST valid lead",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "name": "Иван Петров",
+        "phone": "+7 999 123-45-67",
+        "niche": "Услуги",
+        "problems": ["Сайта нет или выглядит как в 2010", "Реклама не окупается"]
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "POST without required fields",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "niche": "Услуги"
+      },
+      "expectedStatus": 400
+    }
+  ]
+}
