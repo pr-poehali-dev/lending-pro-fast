@@ -342,7 +342,7 @@ export default function Index() {
           <div className="px-4 space-y-4">
             <Button
               size="lg"
-              className="text-base md:text-lg px-6 md:px-8 py-5 md:py-6 bg-gradient-to-r from-primary to-secondary hover:shadow-[0_0_30px_rgba(52,152,219,0.5)] transition-all w-full md:w-auto"
+              className="btn-primary text-base md:text-lg px-6 md:px-8 py-5 md:py-6 hover:shadow-[0_0_30px_rgba(255,75,87,0.5)] transition-all w-full md:w-auto text-white border-0"
               onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
             >
               Получить разбор и концепцию лендинга 🚀
@@ -955,7 +955,7 @@ export default function Index() {
                     </div>
                   </div>
                   <Button
-                    className={`w-full mt-6 ${pkg.highlight ? "bg-gradient-to-r from-primary to-secondary" : ""}`}
+                    className={`w-full mt-6 ${pkg.highlight ? "btn-primary text-white border-0" : ""}`}
                     onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
                   >
                     Выбрать пакет
@@ -1334,7 +1334,7 @@ export default function Index() {
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full bg-gradient-to-r from-primary to-secondary hover:shadow-[0_0_30px_rgba(52,152,219,0.5)]"
+                  className="w-full btn-primary text-white border-0 hover:shadow-[0_0_30px_rgba(255,75,87,0.5)]"
                   disabled={formProgress < 100}
                 >
                   {formProgress === 100 ? "Получить консультацию 🚀" : "Заполните все поля"}
