@@ -357,7 +357,7 @@ export default function Index() {
       <section className="py-20 px-4" id="pain">
         <div className="container mx-auto max-w-5xl">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-6 md:mb-8 px-4">
-            Теряете клиентов до того, как начинаете продавать?
+            Почему текущий сайт не приносит заявки?
           </h2>
 
           <p className="text-lg md:text-xl text-center text-primary/90 mb-4 max-w-3xl mx-auto font-semibold px-4">
