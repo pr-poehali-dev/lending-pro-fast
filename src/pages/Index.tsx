@@ -35,6 +35,8 @@ export default function Index() {
   const [lossCounter, setLossCounter] = useState({ rubles: 0, clients: 1, competitors: 0 });
   const [problemsChecked, setProblemsChecked] = useState<Record<number, boolean>>({});
   const [selectedNiche, setSelectedNiche] = useState<string>("E-commerce");
+  const [showAutoOffer, setShowAutoOffer] = useState(false);
+  const [timeOnSite, setTimeOnSite] = useState(0);
 
   const getCurrentDate = () => {
     const now = new Date();
@@ -187,6 +189,20 @@ export default function Index() {
     }, 1000);
     return () => clearInterval(lossInterval);
   }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeOnSite(prev => prev + 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    if (timeOnSite >= 40 && !showAutoOffer) {
+      setShowAutoOffer(true);
+    }
+  }, [timeOnSite, showAutoOffer]);
 
   const launchRocket = () => {
     setRocketLaunched(true);
@@ -1477,6 +1493,44 @@ export default function Index() {
         >
           ⬆️
         </Button>
+      )}
+
+      {showAutoOffer && (
+        <Card className="fixed bottom-20 right-4 md:bottom-8 md:right-8 z-50 max-w-sm glass border-2 border-primary shadow-[0_0_40px_rgba(52,152,219,0.6)] animate-in slide-in-from-bottom-5 fade-in duration-500">
+          <button
+            onClick={() => setShowAutoOffer(false)}
+            className="absolute top-2 right-2 text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <Icon name="X" size={20} />
+          </button>
+          <CardHeader className="pb-3">
+            <div className="flex items-center gap-2 mb-2">
+              <Icon name="Clock" className="text-primary" size={20} />
+              <Badge variant="secondary" className="text-xs">Персональное предложение</Badge>
+            </div>
+            <CardTitle className="text-lg">Вижу, вы уже изучаете сайт больше 40 секунд</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <p className="text-sm text-muted-foreground">
+              Могу быстро посчитать стоимость лендинга под ваш бизнес — бесплатно.
+            </p>
+            <Button
+              className="w-full bg-gradient-to-r from-primary to-secondary animate-pulse"
+              onClick={() => {
+                setShowAutoOffer(false);
+                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
+              Рассчитать стоимость бесплатно 💰
+            </Button>
+            <button
+              onClick={() => setShowAutoOffer(false)}
+              className="w-full text-xs text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Нет, спасибо
+            </button>
+          </CardContent>
+        </Card>
       )}
 
       <AIChatWidget />
