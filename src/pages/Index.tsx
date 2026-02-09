@@ -591,50 +591,7 @@ export default function Index() {
             </p>
           </div>
 
-          <Card className="glass border-destructive/30">
-            <CardContent className="pt-6 md:pt-8 space-y-6 md:space-y-8">
-              <div>
-                <Label className="text-base md:text-lg mb-3 md:mb-4 block">
-                  Сколько тратите на рекламу в месяц?
-                </Label>
-                <div className="flex items-center gap-3 md:gap-4">
-                  <Slider
-                    value={adBudget}
-                    onValueChange={setAdBudget}
-                    min={10000}
-                    max={500000}
-                    step={10000}
-                    className="flex-1"
-                  />
-                  <span className="text-lg md:text-xl font-bold min-w-[100px] md:min-w-[120px] text-right">{adBudget[0].toLocaleString()} ₽</span>
-                </div>
-              </div>
 
-              <div>
-                <Label className="text-base md:text-lg mb-3 md:mb-4 block">
-                  Какой процент клиентов уходит без покупки?
-                </Label>
-                <div className="flex items-center gap-3 md:gap-4">
-                  <Slider
-                    value={leakage}
-                    onValueChange={setLeakage}
-                    min={20}
-                    max={90}
-                    step={5}
-                    className="flex-1"
-                  />
-                  <span className="text-lg md:text-xl font-bold min-w-[100px] md:min-w-[120px] text-right">{leakage[0]}%</span>
-                </div>
-              </div>
-
-              <div className="text-center p-4 md:p-8 rounded-xl bg-destructive/20 border-2 border-destructive">
-                <p className="text-base md:text-lg mb-2">Вы теряете каждый месяц:</p>
-                <p className="text-3xl md:text-4xl lg:text-5xl font-bold text-destructive animate-pulse">
-                  {calculateLoss().toLocaleString()} ₽
-                </p>
-              </div>
-            </CardContent>
-          </Card>
         </div>
       </section>
 
