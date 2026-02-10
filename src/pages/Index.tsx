@@ -292,10 +292,10 @@ export default function Index() {
 
 
       <nav className="fixed top-4 left-0 right-0 z-40 px-4 transition-opacity duration-300" style={{ opacity: isNavTransparent ? 0.3 : 1 }}>
-        <div className="glass rounded-full py-3 px-4 md:px-8">
+        {/* Desktop Navigation */}
+        <div className="hidden md:block glass rounded-full py-3 px-4 md:px-8">
           <div className="flex items-center justify-between max-w-7xl mx-auto">
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center justify-between w-full">
+            <div className="flex items-center justify-between w-full">
               {sections.map((section) => (
                 <button
                   key={section.id}
@@ -316,15 +316,17 @@ export default function Index() {
                 </button>
               ))}
             </div>
+          </div>
+        </div>
 
-            {/* Mobile Navigation */}
-            <div className="md:hidden flex items-center justify-end w-full">
-              <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-                <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon" className="h-10 w-10">
-                    <Icon name="Menu" size={24} />
-                  </Button>
-                </SheetTrigger>
+        {/* Mobile Navigation */}
+        <div className="md:hidden flex justify-end">
+          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="h-12 w-12 glass rounded-full">
+                <Icon name="Menu" size={24} />
+              </Button>
+            </SheetTrigger>
                 <SheetContent side="right" className="w-[250px] sm:w-[300px]">
                   <div className="flex flex-col gap-4 mt-8">
                     {sections.map((section) => (
@@ -345,10 +347,8 @@ export default function Index() {
                       </button>
                     ))}
                   </div>
-                </SheetContent>
-              </Sheet>
-            </div>
-          </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </nav>
 
