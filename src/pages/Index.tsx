@@ -822,7 +822,6 @@ export default function Index() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8 mb-8 md:mb-12">
             {[
               {
-                number: "1️⃣",
                 title: "АНАЛИЗ",
                 period: "день 1-2",
                 steps: [
@@ -833,7 +832,6 @@ export default function Index() {
                 icon: "Search"
               },
               {
-                number: "2️⃣",
                 title: "СТРАТЕГИЯ",
                 period: "день 3",
                 steps: [
@@ -844,7 +842,6 @@ export default function Index() {
                 icon: "Target"
               },
               {
-                number: "3️⃣",
                 title: "ДИЗАЙН + ТЕКСТЫ",
                 period: "день 4-5",
                 steps: [
@@ -855,7 +852,6 @@ export default function Index() {
                 icon: "Palette"
               },
               {
-                number: "4️⃣",
                 title: "ТЕСТИРОВАНИЕ",
                 period: "день 6-7",
                 steps: [
@@ -872,14 +868,13 @@ export default function Index() {
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity" />
                 <CardHeader className="relative z-10 p-4 md:p-6">
-                  <div className="flex items-center justify-between mb-3 md:mb-4">
-                    <span className="text-3xl md:text-4xl">{stage.number}</span>
-                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                      <Icon name={stage.icon as any} size={18} className="text-white md:w-5 md:h-5" />
+                  <div className="flex items-center justify-center mb-3 md:mb-4">
+                    <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                      <Icon name={stage.icon as any} size={28} className="text-white md:w-9 md:h-9" />
                     </div>
                   </div>
-                  <CardTitle className="text-lg md:text-xl mb-2">{stage.title}</CardTitle>
-                  <Badge variant="secondary" className="w-fit mb-3 md:mb-4 text-xs md:text-sm">{stage.period}</Badge>
+                  <CardTitle className="text-lg md:text-xl mb-2 text-center">{stage.title}</CardTitle>
+                  <Badge variant="secondary" className="w-fit mb-3 md:mb-4 text-xs md:text-sm mx-auto">{stage.period}</Badge>
                   <div className="space-y-1.5 md:space-y-2">
                     {stage.steps.map((step, stepIdx) => (
                       <div key={stepIdx} className="flex items-start gap-2 text-xs md:text-sm">
