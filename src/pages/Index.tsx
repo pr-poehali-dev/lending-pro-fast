@@ -807,10 +807,10 @@ export default function Index() {
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-gradient-to-b from-card to-card/50">
+      <section className="py-20 px-4 bg-gradient-to-b from-card to-card/50" id="process">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 px-4">
-            🔍 КАК МЫ ПОДНИМАЕМ КОНВЕРСИЮ В 3 РАЗА
+            🔍 Ваш путь к успеху за 7 дней
           </h2>
           <p className="text-center text-muted-foreground mb-12 md:mb-16 text-base md:text-lg px-4">
             Проверенная методология работы над каждым лендингом
@@ -901,74 +901,6 @@ export default function Index() {
               </p>
             </CardContent>
           </Card>
-        </div>
-      </section>
-
-      <section className="py-20 px-4" id="process">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-12 md:mb-20 px-4">
-            Ваш путь к успеху за 7 дней
-          </h2>
-
-          <div className="relative">
-            <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-secondary to-accent -translate-x-1/2" />
-
-            <div className="space-y-12 md:space-y-24">
-              {[
-                { day: "День 1-2", title: "Стратегия", desc: "Анализ ЦА и конкурентов", icon: "Target" },
-                { day: "День 3-4", title: "Дизайн", desc: "Создание уникального макета", icon: "Palette" },
-                { day: "День 5-6", title: "Разработка", desc: "Вёрстка и интеграции", icon: "Code" },
-                { day: "День 7", title: "Запуск!", desc: "Публикация и первые заявки", icon: "Rocket" },
-              ].map((step, idx) => (
-                <div key={idx} className="relative group">
-                  {/* Mobile: vertical layout */}
-                  <div className="md:hidden flex items-center gap-4 pl-12">
-                    <div className="absolute left-0 w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg border-2 border-background">
-                      <Icon name={step.icon as any} size={20} className="text-primary-foreground" />
-                    </div>
-                    <Card className="glass flex-1 hover:border-primary transition-all duration-300">
-                      <CardHeader className="p-4">
-                        <Badge className="mb-2 w-fit text-xs">{step.day}</Badge>
-                        <CardTitle className="text-lg">{step.title}</CardTitle>
-                        <CardDescription className="text-sm">{step.desc}</CardDescription>
-                      </CardHeader>
-                    </Card>
-                  </div>
-
-                  {/* Desktop: chess layout */}
-                  <div className="hidden md:grid grid-cols-2 gap-8 items-center">
-                    {idx % 2 === 0 ? (
-                      <>
-                        <Card className="glass hover:border-primary hover:shadow-[0_0_40px_rgba(52,152,219,0.4)] transition-all duration-300 ml-auto group-hover:scale-115 group-hover:-translate-x-8 cursor-pointer">
-                          <CardHeader>
-                            <Badge className="mb-2 w-fit">{step.day}</Badge>
-                            <CardTitle className="text-2xl">{step.title}</CardTitle>
-                            <CardDescription className="text-base">{step.desc}</CardDescription>
-                          </CardHeader>
-                        </Card>
-                        <div />
-                      </>
-                    ) : (
-                      <>
-                        <div />
-                        <Card className="glass hover:border-primary hover:shadow-[0_0_40px_rgba(52,152,219,0.4)] transition-all duration-300 mr-auto group-hover:scale-115 group-hover:translate-x-8 cursor-pointer">
-                          <CardHeader>
-                            <Badge className="mb-2 w-fit">{step.day}</Badge>
-                            <CardTitle className="text-2xl">{step.title}</CardTitle>
-                            <CardDescription className="text-base">{step.desc}</CardDescription>
-                          </CardHeader>
-                        </Card>
-                      </>
-                    )}
-
-                    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg border-4 border-background transition-all duration-300 group-hover:scale-125 group-hover:rotate-12 group-hover:shadow-[0_0_30px_rgba(52,152,219,0.6)] z-10 cursor-pointer">
-                      <Icon name={step.icon as any} size={24} className="w-8 h-8 text-primary-foreground transition-transform duration-300 group-hover:scale-110" />
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
