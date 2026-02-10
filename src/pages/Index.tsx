@@ -1043,58 +1043,91 @@ export default function Index() {
             ].map((pkg, idx) => (
               <Card
                 key={idx}
-                className={`glass hover:scale-105 transition-all ${
+                className={`glass hover:scale-105 transition-all flex flex-col ${
                   pkg.highlight ? "border-2 border-primary shadow-[0_0_70px_rgba(52,152,219,0.6)] animate-pulse" : ""
                 }`}
               >
-                <CardHeader className="p-4 md:p-6">
+                <CardHeader className="p-4 md:p-6 relative">
+                  {pkg.highlight && (
+                    <div className="absolute -top-3 -right-3 bg-gradient-to-r from-accent to-secondary text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg animate-bounce">
+                      💎 Лучший выбор
+                    </div>
+                  )}
                   <Badge className="mb-3 md:mb-4 w-fit text-xs md:text-sm" variant={pkg.highlight ? "default" : "secondary"}>
                     {pkg.badge}
                   </Badge>
                   <div className="text-4xl md:text-5xl mb-3 md:mb-4">{pkg.icon}</div>
                   <CardTitle className="text-2xl md:text-3xl">Пакет «{pkg.name}»</CardTitle>
-                  <div className="text-3xl md:text-4xl font-bold mt-3 md:mt-4 text-primary">
-                    {pkg.price.toLocaleString()} ₽
+                  <div className="flex items-baseline gap-2 mt-3 md:mt-4">
+                    <div className="text-3xl md:text-4xl font-bold text-primary">
+                      {pkg.price.toLocaleString()} ₽
+                    </div>
+                    {idx === 1 && (
+                      <span className="text-sm text-muted-foreground line-through">50 000 ₽</span>
+                    )}
                   </div>
                   {pkg.duration && (
-                    <p className="text-xs md:text-sm text-muted-foreground mt-2">
-                      Сроки: {pkg.duration}
-                    </p>
+                    <div className="flex items-center gap-2 mt-2">
+                      <Icon name="Clock" size={14} className="text-muted-foreground" />
+                      <p className="text-xs md:text-sm text-muted-foreground">
+                        {pkg.duration}
+                      </p>
+                    </div>
                   )}
                 </CardHeader>
-                <CardContent className="space-y-3 md:space-y-4 p-4 md:p-6 pt-0">
+                <CardContent className="space-y-3 md:space-y-4 p-4 md:p-6 pt-0 flex-1 flex flex-col">
                   {pkg.suitableFor && (
-                    <div>
-                      <p className="font-semibold mb-2 text-xs md:text-sm">Кому подходит:</p>
-                      <ul className="space-y-1 text-xs md:text-sm">
+                    <div className="bg-primary/5 p-3 rounded-lg">
+                      <div className="flex items-center gap-2 mb-2">
+                        <Icon name="Users" size={16} className="text-primary" />
+                        <p className="font-semibold text-xs md:text-sm">Кому подходит:</p>
+                      </div>
+                      <ul className="space-y-1.5 text-xs md:text-sm">
                         {pkg.suitableFor.map((item, i) => (
-                          <li key={i}>• {item}</li>
+                          <li key={i} className="flex items-start gap-2">
+                            <Icon name="ArrowRight" size={12} className="text-primary mt-1 flex-shrink-0" />
+                            <span>{item}</span>
+                          </li>
                         ))}
                       </ul>
                     </div>
                   )}
                   {pkg.description && (
-                    <p className="text-xs md:text-sm italic text-muted-foreground border-l-2 border-primary pl-3">
-                      {pkg.description}
-                    </p>
+                    <div className="bg-secondary/10 p-3 rounded-lg border-l-4 border-secondary">
+                      <p className="text-xs md:text-sm italic">
+                        <Icon name="Lightbulb" size={14} className="inline mr-1 text-secondary" />
+                        {pkg.description}
+                      </p>
+                    </div>
                   )}
-                  <div className="pt-2">
-                    <p className="font-semibold mb-2 text-xs md:text-sm">Что входит:</p>
+                  <div className="pt-2 flex-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Icon name="Package" size={16} className="text-accent" />
+                      <p className="font-semibold text-xs md:text-sm">Что входит:</p>
+                    </div>
                     <div className="space-y-1.5 md:space-y-2">
                       {pkg.features.map((feature, i) => (
-                        <div key={i} className="flex items-start gap-2">
-                          <Icon name="Check" className="text-secondary mt-0.5 md:mt-1 flex-shrink-0" size={14} />
-                          <span className="text-xs md:text-sm">{feature}</span>
+                        <div key={i} className="flex items-start gap-2 group">
+                          <Icon name="CheckCircle2" className="text-secondary mt-0.5 md:mt-1 flex-shrink-0 group-hover:scale-125 transition-transform" size={14} />
+                          <span className="text-xs md:text-sm group-hover:text-primary transition-colors">{feature}</span>
                         </div>
                       ))}
                     </div>
                   </div>
-                  <Button
-                    className={`w-full mt-4 md:mt-6 text-sm md:text-base ${pkg.highlight ? "bg-gradient-to-r from-primary to-secondary animate-pulse" : ""}`}
-                    onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                  >
-                    Выбрать пакет
-                  </Button>
+                  <div className="space-y-2 pt-2">
+                    <Button
+                      className={`w-full text-sm md:text-base group ${pkg.highlight ? "bg-gradient-to-r from-primary to-secondary hover:shadow-[0_0_30px_rgba(52,152,219,0.5)]" : ""}`}
+                      onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+                    >
+                      <Icon name="Rocket" size={16} className="mr-2 group-hover:translate-x-1 transition-transform" />
+                      Выбрать пакет
+                    </Button>
+                    {idx === 1 && (
+                      <p className="text-xs text-center text-muted-foreground">
+                        🎁 +2 недели бесплатной поддержки при заказе сегодня
+                      </p>
+                    )}
+                  </div>
                 </CardContent>
               </Card>
             ))}
