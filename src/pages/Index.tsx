@@ -41,6 +41,7 @@ export default function Index() {
   const [offerCooldownSeconds, setOfferCooldownSeconds] = useState(40);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [currentCaseSlide, setCurrentCaseSlide] = useState(0);
+  const [processCardsVisible, setProcessCardsVisible] = useState<boolean[]>([false, false, false, false]);
 
   const getCurrentDate = () => {
     const now = new Date();
@@ -163,6 +164,29 @@ export default function Index() {
           }
         }
       });
+
+      // Анимация карточек процесса
+      const processSection = document.getElementById("process");
+      if (processSection) {
+        const rect = processSection.getBoundingClientRect();
+        if (rect.top <= window.innerHeight * 0.8) {
+          setProcessCardsVisible((prev) => {
+            const newVisible = [...prev];
+            prev.forEach((visible, idx) => {
+              if (!visible) {
+                setTimeout(() => {
+                  setProcessCardsVisible((current) => {
+                    const updated = [...current];
+                    updated[idx] = true;
+                    return updated;
+                  });
+                }, idx * 150);
+              }
+            });
+            return newVisible;
+          });
+        }
+      }
     };
     window.addEventListener("scroll", handleScroll);
     handleScroll();
@@ -864,7 +888,10 @@ export default function Index() {
             ].map((stage, idx) => (
               <Card 
                 key={idx} 
-                className="glass hover:border-primary hover:scale-105 transition-all duration-300 cursor-pointer group relative overflow-hidden"
+                className={`glass hover:border-primary hover:scale-105 transition-all duration-500 cursor-pointer group relative overflow-hidden ${
+                  processCardsVisible[idx] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
+                style={{ transitionDelay: `${idx * 150}ms` }}
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity" />
                 <CardHeader className="relative z-10 p-4 md:p-6">
