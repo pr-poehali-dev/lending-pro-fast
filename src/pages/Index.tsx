@@ -1185,122 +1185,136 @@ export default function Index() {
             Все примеры — при сохранении или небольшом увеличении рекламного бюджета, без чудес и накруток.
           </p>
 
-          <div className="space-y-8 md:space-y-12">
-            {[
-              {
-                label: "Ниша: услуги B2C • Городской салон красоты",
-                title: "Салон красоты: с 10 заявок в месяц до записи на 2 недели вперёд",
-                subtitle: "Пересобрали лендинг и мобильную версию — конверсия выросла в 3 раза, стоимость заявки упала почти в 3 раза.",
-                before: [
-                  "Бюджет на рекламу: около 25 000 ₽ в месяц",
-                  "Старый сайт без нормальной мобильной версии",
-                  "10–12 заявок в месяц, часть терялась в переписке",
-                  "Конверсия ≈ 2%, фактическая стоимость лида ~2 000–2 300 ₽"
-                ],
-                after: [
-                  "Конверсия лендинга: 6,5–7% вместо 2%",
-                  "32–36 заявок в месяц при том же бюджете",
-                  "Стоимость лида: 700–800 ₽ вместо ~2 000 ₽",
-                  "Мастера расписаны вперёд на 10–14 дней"
-                ],
-                conclusion: "Для салона красоты правильный лендинг и мобильная версия дали в 3 раза больше заявок без увеличения рекламного бюджета.",
-                icon: "Scissors"
-              },
-              {
-                label: "Ниша: ремонт квартир • Средний чек от 150 000 ₽",
-                title: "Ремонт квартир: снижение стоимости лида с 2 000 ₽ до 800–900 ₽",
-                subtitle: "Сфокусировали лендинг на одном оффере и добавили калькулятор — поток заявок вырос более чем в 2 раза.",
-                before: [
-                  "Рекламный бюджет: ~40 000 ₽ в месяц",
-                  "Перегруженный сайт‑визитка без внятного оффера",
-                  "20–22 заявки в месяц",
-                  "CPL ~1 800–2 000 ₽, до замера доходило 3–4 лида"
-                ],
-                after: [
-                  "Конверсия лендинга: 5–6% вместо 2,5%",
-                  "45–50 заявок в месяц при том же бюджете",
-                  "CPL стабилизировался на уровне 800–900 ₽",
-                  "10+ замеров и 3–5 договоров ежемесячно"
-                ],
-                conclusion: "Для компании по ремонту один внятный оффер + калькулятор и кейсы \"до/после\" дали в 2 раза больше заявок и почти в 2,5 раза ниже стоимость лида.",
-                icon: "Hammer"
-              },
-              {
-                label: "Ниша: онлайн‑образование • Массовый курс",
-                title: "Онлайн‑школа: конверсия с 1,5% до 5,8% и CPL почти в 3 раза ниже",
-                subtitle: "Перепаковка оффера и квиз вместо формы превратили лендинг из \"слива бюджета\" в управляемую воронку.",
-                before: [
-                  "Рекламный бюджет: около 60 000 ₽ в месяц",
-                  "Сложный лендинг без структуры, результаты учеников внизу",
-                  "Конверсия в заявку ≈ 1,5%",
-                  "50–60 лидов в месяц, CPL ~1 000–1 200 ₽"
-                ],
-                after: [
-                  "Конверсия лендинга: 5–5,8%",
-                  "160–180 заявок в месяц при том же бюджете",
-                  "CPL: 330–375 ₽",
-                  "Появилась предсказуемая воронка: понятно, сколько заявок и оплат даёт каждый 1 000 ₽"
-                ],
-                conclusion: "Для онлайн‑школы структурированный оффер и квиз‑форма дали рост заявок в 3–4 раза без увеличения бюджета.",
-                icon: "GraduationCap"
-              }
-            ].map((caseStudy, idx) => (
-              <Card key={idx} className="glass border-2 border-primary/20 hover:border-primary/50 transition-all">
-                <CardHeader className="pb-4">
-                  <Badge variant="secondary" className="mb-3 w-fit text-xs">
-                    {caseStudy.label}
-                  </Badge>
-                  <div className="flex items-start gap-3 mb-2">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink-0">
-                      <Icon name={caseStudy.icon as any} size={20} className="text-white" />
-                    </div>
-                    <div className="flex-1">
-                      <CardTitle className="text-xl md:text-2xl mb-2">{caseStudy.title}</CardTitle>
-                      <p className="text-sm md:text-base text-muted-foreground">{caseStudy.subtitle}</p>
-                    </div>
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent>
+              {[
+                {
+                  label: "Ниша: услуги B2C • Городской салон красоты",
+                  title: "Салон красоты: с 10 заявок в месяц до записи на 2 недели вперёд",
+                  subtitle: "Пересобрали лендинг и мобильную версию — конверсия выросла в 3 раза, стоимость заявки упала почти в 3 раза.",
+                  before: [
+                    "Бюджет на рекламу: около 25 000 ₽ в месяц",
+                    "Старый сайт без нормальной мобильной версии",
+                    "10–12 заявок в месяц, часть терялась в переписке",
+                    "Конверсия ≈ 2%, фактическая стоимость лида ~2 000–2 300 ₽"
+                  ],
+                  after: [
+                    "Конверсия лендинга: 6,5–7% вместо 2%",
+                    "32–36 заявок в месяц при том же бюджете",
+                    "Стоимость лида: 700–800 ₽ вместо ~2 000 ₽",
+                    "Мастера расписаны вперёд на 10–14 дней"
+                  ],
+                  conclusion: "Для салона красоты правильный лендинг и мобильная версия дали в 3 раза больше заявок без увеличения рекламного бюджета.",
+                  icon: "Scissors"
+                },
+                {
+                  label: "Ниша: ремонт квартир • Средний чек от 150 000 ₽",
+                  title: "Ремонт квартир: снижение стоимости лида с 2 000 ₽ до 800–900 ₽",
+                  subtitle: "Сфокусировали лендинг на одном оффере и добавили калькулятор — поток заявок вырос более чем в 2 раза.",
+                  before: [
+                    "Рекламный бюджет: ~40 000 ₽ в месяц",
+                    "Перегруженный сайт‑визитка без внятного оффера",
+                    "20–22 заявки в месяц",
+                    "CPL ~1 800–2 000 ₽, до замера доходило 3–4 лида"
+                  ],
+                  after: [
+                    "Конверсия лендинга: 5–6% вместо 2,5%",
+                    "45–50 заявок в месяц при том же бюджете",
+                    "CPL стабилизировался на уровне 800–900 ₽",
+                    "10+ замеров и 3–5 договоров ежемесячно"
+                  ],
+                  conclusion: "Для компании по ремонту один внятный оффер + калькулятор и кейсы \"до/после\" дали в 2 раза больше заявок и почти в 2,5 раза ниже стоимость лида.",
+                  icon: "Hammer"
+                },
+                {
+                  label: "Ниша: онлайн‑образование • Массовый курс",
+                  title: "Онлайн‑школа: конверсия с 1,5% до 5,8% и CPL почти в 3 раза ниже",
+                  subtitle: "Перепаковка оффера и квиз вместо формы превратили лендинг из \"слива бюджета\" в управляемую воронку.",
+                  before: [
+                    "Рекламный бюджет: около 60 000 ₽ в месяц",
+                    "Сложный лендинг без структуры, результаты учеников внизу",
+                    "Конверсия в заявку ≈ 1,5%",
+                    "50–60 лидов в месяц, CPL ~1 000–1 200 ₽"
+                  ],
+                  after: [
+                    "Конверсия лендинга: 5–5,8%",
+                    "160–180 заявок в месяц при том же бюджете",
+                    "CPL: 330–375 ₽",
+                    "Появилась предсказуемая воронка: понятно, сколько заявок и оплат даёт каждый 1 000 ₽"
+                  ],
+                  conclusion: "Для онлайн‑школы структурированный оффер и квиз‑форма дали рост заявок в 3–4 раза без увеличения бюджета.",
+                  icon: "GraduationCap"
+                }
+              ].map((caseStudy, idx) => (
+                <CarouselItem key={idx}>
+                  <div className="p-1">
+                    <Card className="glass border-2 border-primary/20 hover:border-primary/50 transition-all h-full">
+                      <CardHeader className="pb-4">
+                        <Badge variant="secondary" className="mb-3 w-fit text-xs">
+                          {caseStudy.label}
+                        </Badge>
+                        <div className="flex items-start gap-3 mb-2">
+                          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink-0">
+                            <Icon name={caseStudy.icon as any} size={20} className="text-white" />
+                          </div>
+                          <div className="flex-1">
+                            <CardTitle className="text-xl md:text-2xl mb-2">{caseStudy.title}</CardTitle>
+                            <p className="text-sm md:text-base text-muted-foreground">{caseStudy.subtitle}</p>
+                          </div>
+                        </div>
+                      </CardHeader>
+                      <CardContent className="space-y-4">
+                        <div className="grid md:grid-cols-2 gap-4">
+                          <div className="bg-destructive/10 p-4 rounded-lg border-l-4 border-destructive">
+                            <div className="flex items-center gap-2 mb-3">
+                              <Icon name="XCircle" size={16} className="text-destructive" />
+                              <h4 className="font-semibold text-sm md:text-base">Было:</h4>
+                            </div>
+                            <ul className="space-y-2 text-xs md:text-sm">
+                              {caseStudy.before.map((item, i) => (
+                                <li key={i} className="flex items-start gap-2">
+                                  <span className="text-destructive mt-0.5">•</span>
+                                  <span>{item}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div className="bg-secondary/10 p-4 rounded-lg border-l-4 border-secondary">
+                            <div className="flex items-center gap-2 mb-3">
+                              <Icon name="CheckCircle2" size={16} className="text-secondary" />
+                              <h4 className="font-semibold text-sm md:text-base">Стало:</h4>
+                            </div>
+                            <ul className="space-y-2 text-xs md:text-sm">
+                              {caseStudy.after.map((item, i) => (
+                                <li key={i} className="flex items-start gap-2">
+                                  <span className="text-secondary mt-0.5">✓</span>
+                                  <span className="font-medium">{item}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                        <div className="bg-accent/10 p-3 rounded-lg border-l-4 border-accent">
+                          <p className="text-sm italic">
+                            <Icon name="Lightbulb" size={14} className="inline mr-1 text-accent" />
+                            {caseStudy.conclusion}
+                          </p>
+                        </div>
+                      </CardContent>
+                    </Card>
                   </div>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="bg-destructive/10 p-4 rounded-lg border-l-4 border-destructive">
-                      <div className="flex items-center gap-2 mb-3">
-                        <Icon name="XCircle" size={16} className="text-destructive" />
-                        <h4 className="font-semibold text-sm md:text-base">Было:</h4>
-                      </div>
-                      <ul className="space-y-2 text-xs md:text-sm">
-                        {caseStudy.before.map((item, i) => (
-                          <li key={i} className="flex items-start gap-2">
-                            <span className="text-destructive mt-0.5">•</span>
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="bg-secondary/10 p-4 rounded-lg border-l-4 border-secondary">
-                      <div className="flex items-center gap-2 mb-3">
-                        <Icon name="CheckCircle2" size={16} className="text-secondary" />
-                        <h4 className="font-semibold text-sm md:text-base">Стало:</h4>
-                      </div>
-                      <ul className="space-y-2 text-xs md:text-sm">
-                        {caseStudy.after.map((item, i) => (
-                          <li key={i} className="flex items-start gap-2">
-                            <span className="text-secondary mt-0.5">✓</span>
-                            <span className="font-medium">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="bg-accent/10 p-3 rounded-lg border-l-4 border-accent">
-                    <p className="text-sm italic">
-                      <Icon name="Lightbulb" size={14} className="inline mr-1 text-accent" />
-                      {caseStudy.conclusion}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="-left-4 md:-left-12 w-12 h-12 bg-primary/90 hover:bg-primary border-2 border-primary shadow-lg hover:shadow-xl" />
+            <CarouselNext className="-right-4 md:-right-12 w-12 h-12 bg-primary/90 hover:bg-primary border-2 border-primary shadow-lg hover:shadow-xl" />
+          </Carousel>
         </div>
       </section>
 
