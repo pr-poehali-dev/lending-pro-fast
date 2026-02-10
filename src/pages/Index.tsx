@@ -698,7 +698,7 @@ export default function Index() {
       <section className="py-20 px-4 bg-card/50" id="heroes">
         <div className="container mx-auto max-w-7xl">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 md:mb-12 px-4">
-            Реальные истории успеха наших клиентов
+            Истории успеха наших клиентов
           </h2>
 
           <Carousel
