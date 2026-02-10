@@ -37,6 +37,9 @@ export default function Index() {
   const [selectedNiche, setSelectedNiche] = useState<string>("E-commerce");
   const [showAutoOffer, setShowAutoOffer] = useState(false);
   const [timeOnSite, setTimeOnSite] = useState(0);
+  const [offerDismissedAt, setOfferDismissedAt] = useState<number | null>(null);
+  const [offerCooldownSeconds, setOfferCooldownSeconds] = useState(40);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const getCurrentDate = () => {
     const now = new Date();
@@ -199,10 +202,27 @@ export default function Index() {
   }, []);
 
   useEffect(() => {
-    if (timeOnSite >= 40 && !showAutoOffer) {
+    if (formSubmitted) return;
+    
+    const timeSinceDismissed = offerDismissedAt ? timeOnSite - offerDismissedAt : 999;
+    
+    if (timeOnSite >= offerCooldownSeconds && timeSinceDismissed >= offerCooldownSeconds && !showAutoOffer) {
       setShowAutoOffer(true);
     }
-  }, [timeOnSite, showAutoOffer]);
+  }, [timeOnSite, showAutoOffer, offerDismissedAt, offerCooldownSeconds, formSubmitted]);
+
+  const handleOfferDismiss = () => {
+    setShowAutoOffer(false);
+    setOfferDismissedAt(timeOnSite);
+    setOfferCooldownSeconds(80);
+  };
+
+  const handleOfferAccept = () => {
+    setShowAutoOffer(false);
+    setOfferDismissedAt(timeOnSite);
+    setOfferCooldownSeconds(120);
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const launchRocket = () => {
     setRocketLaunched(true);
@@ -1381,11 +1401,12 @@ export default function Index() {
                       });
 
                       if (response.ok) {
+                        setFormSubmitted(true);
                         toast({
                           title: "Готово! Скоро свяжемся ✅",
                           description: "Мы получили вашу заявку и свяжемся с вами в течение 15 минут!",
                         });
-                        setFormData({ name: '', email: '' });
+                        setFormData({ name: '', email: '', consent: false });
                       } else {
                         toast({
                           title: "Ошибка",
@@ -1499,11 +1520,11 @@ export default function Index() {
         <>
           <div 
             className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] animate-in fade-in duration-300"
-            onClick={() => setShowAutoOffer(false)}
+            onClick={handleOfferDismiss}
           />
           <Card className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[101] w-[90%] md:w-[60%] max-w-2xl glass border-2 border-primary shadow-[0_0_60px_rgba(52,152,219,0.8)] animate-in zoom-in-95 fade-in duration-500">
             <button
-              onClick={() => setShowAutoOffer(false)}
+              onClick={handleOfferDismiss}
               className="absolute top-3 right-3 text-muted-foreground hover:text-foreground transition-colors bg-background/50 rounded-full p-2 hover:bg-background/80"
             >
               <Icon name="X" size={24} />
@@ -1524,15 +1545,12 @@ export default function Index() {
               <Button
                 size="lg"
                 className="w-full bg-gradient-to-r from-primary to-secondary animate-pulse text-lg py-6"
-                onClick={() => {
-                  setShowAutoOffer(false);
-                  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-                }}
+                onClick={handleOfferAccept}
               >
                 Рассчитать стоимость бесплатно 💰
               </Button>
               <button
-                onClick={() => setShowAutoOffer(false)}
+                onClick={handleOfferDismiss}
                 className="w-full text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 Нет, спасибо
