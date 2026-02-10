@@ -928,9 +928,9 @@ export default function Index() {
                   <Badge variant="secondary" className="w-fit mb-3 md:mb-4 text-xs md:text-sm mx-auto">{stage.period}</Badge>
                   <div className="space-y-1.5 md:space-y-2">
                     {stage.steps.map((step, stepIdx) => (
-                      <div key={stepIdx} className="flex items-start gap-2 text-xs md:text-sm">
+                      <div key={stepIdx} className="flex items-start gap-2 text-sm md:text-base">
                         <Icon name="ArrowRight" size={14} className="text-primary mt-0.5 flex-shrink-0 md:w-4 md:h-4" />
-                        <span className="text-muted-foreground">{step}</span>
+                        <span className="text-foreground/85">{step}</span>
                       </div>
                     ))}
                   </div>
