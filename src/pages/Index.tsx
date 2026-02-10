@@ -527,22 +527,22 @@ export default function Index() {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-8 md:mb-12">
             <Card className="glass hover:border-destructive/50 transition-all">
-              <CardContent className="pt-8 text-center">
-                <div className="text-6xl mb-4">🚪</div>
-                <h3 className="text-2xl font-bold mb-4">Закрытая дверь</h3>
-                <p className="text-muted-foreground">
+              <CardContent className="pt-6 md:pt-8 text-center">
+                <div className="text-5xl md:text-6xl mb-3 md:mb-4">🚪</div>
+                <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">Закрытая дверь</h3>
+                <p className="text-sm md:text-base text-muted-foreground">
                   Без эффективного лендинга ваш бизнес остаётся невидимым для клиентов
                 </p>
               </CardContent>
             </Card>
 
             <Card className="glass hover:border-destructive/50 transition-all">
-              <CardContent className="pt-8 text-center">
-                <div className="text-6xl mb-4">😞</div>
-                <h3 className="text-2xl font-bold mb-4">Разочарование</h3>
-                <p className="text-muted-foreground">
+              <CardContent className="pt-6 md:pt-8 text-center">
+                <div className="text-5xl md:text-6xl mb-3 md:mb-4">😞</div>
+                <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">Разочарование</h3>
+                <p className="text-sm md:text-base text-muted-foreground">
                   Клиенты приходят, но не видят ценности вашего предложения
                 </p>
               </CardContent>
@@ -816,7 +816,7 @@ export default function Index() {
             Проверенная методология работы над каждым лендингом
           </p>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-12">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8 mb-8 md:mb-12">
             {[
               {
                 number: "1️⃣",
@@ -868,19 +868,19 @@ export default function Index() {
                 className="glass hover:border-primary hover:scale-105 transition-all duration-300 cursor-pointer group relative overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                <CardHeader className="relative z-10">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-4xl">{stage.number}</span>
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                      <Icon name={stage.icon as any} size={20} className="text-white" />
+                <CardHeader className="relative z-10 p-4 md:p-6">
+                  <div className="flex items-center justify-between mb-3 md:mb-4">
+                    <span className="text-3xl md:text-4xl">{stage.number}</span>
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                      <Icon name={stage.icon as any} size={18} className="text-white md:w-5 md:h-5" />
                     </div>
                   </div>
-                  <CardTitle className="text-xl mb-2">{stage.title}</CardTitle>
-                  <Badge variant="secondary" className="w-fit mb-4">{stage.period}</Badge>
-                  <div className="space-y-2">
+                  <CardTitle className="text-lg md:text-xl mb-2">{stage.title}</CardTitle>
+                  <Badge variant="secondary" className="w-fit mb-3 md:mb-4 text-xs md:text-sm">{stage.period}</Badge>
+                  <div className="space-y-1.5 md:space-y-2">
                     {stage.steps.map((step, stepIdx) => (
-                      <div key={stepIdx} className="flex items-start gap-2 text-sm">
-                        <Icon name="ArrowRight" size={16} className="text-primary mt-0.5 flex-shrink-0" />
+                      <div key={stepIdx} className="flex items-start gap-2 text-xs md:text-sm">
+                        <Icon name="ArrowRight" size={14} className="text-primary mt-0.5 flex-shrink-0 md:w-4 md:h-4" />
                         <span className="text-muted-foreground">{step}</span>
                       </div>
                     ))}
@@ -1045,26 +1045,26 @@ export default function Index() {
                   pkg.highlight ? "border-2 border-primary shadow-[0_0_70px_rgba(52,152,219,0.6)] animate-pulse" : ""
                 }`}
               >
-                <CardHeader>
-                  <Badge className="mb-4 w-fit" variant={pkg.highlight ? "default" : "secondary"}>
+                <CardHeader className="p-4 md:p-6">
+                  <Badge className="mb-3 md:mb-4 w-fit text-xs md:text-sm" variant={pkg.highlight ? "default" : "secondary"}>
                     {pkg.badge}
                   </Badge>
-                  <div className="text-5xl mb-4">{pkg.icon}</div>
-                  <CardTitle className="text-3xl">Пакет «{pkg.name}»</CardTitle>
-                  <div className="text-4xl font-bold mt-4 text-primary">
+                  <div className="text-4xl md:text-5xl mb-3 md:mb-4">{pkg.icon}</div>
+                  <CardTitle className="text-2xl md:text-3xl">Пакет «{pkg.name}»</CardTitle>
+                  <div className="text-3xl md:text-4xl font-bold mt-3 md:mt-4 text-primary">
                     {pkg.price.toLocaleString()} ₽
                   </div>
                   {pkg.duration && (
-                    <p className="text-sm text-muted-foreground mt-2">
+                    <p className="text-xs md:text-sm text-muted-foreground mt-2">
                       Сроки: {pkg.duration}
                     </p>
                   )}
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-3 md:space-y-4 p-4 md:p-6 pt-0">
                   {pkg.suitableFor && (
                     <div>
-                      <p className="font-semibold mb-2 text-sm">Кому подходит:</p>
-                      <ul className="space-y-1 text-sm">
+                      <p className="font-semibold mb-2 text-xs md:text-sm">Кому подходит:</p>
+                      <ul className="space-y-1 text-xs md:text-sm">
                         {pkg.suitableFor.map((item, i) => (
                           <li key={i}>• {item}</li>
                         ))}
@@ -1072,23 +1072,23 @@ export default function Index() {
                     </div>
                   )}
                   {pkg.description && (
-                    <p className="text-sm italic text-muted-foreground border-l-2 border-primary pl-3">
+                    <p className="text-xs md:text-sm italic text-muted-foreground border-l-2 border-primary pl-3">
                       {pkg.description}
                     </p>
                   )}
                   <div className="pt-2">
-                    <p className="font-semibold mb-2 text-sm">Что входит:</p>
-                    <div className="space-y-2">
+                    <p className="font-semibold mb-2 text-xs md:text-sm">Что входит:</p>
+                    <div className="space-y-1.5 md:space-y-2">
                       {pkg.features.map((feature, i) => (
                         <div key={i} className="flex items-start gap-2">
-                          <Icon name="Check" className="text-secondary mt-1" size={16} />
-                          <span className="text-sm">{feature}</span>
+                          <Icon name="Check" className="text-secondary mt-0.5 md:mt-1 flex-shrink-0" size={14} />
+                          <span className="text-xs md:text-sm">{feature}</span>
                         </div>
                       ))}
                     </div>
                   </div>
                   <Button
-                    className={`w-full mt-6 ${pkg.highlight ? "bg-gradient-to-r from-primary to-secondary animate-pulse" : ""}`}
+                    className={`w-full mt-4 md:mt-6 text-sm md:text-base ${pkg.highlight ? "bg-gradient-to-r from-primary to-secondary animate-pulse" : ""}`}
                     onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
                   >
                     Выбрать пакет
@@ -1106,7 +1106,7 @@ export default function Index() {
             Гарантии, которым можно верить 🛡️
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-4 md:gap-6">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             {[
               { icon: "💰", title: "Возврат денег", desc: "Если за 30 дней не получите рост заявок — вернём 100% средств" },
               { icon: "☎️", title: "Бесплатный разбор", desc: "Консультация и аудит вашего бизнеса перед стартом — в подарок" },
@@ -1114,17 +1114,17 @@ export default function Index() {
             ].map((item, idx) => (
               <Card
                 key={idx}
-                className="glass hover:rotate-y-180 transition-all duration-500 cursor-pointer group h-[200px] relative"
+                className="glass hover:rotate-y-180 transition-all duration-500 cursor-pointer group h-[180px] md:h-[200px] relative sm:col-span-2 md:col-span-1 sm:last:col-span-1"
                 style={{ transformStyle: "preserve-3d" }}
               >
                 <div className="absolute inset-0 flex items-center justify-center group-hover:opacity-0 transition-opacity">
-                  <div className="text-center">
-                    <div className="text-5xl mb-4">{item.icon}</div>
-                    <CardTitle>{item.title}</CardTitle>
+                  <div className="text-center px-4">
+                    <div className="text-4xl md:text-5xl mb-3 md:mb-4">{item.icon}</div>
+                    <CardTitle className="text-lg md:text-xl">{item.title}</CardTitle>
                   </div>
                 </div>
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity p-6">
-                  <p className="text-center">{item.desc}</p>
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity p-4 md:p-6">
+                  <p className="text-center text-sm md:text-base">{item.desc}</p>
                 </div>
               </Card>
             ))}
@@ -1181,8 +1181,8 @@ export default function Index() {
           </p>
 
           <Accordion type="single" collapsible className="space-y-6">
-            <AccordionItem value="category-dev" className="glass px-6 py-2 rounded-xl border-border">
-              <AccordionTrigger className="text-2xl font-bold text-primary hover:text-primary/80">
+            <AccordionItem value="category-dev" className="glass px-4 md:px-6 py-2 rounded-xl border-border">
+              <AccordionTrigger className="text-xl md:text-2xl font-bold text-primary hover:text-primary/80">
                 О разработке и сроках
               </AccordionTrigger>
               <AccordionContent>
@@ -1201,8 +1201,8 @@ export default function Index() {
                       a: "Мы отправим вам бриф (20–30 вопросов) о вашем бизнесе и задачах. Также попросим:\n\n• Логотип (если есть)\n• Фото товаров/услуг (если есть)\n• Примеры лендингов, которые вам нравятся\n\nЕсли чего-то нет — не страшно! Мы поможем с подбором фото и созданием AI-визуала.",
                     },
                   ].map((faq, idx) => (
-                    <AccordionItem key={idx} value={`dev-${idx}`} className="bg-card/30 px-4 rounded-lg border border-border/50">
-                      <AccordionTrigger className="text-base font-semibold hover:text-primary text-left py-3">
+                    <AccordionItem key={idx} value={`dev-${idx}`} className="bg-card/30 px-3 md:px-4 rounded-lg border border-border/50">
+                      <AccordionTrigger className="text-sm md:text-base font-semibold hover:text-primary text-left py-2 md:py-3">
                         {faq.q}
                       </AccordionTrigger>
                       <AccordionContent className="text-foreground/90 whitespace-pre-line pb-3">
@@ -1214,8 +1214,8 @@ export default function Index() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="category-content" className="glass px-6 py-2 rounded-xl border-border">
-              <AccordionTrigger className="text-2xl font-bold text-primary hover:text-primary/80">
+            <AccordionItem value="category-content" className="glass px-4 md:px-6 py-2 rounded-xl border-border">
+              <AccordionTrigger className="text-xl md:text-2xl font-bold text-primary hover:text-primary/80">
                 О контенте
               </AccordionTrigger>
               <AccordionContent>
@@ -1230,8 +1230,8 @@ export default function Index() {
                       a: "Мы пишем все тексты сами в рамках всех пакетов: заголовки, описания, преимущества, тексты кнопок. Вы получаете готовые продающие тексты с применением психологических триггеров.",
                     },
                   ].map((faq, idx) => (
-                    <AccordionItem key={idx} value={`content-${idx}`} className="bg-card/30 px-4 rounded-lg border border-border/50">
-                      <AccordionTrigger className="text-base font-semibold hover:text-primary text-left py-3">
+                    <AccordionItem key={idx} value={`content-${idx}`} className="bg-card/30 px-3 md:px-4 rounded-lg border border-border/50">
+                      <AccordionTrigger className="text-sm md:text-base font-semibold hover:text-primary text-left py-2 md:py-3">
                         {faq.q}
                       </AccordionTrigger>
                       <AccordionContent className="text-foreground/90 whitespace-pre-line pb-3">
@@ -1243,8 +1243,8 @@ export default function Index() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="category-func" className="glass px-6 py-2 rounded-xl border-border">
-              <AccordionTrigger className="text-2xl font-bold text-primary hover:text-primary/80">
+            <AccordionItem value="category-func" className="glass px-4 md:px-6 py-2 rounded-xl border-border">
+              <AccordionTrigger className="text-xl md:text-2xl font-bold text-primary hover:text-primary/80">
                 О функционале
               </AccordionTrigger>
               <AccordionContent>
@@ -1263,8 +1263,8 @@ export default function Index() {
                       a: "A/B тестирование — это проверка разных вариантов элементов лендинга (заголовки, кнопки, цвета), чтобы понять, какой работает лучше. Так мы повышаем конверсию на 15–40%.\n\nВходит в пакеты РОСТ (2–3 варианта) и ПРЕМИУМ (5–7 вариантов).",
                     },
                   ].map((faq, idx) => (
-                    <AccordionItem key={idx} value={`func-${idx}`} className="bg-card/30 px-4 rounded-lg border border-border/50">
-                      <AccordionTrigger className="text-base font-semibold hover:text-primary text-left py-3">
+                    <AccordionItem key={idx} value={`func-${idx}`} className="bg-card/30 px-3 md:px-4 rounded-lg border border-border/50">
+                      <AccordionTrigger className="text-sm md:text-base font-semibold hover:text-primary text-left py-2 md:py-3">
                         {faq.q}
                       </AccordionTrigger>
                       <AccordionContent className="text-foreground/90 whitespace-pre-line pb-3">
@@ -1276,7 +1276,7 @@ export default function Index() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="category-price" className="glass px-6 py-2 rounded-xl border-border">
+            <AccordionItem value="category-price" className="glass px-4 md:px-6 py-2 rounded-xl border-border">
               <AccordionTrigger className="text-2xl font-bold text-primary hover:text-primary/80">
                 О стоимости и окупаемости
               </AccordionTrigger>
@@ -1309,8 +1309,8 @@ export default function Index() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="category-results" className="glass px-6 py-2 rounded-xl border-border">
-              <AccordionTrigger className="text-2xl font-bold text-primary hover:text-primary/80">
+            <AccordionItem value="category-results" className="glass px-4 md:px-6 py-2 rounded-xl border-border">
+              <AccordionTrigger className="text-xl md:text-2xl font-bold text-primary hover:text-primary/80">
                 О результатах
               </AccordionTrigger>
               <AccordionContent>
@@ -1329,8 +1329,8 @@ export default function Index() {
                       a: "Да, но нужно понимать:\n\n• Базовое SEO (СТАРТ) — технически правильная страница\n• Среднее SEO (РОСТ) — оптимизация под 5–7 ключевых слов\n• Полное SEO (ПРЕМИУМ) — стратегия под 15–25 ключей\n\nДля быстрых результатов рекомендуем запускать контекстную рекламу — первые заявки через 1–3 дня.",
                     },
                   ].map((faq, idx) => (
-                    <AccordionItem key={idx} value={`results-${idx}`} className="bg-card/30 px-4 rounded-lg border border-border/50">
-                      <AccordionTrigger className="text-base font-semibold hover:text-primary text-left py-3">
+                    <AccordionItem key={idx} value={`results-${idx}`} className="bg-card/30 px-3 md:px-4 rounded-lg border border-border/50">
+                      <AccordionTrigger className="text-sm md:text-base font-semibold hover:text-primary text-left py-2 md:py-3">
                         {faq.q}
                       </AccordionTrigger>
                       <AccordionContent className="text-foreground/90 whitespace-pre-line pb-3">
@@ -1342,8 +1342,8 @@ export default function Index() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="category-about" className="glass px-6 py-2 rounded-xl border-border">
-              <AccordionTrigger className="text-2xl font-bold text-primary hover:text-primary/80">
+            <AccordionItem value="category-about" className="glass px-4 md:px-6 py-2 rounded-xl border-border">
+              <AccordionTrigger className="text-xl md:text-2xl font-bold text-primary hover:text-primary/80">
                 Про нас
               </AccordionTrigger>
               <AccordionContent>
