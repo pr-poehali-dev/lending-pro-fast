@@ -1498,10 +1498,10 @@ export default function Index() {
       {showAutoOffer && (
         <>
           <div 
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 animate-in fade-in duration-300"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] animate-in fade-in duration-300"
             onClick={() => setShowAutoOffer(false)}
           />
-          <Card className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[90%] md:w-[60%] max-w-2xl glass border-2 border-primary shadow-[0_0_60px_rgba(52,152,219,0.8)] animate-in zoom-in-95 fade-in duration-500">
+          <Card className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[101] w-[90%] md:w-[60%] max-w-2xl glass border-2 border-primary shadow-[0_0_60px_rgba(52,152,219,0.8)] animate-in zoom-in-95 fade-in duration-500">
             <button
               onClick={() => setShowAutoOffer(false)}
               className="absolute top-3 right-3 text-muted-foreground hover:text-foreground transition-colors bg-background/50 rounded-full p-2 hover:bg-background/80"
