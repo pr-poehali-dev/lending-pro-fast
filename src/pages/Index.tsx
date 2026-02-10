@@ -986,15 +986,23 @@ export default function Index() {
                 name: "Старт",
                 icon: "🌱",
                 price: 20000,
+                oldPrice: 30000,
                 badge: "Для теста ниши",
                 duration: "5–7 рабочих дней",
+                priceNote: "Цена при запуске в этом месяце",
                 suitableFor: [
-                  "начинающим предпринимателям",
-                  "тех, кто тестирует новый продукт/услугу",
-                  "локальному бизнесу (кафе, студии, мастера услуг)"
+                  "Небольшим сервисам и мастерам услуг",
+                  "Тем, кто впервые выходит в онлайн",
+                  "Тем, кому нужно просто начать получать заявки"
                 ],
-                features: ["Одностраничный лендинг", "Мобильная версия", "Базовая аналитика", "1 месяц поддержки"],
-                description: "Быстрый запуск в онлайне: аккуратный, понятный лендинг, который уже можно заливать траффиком и собирать первые заявки"
+                features: [
+                  "Одностраничный лендинг с упором на понятность",
+                  "Базовые AI‑визуалы по вашей нише",
+                  "Адаптация под мобильные устройства",
+                  "Настройка Яндекс.Метрики и целей",
+                  "1 месяц технической поддержки"
+                ],
+                roi: "Если у вас 500 посетителей в месяц и конверсия с лендинга 4%, вы получаете ≈20 заявок. Даже 2–3 продажи с чеком от 10 000 ₽ полностью окупают пакет «Старт» в первый месяц."
               },
               {
                 name: "Рост",
@@ -1059,13 +1067,20 @@ export default function Index() {
                   <div className="text-4xl md:text-5xl mb-3 md:mb-4">{pkg.icon}</div>
                   <CardTitle className="text-2xl md:text-3xl">Пакет «{pkg.name}»</CardTitle>
                   <div className="flex items-baseline gap-2 mt-3 md:mt-4">
+                    {(pkg as any).oldPrice && (
+                      <span className="text-lg md:text-xl text-muted-foreground line-through">
+                        {(pkg as any).oldPrice.toLocaleString()} ₽
+                      </span>
+                    )}
                     <div className="text-3xl md:text-4xl font-bold text-primary">
                       {pkg.price.toLocaleString()} ₽
                     </div>
-                    {idx === 1 && (
-                      <span className="text-sm text-muted-foreground line-through">50 000 ₽</span>
-                    )}
                   </div>
+                  {(pkg as any).priceNote && (
+                    <p className="text-xs text-muted-foreground mt-1 italic">
+                      {(pkg as any).priceNote}
+                    </p>
+                  )}
                   {pkg.duration && (
                     <div className="flex items-center gap-2 mt-2">
                       <Icon name="Clock" size={14} className="text-muted-foreground" />
@@ -1092,7 +1107,18 @@ export default function Index() {
                       </ul>
                     </div>
                   )}
-                  {pkg.description && (
+                  {(pkg as any).roi && (
+                    <div className="bg-accent/10 p-3 rounded-lg border-l-4 border-accent">
+                      <div className="flex items-center gap-2 mb-1">
+                        <Icon name="TrendingUp" size={14} className="text-accent" />
+                        <p className="font-semibold text-xs">mini-ROI:</p>
+                      </div>
+                      <p className="text-xs leading-relaxed text-muted-foreground">
+                        {(pkg as any).roi}
+                      </p>
+                    </div>
+                  )}
+                  {pkg.description && !(pkg as any).roi && (
                     <div className="bg-secondary/10 p-3 rounded-lg border-l-4 border-secondary">
                       <p className="text-xs md:text-sm italic">
                         <Icon name="Lightbulb" size={14} className="inline mr-1 text-secondary" />
@@ -1120,8 +1146,13 @@ export default function Index() {
                       onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
                     >
                       <Icon name="Rocket" size={16} className="mr-2 group-hover:translate-x-1 transition-transform" />
-                      Выбрать пакет
+                      Выбрать "{pkg.name}"
                     </Button>
+                    {idx === 0 && (
+                      <p className="text-xs text-center text-accent font-semibold">
+                        💰 Окупается с 2-3 продаж
+                      </p>
+                    )}
                     {idx === 1 && (
                       <p className="text-xs text-center text-muted-foreground">
                         🎁 +2 недели бесплатной поддержки при заказе сегодня
