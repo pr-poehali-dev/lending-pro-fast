@@ -40,6 +40,7 @@ export default function Index() {
   const [offerDismissedAt, setOfferDismissedAt] = useState<number | null>(null);
   const [offerCooldownSeconds, setOfferCooldownSeconds] = useState(40);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [currentCaseSlide, setCurrentCaseSlide] = useState(0);
 
   const getCurrentDate = () => {
     const now = new Date();
@@ -1191,6 +1192,12 @@ export default function Index() {
               loop: true,
             }}
             className="w-full"
+            setApi={(api) => {
+              if (!api) return;
+              api.on("select", () => {
+                setCurrentCaseSlide(api.selectedScrollSnap());
+              });
+            }}
           >
             <CarouselContent>
               {[
@@ -1315,6 +1322,19 @@ export default function Index() {
             <CarouselPrevious className="-left-4 md:-left-12 w-12 h-12 bg-primary/90 hover:bg-primary border-2 border-primary shadow-lg hover:shadow-xl" />
             <CarouselNext className="-right-4 md:-right-12 w-12 h-12 bg-primary/90 hover:bg-primary border-2 border-primary shadow-lg hover:shadow-xl" />
           </Carousel>
+
+          <div className="flex justify-center gap-2 mt-8">
+            {[0, 1, 2].map((index) => (
+              <div
+                key={index}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  currentCaseSlide === index
+                    ? 'bg-primary w-8'
+                    : 'bg-primary/30 w-2'
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
