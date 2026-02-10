@@ -20,6 +20,10 @@ export default function AIChatWidget() {
   }, []);
 
   useEffect(() => {
+    if (closedAt === null && timeElapsed >= 20 && !isOpen) {
+      setIsOpen(true);
+    }
+    
     if (closedAt !== null && timeElapsed - closedAt >= 40 && !isOpen) {
       setIsOpen(true);
       setClosedAt(null);
