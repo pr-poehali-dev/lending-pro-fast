@@ -973,9 +973,12 @@ export default function Index() {
 
       <section className="py-20 px-4 bg-card/50" id="pricing">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 md:mb-12 px-4">
-            Выбери свой стартовый пакет
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 px-4">
+            Выберите старт для своего роста
           </h2>
+          <p className="text-center text-muted-foreground mb-8 md:mb-12 text-base md:text-lg px-4 max-w-4xl mx-auto">
+            Все пакеты включают стратегию, тексты, AI‑визуалы, аналитику и A/B‑тесты. Разница — в глубине проработки и скорости запуска.
+          </p>
 
           <div className="grid md:grid-cols-3 gap-6 md:gap-8">
             {[
