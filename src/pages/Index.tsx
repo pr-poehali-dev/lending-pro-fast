@@ -1041,11 +1041,14 @@ export default function Index() {
               <Card
                 key={idx}
                 className={`glass hover:scale-105 transition-all duration-500 flex flex-col ${
-                  pkg.highlight ? "border-2 border-primary shadow-[0_0_70px_rgba(52,152,219,0.6)] animate-pulse" : ""
+                  pkg.highlight ? "border-2 border-primary shadow-[0_0_70px_rgba(52,152,219,0.6)]" : ""
                 } ${
                   pricingCardsVisible[idx] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}
-                style={{ transitionDelay: `${idx * 200}ms` }}
+                style={{ 
+                  transitionDelay: `${idx * 200}ms`,
+                  animation: pkg.highlight ? 'gentle-pulse 3s ease-in-out infinite' : 'none'
+                }}
               >
                 <CardHeader className="p-4 md:p-6 relative">
                   {pkg.highlight && (
