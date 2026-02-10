@@ -5,20 +5,39 @@ import { Checkbox } from "@/components/ui/checkbox";
 import Icon from "@/components/ui/icon";
 
 export default function AIChatWidget() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [shake, setShake] = useState(false);
+  const [closedAt, setClosedAt] = useState<number | null>(null);
+  const [timeElapsed, setTimeElapsed] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeElapsed((prev) => prev + 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    if (closedAt !== null && timeElapsed - closedAt >= 40 && !isOpen) {
+      setIsOpen(true);
+      setClosedAt(null);
+    }
+  }, [timeElapsed, closedAt, isOpen]);
 
   useEffect(() => {
     const shakeInterval = setInterval(() => {
-      setShake(true);
-      setTimeout(() => setShake(false), 500);
+      if (!isOpen) {
+        setShake(true);
+        setTimeout(() => setShake(false), 500);
+      }
     }, 3000);
 
     return () => {
       clearInterval(shakeInterval);
     };
-  }, []);
+  }, [isOpen]);
 
   const options = [
     { id: "price", label: "Рассчитать стоимость для моей ниши", icon: "Calculator" },
@@ -68,7 +87,10 @@ export default function AIChatWidget() {
                 variant="ghost"
                 size="icon"
                 className="h-8 w-8 -mr-2 -mt-2"
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  setIsOpen(false);
+                  setClosedAt(timeElapsed);
+                }}
               >
                 <Icon name="X" size={18} />
               </Button>
