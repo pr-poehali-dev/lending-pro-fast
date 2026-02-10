@@ -404,51 +404,36 @@ export default function Index() {
       <section className="min-h-screen flex items-center justify-center relative overflow-hidden px-4" id="hero">
         <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-secondary/10" />
         
-        <div className="container mx-auto relative z-10 max-w-7xl">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div className="text-center lg:text-left">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 px-2">
-                Ваш бизнес готов к <span className="text-primary">взлёту?</span>
-              </h1>
-              
-              <h2 className="text-2xl md:text-3xl lg:text-3xl xl:text-4xl mb-4 text-primary font-bold px-2">
-                Лендинги, которые окупают рекламу и приносят заявки
-              </h2>
+        <div className="container mx-auto text-center relative z-10 max-w-5xl">
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 px-2">
+            Ваш бизнес готов к <span className="text-primary">взлёту?</span>
+          </h1>
+          
+          <h2 className="text-2xl md:text-3xl lg:text-4xl mb-4 text-primary font-bold px-2">
+            Лендинги, которые окупают рекламу и приносят заявки
+          </h2>
 
-              <p className="text-base md:text-lg lg:text-xl mb-6 px-4 lg:px-2 text-muted-foreground">
-                Проектируем и запускаем лендинги под ключ для малого бизнеса: стратегия, тексты, AI‑визуалы, аналитика и A/B‑тесты. Запуск за 7 дней — от первого брифа до первых заявок.
-              </p>
+          <p className="text-base md:text-lg lg:text-xl mb-6 max-w-4xl mx-auto px-4 text-muted-foreground">
+            Проектируем и запускаем лендинги под ключ для малого бизнеса: стратегия, тексты, AI‑визуалы, аналитика и A/B‑тесты. Запуск за 7 дней — от первого брифа до первых заявок.
+          </p>
 
-              <div className="glass inline-block px-4 md:px-6 py-3 rounded-xl mb-8 mx-4 lg:mx-2">
-                <p className="text-sm md:text-base font-semibold text-secondary">
-                  За 2025 мы помогли клиентам увеличить конверсию лендингов в 2–3 раза и снизить стоимость лида до 350 ₽ на платном трафике.
-                </p>
-              </div>
+          <div className="glass inline-block px-4 md:px-6 py-3 rounded-xl mb-8 mx-4">
+            <p className="text-sm md:text-base font-semibold text-secondary">
+              За 2025 мы помогли клиентам увеличить конверсию лендингов в 2–3 раза и снизить стоимость лида до 350 ₽ на платном трафике.
+            </p>
+          </div>
 
-              <div className="px-4 lg:px-2 space-y-4">
-                <Button
-                  size="lg"
-                  className="text-base md:text-lg px-6 md:px-8 py-5 md:py-6 bg-gradient-to-r from-primary to-secondary hover:shadow-[0_0_30px_rgba(52,152,219,0.5)] transition-all w-full lg:w-auto animate-pulse"
-                  onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                >
-                  Получить разбор и концепцию лендинга 🚀
-                </Button>
-                <p className="text-xs md:text-sm text-muted-foreground italic max-w-md mx-auto lg:mx-0">
-                  Без шаблонов. Работаем по данным: аналитика, сплит‑тесты, кастомные AI‑визуалы.
-                </p>
-              </div>
-            </div>
-
-            <div className="hidden lg:flex justify-center items-center">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-secondary/30 blur-3xl rounded-full" />
-                <img 
-                  src="https://cdn.poehali.dev/projects/2ac742c2-bd22-4e20-b02b-47a6b0efc994/bucket/8275393c-3a97-4ac6-b5ef-06a83472e68b.jpeg" 
-                  alt="KERANOS Mascot" 
-                  className="relative w-full max-w-md xl:max-w-lg h-auto object-contain animate-float drop-shadow-2xl"
-                />
-              </div>
-            </div>
+          <div className="px-4 space-y-4">
+            <Button
+              size="lg"
+              className="text-base md:text-lg px-6 md:px-8 py-5 md:py-6 bg-gradient-to-r from-primary to-secondary hover:shadow-[0_0_30px_rgba(52,152,219,0.5)] transition-all w-full md:w-auto animate-pulse"
+              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+            >
+              Получить разбор и концепцию лендинга 🚀
+            </Button>
+            <p className="text-xs md:text-sm text-muted-foreground italic max-w-md mx-auto">
+              Без шаблонов. Работаем по данным: аналитика, сплит‑тесты, кастомные AI‑визуалы.
+            </p>
           </div>
         </div>
       </section>
