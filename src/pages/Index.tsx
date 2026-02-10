@@ -42,6 +42,7 @@ export default function Index() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [currentCaseSlide, setCurrentCaseSlide] = useState(0);
   const [processCardsVisible, setProcessCardsVisible] = useState<boolean[]>([false, false, false, false]);
+  const [pricingCardsVisible, setPricingCardsVisible] = useState<boolean[]>([false, false, false]);
 
   const getCurrentDate = () => {
     const now = new Date();
@@ -181,6 +182,29 @@ export default function Index() {
                     return updated;
                   });
                 }, idx * 150);
+              }
+            });
+            return newVisible;
+          });
+        }
+      }
+
+      // Анимация карточек тарифов
+      const pricingSection = document.getElementById("pricing");
+      if (pricingSection) {
+        const rect = pricingSection.getBoundingClientRect();
+        if (rect.top <= window.innerHeight * 0.8) {
+          setPricingCardsVisible((prev) => {
+            const newVisible = [...prev];
+            prev.forEach((visible, idx) => {
+              if (!visible) {
+                setTimeout(() => {
+                  setPricingCardsVisible((current) => {
+                    const updated = [...current];
+                    updated[idx] = true;
+                    return updated;
+                  });
+                }, idx * 200);
               }
             });
             return newVisible;
@@ -1016,9 +1040,12 @@ export default function Index() {
             ].map((pkg, idx) => (
               <Card
                 key={idx}
-                className={`glass hover:scale-105 transition-all flex flex-col ${
+                className={`glass hover:scale-105 transition-all duration-500 flex flex-col ${
                   pkg.highlight ? "border-2 border-primary shadow-[0_0_70px_rgba(52,152,219,0.6)] animate-pulse" : ""
+                } ${
+                  pricingCardsVisible[idx] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}
+                style={{ transitionDelay: `${idx * 200}ms` }}
               >
                 <CardHeader className="p-4 md:p-6 relative">
                   {pkg.highlight && (
