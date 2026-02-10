@@ -318,8 +318,7 @@ export default function Index() {
             </div>
 
             {/* Mobile Navigation */}
-            <div className="md:hidden flex items-center justify-between w-full">
-              <span className="font-bold text-primary">KERANOS AI</span>
+            <div className="md:hidden flex items-center justify-end w-full">
               <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
                 <SheetTrigger asChild>
                   <Button variant="ghost" size="icon" className="h-10 w-10">
