@@ -414,7 +414,7 @@ export default function Index() {
           </h2>
 
           <p className="text-base md:text-lg lg:text-xl mb-6 max-w-4xl mx-auto px-4 text-muted-foreground">
-            Проектируем и запускаем лендинги под ключ для малого и среднего бизнеса: стратегия, тексты, AI‑визуалы, аналитика и A/B‑тесты. Запуск за 7 дней — от первого брифа до первых заявок.
+            Проектируем и запускаем лендинги под ключ для малого бизнеса: стратегия, тексты, AI‑визуалы, аналитика и A/B‑тесты. Запуск за 7 дней — от первого брифа до первых заявок.
           </p>
 
           <div className="glass inline-block px-4 md:px-6 py-3 rounded-xl mb-8 mx-4">
