@@ -697,9 +697,12 @@ export default function Index() {
 
       <section className="py-20 px-4 bg-card/50" id="heroes">
         <div className="container mx-auto max-w-7xl">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 md:mb-12 px-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 px-4">
             Истории успеха наших клиентов
           </h2>
+          <p className="text-center text-muted-foreground mb-8 md:mb-12 text-base md:text-lg px-4 max-w-3xl mx-auto">
+            Реальные отзывы владельцев бизнеса, которые уже получают стабильный поток заявок благодаря нашим лендингам
+          </p>
 
           <Carousel
             opts={{
