@@ -44,10 +44,10 @@ export default function AIChatWidget() {
   }, [isOpen]);
 
   const options = [
-    { id: "price", label: "Рассчитать стоимость для моей ниши", icon: "Calculator" },
-    { id: "examples", label: "Показать примеры работ", icon: "Image" },
-    { id: "timeline", label: "Узнать сроки", icon: "Clock" },
-    { id: "custom", label: "Задать свой вопрос", icon: "MessageSquare" },
+    { id: "price", label: "Сколько стоит лендинг для моей ниши?", icon: "Calculator" },
+    { id: "examples", label: "Можно посмотреть примеры ваших работ?", icon: "Image" },
+    { id: "timeline", label: "За сколько дней сделаете лендинг?", icon: "Clock" },
+    { id: "custom", label: "У меня другой вопрос", icon: "MessageSquare" },
   ];
 
   const responses: Record<string, string> = {
