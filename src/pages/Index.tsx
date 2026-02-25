@@ -1721,7 +1721,7 @@ export default function Index() {
             <a href="mailto:keranosai@mail.ru" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
               ✉️ keranosai@mail.ru
             </a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+            <a href="https://t.me/Keranos_AI" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
               Telegram
             </a>
           </div>
