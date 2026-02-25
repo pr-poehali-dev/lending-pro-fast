@@ -108,11 +108,11 @@ export default function AIChatWidget() {
                   <div
                     key={option.id}
                     className="flex items-start gap-3 p-3 rounded-lg border border-border hover:border-primary/50 hover:bg-primary/5 cursor-pointer transition-all"
-                    onClick={() => setSelectedOption(option.id)}
+                    onClick={() => window.open("https://t.me/Keranos_AI", "_blank")}
                   >
                     <Checkbox checked={false} className="mt-0.5" />
                     <div className="flex items-start gap-2 flex-1">
-                      <Icon name={option.icon as any} size={18} className="text-primary mt-0.5" />
+                      <Icon name={option.icon as string} size={18} className="text-primary mt-0.5" />
                       <span className="text-sm">{option.label}</span>
                     </div>
                   </div>
