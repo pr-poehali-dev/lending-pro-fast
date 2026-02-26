@@ -1338,7 +1338,7 @@ export default function Index() {
 
           <div className="grid md:grid-cols-3 gap-6 mb-10">
 
-            <div className="glass p-6 md:p-8 rounded-2xl border border-primary/30 hover:border-primary/60 hover:shadow-[0_0_30px_rgba(52,152,219,0.25)] transition-all duration-300 flex flex-col gap-4">
+            <div className="glass flicker-card p-6 md:p-8 rounded-2xl border border-primary/30 hover:border-primary/60 transition-all duration-300 flex flex-col gap-4">
               <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink-0">
                 <span className="text-2xl">⚡</span>
               </div>
@@ -1356,7 +1356,7 @@ export default function Index() {
               </div>
             </div>
 
-            <div className="glass p-6 md:p-8 rounded-2xl border border-secondary/30 hover:border-secondary/60 hover:shadow-[0_0_30px_rgba(46,204,113,0.25)] transition-all duration-300 flex flex-col gap-4">
+            <div className="glass flicker-card p-6 md:p-8 rounded-2xl border border-secondary/30 hover:border-secondary/60 transition-all duration-300 flex flex-col gap-4">
               <div className="w-14 h-14 rounded-full bg-gradient-to-br from-secondary to-accent flex items-center justify-center flex-shrink-0">
                 <span className="text-2xl">📊</span>
               </div>
@@ -1374,7 +1374,7 @@ export default function Index() {
               </div>
             </div>
 
-            <div className="glass p-6 md:p-8 rounded-2xl border border-accent/30 hover:border-accent/60 hover:shadow-[0_0_30px_rgba(155,89,182,0.25)] transition-all duration-300 flex flex-col gap-4">
+            <div className="glass flicker-card p-6 md:p-8 rounded-2xl border border-accent/30 hover:border-accent/60 transition-all duration-300 flex flex-col gap-4">
               <div className="w-14 h-14 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center flex-shrink-0">
                 <span className="text-2xl">💬</span>
               </div>
