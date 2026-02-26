@@ -1325,35 +1325,81 @@ export default function Index() {
         </div>
       </section>
 
-      <section className="py-20 px-4">
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 md:mb-12 px-4">
-            Гарантии, которым можно верить 🛡️
-          </h2>
+      {/* ===== БЛОК ГАРАНТИЙ ===== */}
+      <section className="py-20 px-4" id="guarantee">
+        <div className="container mx-auto max-w-5xl">
 
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-            {[
-              { icon: "💰", title: "Возврат денег", desc: "Если за 30 дней не получите рост заявок — вернём 100% средств" },
-              { icon: "☎️", title: "Бесплатный разбор", desc: "Консультация и аудит вашего бизнеса перед стартом — в подарок" },
-              { icon: "🔧", title: "Поддержка 24/7", desc: "Доработки, обновления и техподдержка всё время сопровождения" },
-            ].map((item, idx) => (
-              <Card
-                key={idx}
-                className="glass hover:rotate-y-180 transition-all duration-500 cursor-pointer group h-[180px] md:h-[200px] relative sm:col-span-2 md:col-span-1 sm:last:col-span-1"
-                style={{ transformStyle: "preserve-3d" }}
-              >
-                <div className="absolute inset-0 flex items-center justify-center group-hover:opacity-0 transition-opacity">
-                  <div className="text-center px-4">
-                    <div className="text-4xl md:text-5xl mb-3 md:mb-4">{item.icon}</div>
-                    <CardTitle className="text-lg md:text-xl">{item.title}</CardTitle>
-                  </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 px-4">
+            Работаем с открытыми картами
+          </h2>
+          <p className="text-center text-muted-foreground mb-12 text-base md:text-lg px-4 max-w-2xl mx-auto">
+            Три обязательства, за которые мы отвечаем рублём — всё прописано в договоре до старта
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-10">
+
+            <div className="glass p-6 md:p-8 rounded-2xl border border-primary/30 hover:border-primary/60 hover:shadow-[0_0_30px_rgba(52,152,219,0.25)] transition-all duration-300 flex flex-col gap-4">
+              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink-0">
+                <span className="text-2xl">⚡</span>
+              </div>
+              <div>
+                <h3 className="text-xl md:text-2xl font-bold mb-1">Сдаём в срок</h3>
+                <p className="text-muted-foreground text-sm md:text-base mb-3">
+                  Дата сдачи фиксируется в договоре под ваш пакет — 7, 14 или 21 день.
+                </p>
+                <div className="flex items-start gap-2 bg-primary/5 border border-primary/20 rounded-lg px-4 py-3">
+                  <span className="text-primary font-bold text-sm flex-shrink-0">→</span>
+                  <p className="text-sm font-medium">
+                    Просрочили по нашей вине — возвращаем <strong>30% стоимости</strong>
+                  </p>
                 </div>
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity p-4 md:p-6">
-                  <p className="text-center text-sm md:text-base">{item.desc}</p>
+              </div>
+            </div>
+
+            <div className="glass p-6 md:p-8 rounded-2xl border border-secondary/30 hover:border-secondary/60 hover:shadow-[0_0_30px_rgba(46,204,113,0.25)] transition-all duration-300 flex flex-col gap-4">
+              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-secondary to-accent flex items-center justify-center flex-shrink-0">
+                <span className="text-2xl">📊</span>
+              </div>
+              <div>
+                <h3 className="text-xl md:text-2xl font-bold mb-1">Конверсия от 5%</h3>
+                <p className="text-muted-foreground text-sm md:text-base mb-3">
+                  Замеряем через 30 дней после запуска при вашем трафике от 500 посетителей.
+                </p>
+                <div className="flex items-start gap-2 bg-secondary/5 border border-secondary/20 rounded-lg px-4 py-3">
+                  <span className="text-secondary font-bold text-sm flex-shrink-0">→</span>
+                  <p className="text-sm font-medium">
+                    Не вышли — переделываем <strong>полностью за наш счёт</strong>
+                  </p>
                 </div>
-              </Card>
-            ))}
+              </div>
+            </div>
+
+            <div className="glass p-6 md:p-8 rounded-2xl border border-accent/30 hover:border-accent/60 hover:shadow-[0_0_30px_rgba(155,89,182,0.25)] transition-all duration-300 flex flex-col gap-4">
+              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center flex-shrink-0">
+                <span className="text-2xl">💬</span>
+              </div>
+              <div>
+                <h3 className="text-xl md:text-2xl font-bold mb-1">Ответ за 4 часа</h3>
+                <p className="text-muted-foreground text-sm md:text-base mb-3">
+                  В рабочее время: пн–пт, 9:00–18:00 по МСК. Telegram или почта.
+                </p>
+                <div className="flex items-start gap-2 bg-accent/5 border border-accent/20 rounded-lg px-4 py-3">
+                  <span className="text-accent font-bold text-sm flex-shrink-0">→</span>
+                  <p className="text-sm font-medium">
+                    Нарушили — добавляем <strong>+1 месяц поддержки бесплатно</strong>
+                  </p>
+                </div>
+              </div>
+            </div>
+
           </div>
+
+          <div className="glass border border-primary/20 rounded-2xl p-5 md:p-6 text-center max-w-2xl mx-auto">
+            <p className="text-sm md:text-base text-muted-foreground">
+              📄 Все три условия прописываются в договоре <strong className="text-foreground">до старта работ</strong>. Без исключений.
+            </p>
+          </div>
+
         </div>
       </section>
 
