@@ -426,7 +426,7 @@ export default function Index() {
           <div className="px-4 space-y-4">
             <Button
               size="lg"
-              className="text-base md:text-lg px-6 md:px-8 py-5 md:py-6 bg-gradient-to-r from-primary to-secondary hover:shadow-[0_0_30px_rgba(52,152,219,0.5)] transition-all w-full md:w-auto animate-pulse"
+              className="text-sm md:text-lg px-4 md:px-8 py-5 md:py-6 bg-gradient-to-r from-primary to-secondary hover:shadow-[0_0_30px_rgba(52,152,219,0.5)] transition-all w-full md:w-auto animate-pulse whitespace-normal leading-tight h-auto"
               onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
             >
               Получить разбор и концепцию лендинга 🚀
